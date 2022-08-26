@@ -1,0 +1,48 @@
+#include "Renderer.hpp"
+
+namespace KA::Lib::SDL2 {
+    
+    Renderer::Renderer(KA::Lib::SDL2::Window &window, int index, Uint32 flags)
+    {
+        this->renderer = SDL_CreateRenderer(window.get(), index, flags);
+        if (this->renderer == nullptr) {
+            std::cerr << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
+            exit(1);
+        }
+    }
+    
+    Renderer::~Renderer()
+    {
+        SDL_DestroyRenderer(this->renderer);
+    }
+
+    SDL_Renderer *Renderer::get()
+    {
+        return (this->renderer);
+    }
+
+    void Renderer::render()
+    {
+        SDL_RenderPresent(this->renderer);
+    }
+
+    bool Renderer::clear(int r, int g, int b, int a)
+    {
+        if (SDL_SetRenderDrawColor(this->renderer, r, g, b, a) != 0) {
+            std::cerr << "SDL_SetRenderDrawColor Error: " << SDL_GetError() << std::endl;
+            return (false);
+        }
+        return (SDL_RenderClear(this->renderer) == 0);
+    }
+
+    std::shared_ptr<KA::Lib::SDL2::Renderer> Renderer::create(KA::Lib::SDL2::Window *window, int *index, Uint32 *flags)
+    {
+        static std::shared_ptr<KA::Lib::SDL2::Renderer> instance = std::make_shared<KA::Lib::SDL2::Renderer>(*window, *index, *flags);
+        return (instance);
+    }
+
+    std::shared_ptr<KA::Lib::SDL2::Renderer> Renderer::getInstance()
+    {
+        return (KA::Lib::SDL2::Renderer::create(NULL, NULL, NULL));
+    }
+}
