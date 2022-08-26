@@ -1,31 +1,31 @@
 #include "Map.hpp"
 
-namespace KA::Object {
+namespace PA::Object {
     Map::Map()
     {
-        this->grid = KA::Object::Grid::getInstance();
-        this->camera = KA::Lib::SDL2::Camera::getInstance();
-        this->tileManager = KA::Object::TileManager::getInstance();
+        this->grid = PA::Object::Grid::getInstance();
+        this->camera = PA::Lib::SDL2::Camera::getInstance();
+        this->tileManager = PA::Object::TileManager::getInstance();
     }
 
     void Map::update()
     {
         this->camera->update();
-        KA::Object::Grid::Action gridAction = this->grid->update();
-        if (gridAction != KA::Object::Grid::Action::NONE) {
+        PA::Object::Grid::Action gridAction = this->grid->update();
+        if (gridAction != PA::Object::Grid::Action::NONE) {
             this->tileManager->createTiles(gridAction);
         }
         this->roomManager.update();
         this->pnjManager.update();
-        KA::Object::Menu::AIcon::Action gameUIAction = this->gameUI.update();
+        PA::Object::Menu::AIcon::Action gameUIAction = this->gameUI.update();
         switch (gameUIAction) {
-            case KA::Object::Menu::AIcon::Action::DELIVERIES:
+            case PA::Object::Menu::AIcon::Action::DELIVERIES:
                 this->roomManager.createRoom("delivery");
                 break;
-            case KA::Object::Menu::AIcon::Action::WORKMAN:
+            case PA::Object::Menu::AIcon::Action::WORKMAN:
                 this->pnjManager.createPNJ("workman");
                 break;
-            case KA::Object::Menu::AIcon::Action::BRICK_WALL:
+            case PA::Object::Menu::AIcon::Action::BRICK_WALL:
                 this->grid->createWall("brickWall");
                 break;
             default:

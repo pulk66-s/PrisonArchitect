@@ -1,14 +1,14 @@
 #include "Camera.hpp"
 
-namespace KA::Lib::SDL2 {
+namespace PA::Lib::SDL2 {
 
     Camera::Camera() {
         this->position = {0, 0};
         this->moveDirection = {0, 0};
-        this->event = KA::Lib::SDL2::Event::getInstance();
+        this->event = PA::Lib::SDL2::Event::getInstance();
     }
     
-    KA::Vector2i Camera::getPos() {
+    PA::Vector2i Camera::getPos() {
         return (this->position);
     }
     
@@ -17,11 +17,11 @@ namespace KA::Lib::SDL2 {
         return instance;
     }
 
-    void Camera::setPos(KA::Vector2i pos) {
+    void Camera::setPos(PA::Vector2i pos) {
         this->position = pos;
     }
 
-    void Camera::move(KA::Vector2i pos) {
+    void Camera::move(PA::Vector2i pos) {
         this->position.x += pos.x;
         this->position.y += pos.y;
     }

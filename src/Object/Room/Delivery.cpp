@@ -1,8 +1,8 @@
 #include "Delivery.hpp"
 
-namespace KA::Object::Room {
+namespace PA::Object::Room {
     
-    Delivery::Delivery(KA::Vector2i dim, KA::Vector2i pos)
+    Delivery::Delivery(PA::Vector2i dim, PA::Vector2i pos)
     : ARoom(dim, pos, "Delivery") {
         
     }

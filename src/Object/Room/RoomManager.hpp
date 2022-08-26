@@ -14,21 +14,21 @@
     #include <map>
     #include <memory>
 
-class KA::Object::Room::RoomManager {
+class PA::Object::Room::RoomManager {
 
     private:
-    std::map<std::string, std::vector<std::shared_ptr<KA::Object::Room::ARoom>>> rooms;
-    std::shared_ptr<KA::Lib::SDL2::Event> event;
-    std::shared_ptr<KA::Lib::SDL2::Camera> camera;
+    std::map<std::string, std::vector<std::shared_ptr<PA::Object::Room::ARoom>>> rooms;
+    std::shared_ptr<PA::Lib::SDL2::Event> event;
+    std::shared_ptr<PA::Lib::SDL2::Camera> camera;
 
     // room creation
     bool roomCreation = false;
-    std::unique_ptr<KA::Lib::SDL2::Shape::Rectangle> roomCreationRect;
-    std::shared_ptr<KA::Object::Grid> grid = nullptr;
-    std::unique_ptr<KA::Vector2i> roomCreationFirstPoint = nullptr;
+    std::unique_ptr<PA::Lib::SDL2::Shape::Rectangle> roomCreationRect;
+    std::shared_ptr<PA::Object::Grid> grid = nullptr;
+    std::unique_ptr<PA::Vector2i> roomCreationFirstPoint = nullptr;
     std::string roomCreationName;
     bool waitingForRelease = false;
-    KA::Vector2i roomCreationRectDim;
+    PA::Vector2i roomCreationRectDim;
 
     void roomCreationUpdate();
 
@@ -38,7 +38,7 @@ class KA::Object::Room::RoomManager {
     void update();
     void createRoom(std::string name);
     // Create room by name and return
-    std::shared_ptr<KA::Object::Room::ARoom> createRoom(std::string name, KA::Vector2i dim, KA::Vector2i pos);
+    std::shared_ptr<PA::Object::Room::ARoom> createRoom(std::string name, PA::Vector2i dim, PA::Vector2i pos);
 
 };
 

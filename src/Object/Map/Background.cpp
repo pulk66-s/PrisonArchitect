@@ -1,12 +1,12 @@
 #include "Background.hpp"
 
-namespace KA::Object {
+namespace PA::Object {
     Background::Background() {
         this->images = {
             {"dirt", CREATE_IMAGE}
         };
         this->spriteIndex = {
-            {"dirt", KA::Vector2i{0, 0}}
+            {"dirt", PA::Vector2i{0, 0}}
         };
         for (auto &image : this->images) {
             image.second->setIndex(this->spriteIndex[image.first]);
@@ -14,7 +14,7 @@ namespace KA::Object {
         for (int i = 0; i < this->dim.x; i++) {
             this->sprites[i] = {};
             for (int j = 0; j < this->dim.y; j++) {
-                this->sprites[i][j] = std::make_shared<KA::Lib::SDL2::Image>(*this->images["dirt"]);
+                this->sprites[i][j] = std::make_shared<PA::Lib::SDL2::Graphic::Image>(*this->images["dirt"]);
                 this->sprites[i][j]->setPosition({i * 30, j * 30});
             }
         }

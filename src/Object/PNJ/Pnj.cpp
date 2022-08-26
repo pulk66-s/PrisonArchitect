@@ -1,8 +1,8 @@
 #include "Pnj.hpp"
 
-namespace KA::Object::PNJ {
+namespace PA::Object::PNJ {
 
-    Pnj::Pnj(std::string path, KA::Vector2i pos, unsigned short variant)
+    Pnj::Pnj(std::string path, PA::Vector2i pos, unsigned short variant)
     : spriteSheet(path, {50, 50}, pos, true, {4, 4})
     {
         this->pos = pos;
@@ -44,7 +44,7 @@ namespace KA::Object::PNJ {
                 this->currMove = this->ia->getMove();
                 this->moveOffset = this->maxMoveOffset;
             }
-            KA::Vector2i moveBuff = this->moveDirection[this->currMove];
+            PA::Vector2i moveBuff = this->moveDirection[this->currMove];
             this->pos += moveBuff;
             this->spriteSheet.setPosition(this->pos);
             this->spriteSheet.setIndex({this->moveSpriteSheetIndex[this->currMove], this->curr_variant});

@@ -1,6 +1,6 @@
 #include "SpriteManager.hpp"
 
-namespace KA::Lib::SDL2 {
+namespace PA::Lib::SDL2::Graphic {
 
     SpriteManager::SpriteManager() {
         this->sprites = {};

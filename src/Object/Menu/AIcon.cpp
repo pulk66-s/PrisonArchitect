@@ -1,25 +1,25 @@
 #include "AIcon.hpp"
 
-namespace KA::Object::Menu {
+namespace PA::Object::Menu {
 
-    AIcon::AIcon(KA::Vector2i pos, KA::Vector2i dim, KA::Vector2i index, std::string spritesheetPath)
+    AIcon::AIcon(PA::Vector2i pos, PA::Vector2i dim, PA::Vector2i index, std::string spritesheetPath)
     {
         this->spritesheetPath = spritesheetPath;
         this->pos = pos;
         this->dim = dim;
-        this->roomImage = std::make_unique<KA::Lib::SDL2::Image>(
+        this->roomImage = std::make_unique<PA::Lib::SDL2::Graphic::Image>(
             "res/sprites/menu/game_ui.png",
             this->dim, this->pos,
-            true, KA::Vector2i{3, 1}, KA::Lib::SDL2::Camera::Status::FIXED
+            true, PA::Vector2i{3, 1}, PA::Lib::SDL2::Camera::Status::FIXED
         );
         this->roomImage->setIndex(index);
-        this->menuBackground = std::make_unique<KA::Lib::SDL2::Shape::Rectangle>(
-            KA::Vector2i{100, 600}, KA::Vector2i{400, 240},
-            this->menuBackgroundColor, true, KA::Lib::SDL2::Camera::Status::FIXED
+        this->menuBackground = std::make_unique<PA::Lib::SDL2::Shape::Rectangle>(
+            PA::Vector2i{100, 600}, PA::Vector2i{400, 240},
+            this->menuBackgroundColor, true, PA::Lib::SDL2::Camera::Status::FIXED
         );
     }
 
-    KA::Object::Menu::AIcon::Action AIcon::update() {
+    PA::Object::Menu::AIcon::Action AIcon::update() {
         if (this->roomImage->isClick()) {
             this->displayed = true;
         } else if (this->roomImage->isClickOutside() && this->menuBackground->isClickOutside()) {

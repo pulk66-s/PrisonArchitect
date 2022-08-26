@@ -3,14 +3,14 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PlayerInfo.hpp"
-    #include "Lib/SDL2/Text.hpp"
+    #include "Lib/SDL2/Graphic/Text.hpp"
     #include <memory>
 
-class KA::Object::Menu::PlayerInfo {
+class PA::Object::Menu::PlayerInfo {
 
     private:
-    std::shared_ptr<KA::Object::PlayerInfo> playerInfo;
-    std::unique_ptr<KA::Lib::SDL2::Text> playerMoneyText;
+    std::shared_ptr<PA::Object::PlayerInfo> playerInfo;
+    std::unique_ptr<PA::Lib::SDL2::Graphic::Text> playerMoneyText;
 
     public:
     PlayerInfo();

@@ -1,7 +1,7 @@
 #ifndef __OBJECT_NAMESPACE_HPP__
     #define __OBJECT_NAMESPACE_HPP__
 
-namespace KA::Object {
+namespace PA::Object {
     class Map;
     class MapManager;
     class Grid;

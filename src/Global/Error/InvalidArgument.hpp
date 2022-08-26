@@ -4,7 +4,7 @@
     #include "Global/GlobalNamespace.hpp"
     #include "AError.hpp"
 
-class KA::Error::InvalidArgument : public KA::Error::AError
+class PA::Error::InvalidArgument : public PA::Error::AError
 {
     public:
     InvalidArgument(const std::string &message, const std::string &where);

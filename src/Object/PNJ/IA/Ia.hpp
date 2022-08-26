@@ -5,7 +5,7 @@
     #include "Object/Map/Grid.hpp"
     #include "Object/Map/TileManager.hpp"
 
-class KA::Object::PNJ::IA::Ia {
+class PA::Object::PNJ::IA::Ia {
 
     public:
     enum Move {
@@ -17,13 +17,13 @@ class KA::Object::PNJ::IA::Ia {
     };
 
     protected:
-    std::shared_ptr<KA::Object::Grid> grid;
-    std::shared_ptr<KA::Object::TileManager> tileManager;
+    std::shared_ptr<PA::Object::Grid> grid;
+    std::shared_ptr<PA::Object::TileManager> tileManager;
     Move nextMove = NONE;
 
     public:
     Ia();
-    void update(KA::Vector2i pos);
+    void update(PA::Vector2i pos);
     Move getMove();
 };
 

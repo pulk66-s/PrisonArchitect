@@ -5,11 +5,11 @@
     #include "Object/Menu/AIcon.hpp"
     #include "Lib/SDL2/Renderer.hpp"
 
-class KA::Object::Menu::Material : public KA::Object::Menu::AIcon {
+class PA::Object::Menu::Material : public PA::Object::Menu::AIcon {
 
     public:
     Material();
-    KA::Object::Menu::AIcon::Action update();
+    PA::Object::Menu::AIcon::Action update();
     using AIcon::draw;
 
 };

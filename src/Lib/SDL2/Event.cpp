@@ -1,6 +1,6 @@
 #include "Event.hpp"
 
-namespace KA::Lib::SDL2 {
+namespace PA::Lib::SDL2 {
 
     Event::Event() {
         this->event = SDL_Event();
@@ -28,19 +28,19 @@ namespace KA::Lib::SDL2 {
         return (this->isClickEvent);
     }
 
-    KA::Vector2i Event::getClickPosition() {
+    PA::Vector2i Event::getClickPosition() {
         return (this->clickPosition);
     }
 
-    std::shared_ptr<KA::Lib::SDL2::Event> Event::getInstance() {
-        static std::shared_ptr<KA::Lib::SDL2::Event> instance = std::make_shared<KA::Lib::SDL2::Event>();
+    std::shared_ptr<PA::Lib::SDL2::Event> Event::getInstance() {
+        static std::shared_ptr<PA::Lib::SDL2::Event> instance = std::make_shared<PA::Lib::SDL2::Event>();
         return (instance);
     }
 
-    KA::Vector2i Event::getMousePosition() {
+    PA::Vector2i Event::getMousePosition() {
         int x, y;
         SDL_GetMouseState(&x, &y);
-        return (KA::Vector2i{x, y});
+        return (PA::Vector2i{x, y});
     }
 
     bool Event::isRelease() {

@@ -4,23 +4,23 @@
     #include "Object/ObjectNamespace.hpp"
     #include "Global/Vector.hpp"
     #include "Lib/SDL2/Renderer.hpp"
-    #include "Lib/SDL2/Image.hpp"
+    #include "Lib/SDL2/Graphic/Image.hpp"
     #include <unordered_map>
     #include <memory>
 
-    #define CREATE_IMAGE std::make_shared<KA::Lib::SDL2::Image>( \
+    #define CREATE_IMAGE std::make_shared<PA::Lib::SDL2::Graphic::Image>( \
         "res/sprites/game/floor.png", \
-        KA::Vector2i{30, 30}, KA::Vector2i{0, 0}, \
-        true, KA::Vector2i{1, 1} \
+        PA::Vector2i{30, 30}, PA::Vector2i{0, 0}, \
+        true, PA::Vector2i{1, 1} \
     )
 
-class KA::Object::Background {
+class PA::Object::Background {
 
     private:
-    KA::Vector2i dim = {100, 100};
-    std::unordered_map<std::string, std::shared_ptr<KA::Lib::SDL2::Image>> images;
-    std::unordered_map<std::string, KA::Vector2i> spriteIndex;
-    std::unordered_map<int, std::unordered_map<int, std::shared_ptr<KA::Lib::SDL2::Image>>> sprites;
+    PA::Vector2i dim = {100, 100};
+    std::unordered_map<std::string, std::shared_ptr<PA::Lib::SDL2::Graphic::Image>> images;
+    std::unordered_map<std::string, PA::Vector2i> spriteIndex;
+    std::unordered_map<int, std::unordered_map<int, std::shared_ptr<PA::Lib::SDL2::Graphic::Image>>> sprites;
 
     public:
     Background();

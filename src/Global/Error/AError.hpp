@@ -6,7 +6,7 @@
     #include <string>
     #include <iostream>
 
-class KA::Error::AError : public std::exception
+class PA::Error::AError : public std::exception
 {
     private:
         std::string message;

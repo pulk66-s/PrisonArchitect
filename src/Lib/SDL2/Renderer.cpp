@@ -1,8 +1,8 @@
-#include "Renderer.hpp"
+#include "Lib/SDL2/Renderer.hpp"
 
-namespace KA::Lib::SDL2 {
+namespace PA::Lib::SDL2 {
     
-    Renderer::Renderer(KA::Lib::SDL2::Window &window, int index, Uint32 flags)
+    Renderer::Renderer(PA::Lib::SDL2::Window &window, int index, Uint32 flags)
     {
         this->renderer = SDL_CreateRenderer(window.get(), index, flags);
         if (this->renderer == nullptr) {
@@ -35,14 +35,14 @@ namespace KA::Lib::SDL2 {
         return (SDL_RenderClear(this->renderer) == 0);
     }
 
-    std::shared_ptr<KA::Lib::SDL2::Renderer> Renderer::create(KA::Lib::SDL2::Window *window, int *index, Uint32 *flags)
+    std::shared_ptr<PA::Lib::SDL2::Renderer> Renderer::create(PA::Lib::SDL2::Window *window, int *index, Uint32 *flags)
     {
-        static std::shared_ptr<KA::Lib::SDL2::Renderer> instance = std::make_shared<KA::Lib::SDL2::Renderer>(*window, *index, *flags);
+        static std::shared_ptr<PA::Lib::SDL2::Renderer> instance = std::make_shared<PA::Lib::SDL2::Renderer>(*window, *index, *flags);
         return (instance);
     }
 
-    std::shared_ptr<KA::Lib::SDL2::Renderer> Renderer::getInstance()
+    std::shared_ptr<PA::Lib::SDL2::Renderer> Renderer::getInstance()
     {
-        return (KA::Lib::SDL2::Renderer::create(NULL, NULL, NULL));
+        return (PA::Lib::SDL2::Renderer::create(NULL, NULL, NULL));
     }
 }

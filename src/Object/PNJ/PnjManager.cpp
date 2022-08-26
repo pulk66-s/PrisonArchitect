@@ -1,48 +1,48 @@
 #include "PnjManager.hpp"
 
-namespace KA::Object::PNJ {
+namespace PA::Object::PNJ {
 
     PnjManager::PnjManager()
     {
         for (int i = 0; i < 10; i++) {
-            KA::Vector2i pos = {std::rand() % 1200, std::rand() % 900};
-            this->workers.push_back(std::make_shared<KA::Object::PNJ::Workman>(pos));
+            PA::Vector2i pos = {std::rand() % 1200, std::rand() % 900};
+            this->workers.push_back(std::make_shared<PA::Object::PNJ::Workman>(pos));
         }
         this->validNames = {
             "workman",
         };
         this->images = {
             {
-                "workman", std::make_shared<KA::Lib::SDL2::Image>(
+                "workman", std::make_shared<PA::Lib::SDL2::Graphic::Image>(
                     "res/sprites/pnj/workman.png",
-                    KA::Vector2i{32, 32}, KA::Vector2i{0, 0}, 
-                    true, KA::Vector2i{4, 4}, KA::Lib::SDL2::Camera::Status::FIXED
+                    PA::Vector2i{32, 32}, PA::Vector2i{0, 0}, 
+                    true, PA::Vector2i{4, 4}, PA::Lib::SDL2::Camera::Status::FIXED
                 )
             },
         };
         for (auto &image : this->images) {
             image.second->setIndex({0, 0});
         }
-        this->event = KA::Lib::SDL2::Event::getInstance();
-        this->camera = KA::Lib::SDL2::Camera::getInstance();
+        this->event = PA::Lib::SDL2::Event::getInstance();
+        this->camera = PA::Lib::SDL2::Camera::getInstance();
     }
 
     void PnjManager::addPnjToMap(std::string name)
     {
-        KA::Vector2i mousePos = this->event->getMousePosition();
-        KA::Vector2i imageDim = this->images[name]->getDimensions();
-        KA::Vector2i camPos = this->camera->getPos();
-        mousePos -= KA::Vector2i{imageDim.x / 2, imageDim.y / 2};
+        PA::Vector2i mousePos = this->event->getMousePosition();
+        PA::Vector2i imageDim = this->images[name]->getDimensions();
+        PA::Vector2i camPos = this->camera->getPos();
+        mousePos -= PA::Vector2i{imageDim.x / 2, imageDim.y / 2};
         mousePos += camPos;
         if (name == "workman") {
-            this->workers.push_back(std::make_shared<KA::Object::PNJ::Workman>(mousePos));
+            this->workers.push_back(std::make_shared<PA::Object::PNJ::Workman>(mousePos));
         }
     }
 
     void PnjManager::pnjCreationUpdate() {
-        KA::Vector2i mousePos = this->event->getMousePosition();
-        KA::Vector2i imageDim = this->currImage->getDimensions();
-        mousePos -= KA::Vector2i{imageDim.x / 2, imageDim.y / 2};
+        PA::Vector2i mousePos = this->event->getMousePosition();
+        PA::Vector2i imageDim = this->currImage->getDimensions();
+        mousePos -= PA::Vector2i{imageDim.x / 2, imageDim.y / 2};
         this->currImage->setPosition(mousePos);
         if (this->event->isClick()) {
             this->addPnjToMap(this->pnjName);
@@ -81,7 +81,7 @@ namespace KA::Object::PNJ {
     void PnjManager::createPNJ(std::string name)
     {
         if (std::find(this->validNames.begin(), this->validNames.end(), name) == this->validNames.end())
-            throw KA::Error::InvalidArgument("name is not valid", "PnjManager::createPNJ");
+            throw PA::Error::InvalidArgument("name is not valid", "PnjManager::createPNJ");
         this->pnjName = name;
         this->pnjCreation = true;
         this->currImage = this->images[name];

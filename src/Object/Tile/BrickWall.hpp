@@ -6,10 +6,10 @@
     #include "Object/Map/Grid.hpp"
     #include "Lib/SDL2/Renderer.hpp"
 
-class KA::Object::Tile::BrickWall : public KA::Object::Tile::ATile {
+class PA::Object::Tile::BrickWall : public PA::Object::Tile::ATile {
 
     public:
-    BrickWall(KA::Vector2i index, KA::Vector2i pos);
+    BrickWall(PA::Vector2i index, PA::Vector2i pos);
     void update();
 
 };

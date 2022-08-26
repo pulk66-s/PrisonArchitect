@@ -12,19 +12,19 @@
     #include <vector>
     #include <memory>
 
-class KA::Object::TileManager {
+class PA::Object::TileManager {
 
     private:
-    std::shared_ptr<KA::Object::Grid> grid;
-    std::map<KA::Vector2i, std::shared_ptr<KA::Object::Tile::ITile>> colliders;
-    std::unordered_map<KA::Object::Grid::Action, std::string> wallNames;
-    KA::Object::Tile::Factory TileFactory;
-    void changingTileIndex(std::shared_ptr<KA::Object::Tile::ITile> &tile, std::unordered_map<std::string, bool> directions);
+    std::shared_ptr<PA::Object::Grid> grid;
+    std::map<PA::Vector2i, std::shared_ptr<PA::Object::Tile::ITile>> colliders;
+    std::unordered_map<PA::Object::Grid::Action, std::string> wallNames;
+    PA::Object::Tile::Factory TileFactory;
+    void changingTileIndex(std::shared_ptr<PA::Object::Tile::ITile> &tile, std::unordered_map<std::string, bool> directions);
 
     public:
     TileManager();
-    std::shared_ptr<KA::Object::Tile::ITile> getTile(KA::Vector2i index);
-    void createTiles(KA::Object::Grid::Action action);
+    std::shared_ptr<PA::Object::Tile::ITile> getTile(PA::Vector2i index);
+    void createTiles(PA::Object::Grid::Action action);
     void draw();
     static std::shared_ptr<TileManager> getInstance();
 

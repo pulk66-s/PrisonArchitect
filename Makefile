@@ -11,10 +11,10 @@ SRC			= src/main.cpp \
 			$(LIB_PATH)/SDL2/Window.cpp \
 			$(LIB_PATH)/SDL2/Renderer.cpp \
 			$(LIB_PATH)/SDL2/Event.cpp \
-			$(LIB_PATH)/SDL2/Image.cpp \
-			$(LIB_PATH)/SDL2/Text.cpp \
 			$(LIB_PATH)/SDL2/Camera.cpp \
-			$(LIB_PATH)/SDL2/SpriteManager.cpp \
+			$(LIB_PATH)/SDL2/Graphic/Image.cpp \
+			$(LIB_PATH)/SDL2/Graphic/Text.cpp \
+			$(LIB_PATH)/SDL2/Graphic/SpriteManager.cpp \
 			$(LIB_PATH)/SDL2/Shape/Rectangle.cpp \
 			$(GLOBAL_PATH)/Error/AError.cpp \
 			$(GLOBAL_PATH)/Error/InvalidArgument.cpp \
@@ -41,7 +41,7 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Tile/TileFactory.cpp \
 
 OBJ			= $(SRC:.cpp=.o)
-NAME		= kittenArchitect
+NAME		= prisonArchitect
 
 all: $(OBJ)
 	$(CC) $(OBJ) $(CPPFLAGS) -o $(NAME)

@@ -12,17 +12,17 @@
     #include <unordered_map>
     #include <vector>
 
-class KA::Object::Menu::GameUI {
+class PA::Object::Menu::GameUI {
 
     private:
-    KA::Object::Menu::Room roomIcon;
-    KA::Object::Menu::Staff staffIcon;
-    KA::Object::Menu::Material materialIcon;
-    // KA::Object::Menu::PlayerInfo playerInfo;
+    PA::Object::Menu::Room roomIcon;
+    PA::Object::Menu::Staff staffIcon;
+    PA::Object::Menu::Material materialIcon;
+    // PA::Object::Menu::PlayerInfo playerInfo;
 
     public:
     void draw();
-    KA::Object::Menu::AIcon::Action update();
+    PA::Object::Menu::AIcon::Action update();
 
 };
 

@@ -3,23 +3,23 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Lib/SDL2/Renderer.hpp"
-    #include "Lib/SDL2/Text.hpp"
+    #include "Lib/SDL2/Graphic/Text.hpp"
     #include "Lib/SDL2/Shape/Rectangle.hpp"
     #include "Global/Vector.hpp"
     #include <vector>
     #include <memory>
 
-class KA::Object::Room::ARoom {
+class PA::Object::Room::ARoom {
 
     protected:
-    KA::Vector2i dim = {1, 1}, pos = {0, 0};
-    const KA::Vector2i gridDim = {30, 30};
+    PA::Vector2i dim = {1, 1}, pos = {0, 0};
+    const PA::Vector2i gridDim = {30, 30};
     std::string name = "";
-    std::vector<KA::Lib::SDL2::Shape::Rectangle> rectangles;
-    std::unique_ptr<KA::Lib::SDL2::Text> text;
+    std::vector<PA::Lib::SDL2::Shape::Rectangle> rectangles;
+    std::unique_ptr<PA::Lib::SDL2::Graphic::Text> text;
 
     public:
-    ARoom(KA::Vector2i dim, KA::Vector2i pos={0,0}, std::string name="Unknown");
+    ARoom(PA::Vector2i dim, PA::Vector2i pos={0,0}, std::string name="Unknown");
     void draw();
 
 };

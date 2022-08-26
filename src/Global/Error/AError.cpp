@@ -1,6 +1,6 @@
 #include "AError.hpp"
 
-namespace KA::Error {
+namespace PA::Error {
     AError::AError(const std::string &message, const std::string &where, std::string type)
     : message(message), where_message(where), type_message(type) {
         

@@ -1,6 +1,6 @@
 #include "PlayerInfo.hpp"
 
-namespace KA::Object {
+namespace PA::Object {
 
     std::shared_ptr<PlayerInfo> PlayerInfo::getInstance() {
         static std::shared_ptr<PlayerInfo> instance = std::make_shared<PlayerInfo>();

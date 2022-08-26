@@ -19,16 +19,16 @@
     #include <map>
     #include <memory>
 
-class KA::Object::Map {
+class PA::Object::Map {
 
     private:
-    std::shared_ptr<KA::Object::TileManager> tileManager;
-    KA::Object::PNJ::PnjManager pnjManager;
-    std::shared_ptr<KA::Object::Grid> grid;
-    KA::Object::Room::RoomManager roomManager;
-    KA::Object::Menu::GameUI gameUI;
-    KA::Object::Background background;
-    std::shared_ptr<KA::Lib::SDL2::Camera> camera;
+    std::shared_ptr<PA::Object::TileManager> tileManager;
+    PA::Object::PNJ::PnjManager pnjManager;
+    std::shared_ptr<PA::Object::Grid> grid;
+    PA::Object::Room::RoomManager roomManager;
+    PA::Object::Menu::GameUI gameUI;
+    PA::Object::Background background;
+    std::shared_ptr<PA::Lib::SDL2::Camera> camera;
 
     public:
     Map();

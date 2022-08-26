@@ -1,41 +1,41 @@
 #include "RoomManager.hpp"
 
-namespace KA::Object::Room {
+namespace PA::Object::Room {
 
     RoomManager::RoomManager() {
         this->rooms = {
             {
-                "delivery", {std::make_shared<Delivery>(KA::Vector2i{3, 3}, KA::Vector2i{0, 0})}
+                "delivery", {std::make_shared<Delivery>(PA::Vector2i{3, 3}, PA::Vector2i{0, 0})}
             }
         };
-        this->event = KA::Lib::SDL2::Event::getInstance();
-        this->roomCreationRect = std::make_unique<KA::Lib::SDL2::Shape::Rectangle>(
-            KA::Vector2i{0, 0}, KA::Vector2i{0, 0},
-            SDL_Color{0, 200, 0, 255}, true, KA::Lib::SDL2::Camera::Status::FIXED
+        this->event = PA::Lib::SDL2::Event::getInstance();
+        this->roomCreationRect = std::make_unique<PA::Lib::SDL2::Shape::Rectangle>(
+            PA::Vector2i{0, 0}, PA::Vector2i{0, 0},
+            SDL_Color{0, 200, 0, 255}, true, PA::Lib::SDL2::Camera::Status::FIXED
         );
-        this->camera = KA::Lib::SDL2::Camera::getInstance();
-        this->grid = KA::Object::Grid::getInstance();
+        this->camera = PA::Lib::SDL2::Camera::getInstance();
+        this->grid = PA::Object::Grid::getInstance();
     }
 
     // PARFAIT DONC ON TOUCHE PAS !!!
     void RoomManager::roomCreationUpdate() {
-        KA::Vector2i mousePos = this->event->getMousePosition();
-        KA::Vector2i mousePosGrid = this->grid->transformPos(mousePos);
-        KA::Vector2i camPos = this->camera->getPos();
-        KA::Vector2i gridDim = this->grid->getDim();
+        PA::Vector2i mousePos = this->event->getMousePosition();
+        PA::Vector2i mousePosGrid = this->grid->transformPos(mousePos);
+        PA::Vector2i camPos = this->camera->getPos();
+        PA::Vector2i gridDim = this->grid->getDim();
         if (this->roomCreationFirstPoint == nullptr) {
             this->roomCreationRect->setPos(mousePosGrid);
         } else {
-            KA::Vector2i absPos = {
+            PA::Vector2i absPos = {
                 mousePosGrid.x + camPos.x,
                 mousePosGrid.y + camPos.y
             };
-            KA::Vector2i rectDim = {
+            PA::Vector2i rectDim = {
                 absPos.x - this->roomCreationFirstPoint->x,
                 absPos.y - this->roomCreationFirstPoint->y
             };
-            KA::Vector2i currPos = *this->roomCreationFirstPoint;
-            KA::Vector2i toAdd = {0, 0};
+            PA::Vector2i currPos = *this->roomCreationFirstPoint;
+            PA::Vector2i toAdd = {0, 0};
             if (rectDim.x < 0) {
                 toAdd.x += gridDim.x;
                 rectDim.x -= gridDim.x;
@@ -54,16 +54,16 @@ namespace KA::Object::Room {
         }
         if (this->event->isClick()) {
             if (this->roomCreationFirstPoint == nullptr) {
-                KA::Vector2i rectPos = {
+                PA::Vector2i rectPos = {
                     mousePosGrid.x + camPos.x,
                     mousePosGrid.y + camPos.y
                 };
-                this->roomCreationFirstPoint = std::make_unique<KA::Vector2i>(rectPos);
+                this->roomCreationFirstPoint = std::make_unique<PA::Vector2i>(rectPos);
                 this->roomCreationRect->setPos(rectPos);
-                this->roomCreationRect->setStatus(KA::Lib::SDL2::Camera::Status::MOVABLE);
+                this->roomCreationRect->setStatus(PA::Lib::SDL2::Camera::Status::MOVABLE);
             } else {
-                KA::Vector2i rectPos = *this->roomCreationFirstPoint;
-                KA::Vector2i rectDim = this->roomCreationRectDim;
+                PA::Vector2i rectPos = *this->roomCreationFirstPoint;
+                PA::Vector2i rectDim = this->roomCreationRectDim;
                 rectPos.x /= gridDim.x;
                 rectPos.y /= gridDim.y;
                 rectDim.x /= gridDim.x;
@@ -84,7 +84,7 @@ namespace KA::Object::Room {
                 );
                 this->roomCreation = false;
                 this->roomCreationFirstPoint = nullptr;
-                this->roomCreationRect->setStatus(KA::Lib::SDL2::Camera::Status::FIXED);
+                this->roomCreationRect->setStatus(PA::Lib::SDL2::Camera::Status::FIXED);
             }
             this->waitingForRelease = true;
         }

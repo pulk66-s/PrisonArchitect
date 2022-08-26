@@ -1,6 +1,6 @@
 #include "Grid.hpp"
 
-namespace KA::Object {
+namespace PA::Object {
     
     Grid::Grid()
     {
@@ -9,23 +9,23 @@ namespace KA::Object {
         this->height = 100;
         for (int i = 0; i < this->height; i++) {
             for (int j = 0; j < this->width; j++) {
-                this->rectangles.push_back(KA::Lib::SDL2::Shape::Rectangle(
+                this->rectangles.push_back(PA::Lib::SDL2::Shape::Rectangle(
                     {j * this->squareDim.x, i * this->squareDim.y}, this->squareDim,
                     {150, 150, 150, 0}, false
                 ));
             }
         }
-        this->camera = KA::Lib::SDL2::Camera::getInstance();
-        this->event = KA::Lib::SDL2::Event::getInstance();
+        this->camera = PA::Lib::SDL2::Camera::getInstance();
+        this->event = PA::Lib::SDL2::Event::getInstance();
         this->allowedWalls = {
             "brickWall",
         };
         this->images = {
             {
-                "brickWall", std::make_shared<KA::Lib::SDL2::Image>(
+                "brickWall", std::make_shared<PA::Lib::SDL2::Graphic::Image>(
                     "res/sprites/game/walls.png",
-                    this->squareDim, KA::Vector2i{0, 0},
-                    true, KA::Vector2i{32, 32}, KA::Lib::SDL2::Camera::Status::FIXED
+                    this->squareDim, PA::Vector2i{0, 0},
+                    true, PA::Vector2i{32, 32}, PA::Lib::SDL2::Camera::Status::FIXED
                 )
             },
         };
@@ -53,19 +53,19 @@ namespace KA::Object {
         };
     }
 
-    void Grid::addWallToPreview(KA::Vector2i pos) {
-        if (std::find_if(this->wallPreviews.begin(), this->wallPreviews.end(), [&](std::shared_ptr<KA::Lib::SDL2::Image> img) {
+    void Grid::addWallToPreview(PA::Vector2i pos) {
+        if (std::find_if(this->wallPreviews.begin(), this->wallPreviews.end(), [&](std::shared_ptr<PA::Lib::SDL2::Graphic::Image> img) {
             return (img->getPosition().x == pos.x && img->getPosition().y == pos.y);
         }) == this->wallPreviews.end()) {
-            std::shared_ptr<KA::Lib::SDL2::Image> wall = std::make_shared<KA::Lib::SDL2::Image>(*this->wallImage);
+            std::shared_ptr<PA::Lib::SDL2::Graphic::Image> wall = std::make_shared<PA::Lib::SDL2::Graphic::Image>(*this->wallImage);
             wall->setPosition(pos);
-            wall->setStatus(KA::Lib::SDL2::Camera::Status::MOVABLE);
+            wall->setStatus(PA::Lib::SDL2::Camera::Status::MOVABLE);
             this->wallPreviews.push_back(wall);
         }
     }
 
-    void Grid::setWallIndex(std::shared_ptr<KA::Lib::SDL2::Image> &wall, KA::Vector2i starting, KA::Vector2i ending) {
-        KA::Vector2i pos = wall->getPosition();
+    void Grid::setWallIndex(std::shared_ptr<PA::Lib::SDL2::Graphic::Image> &wall, PA::Vector2i starting, PA::Vector2i ending) {
+        PA::Vector2i pos = wall->getPosition();
         if (pos.x == starting.x && pos.x == ending.x && pos.y == starting.y && pos.y == ending.y) {
             wall->setIndex(this->imageIndex[this->wallCreationName][WallDirection::SINGLE_LEFT]);
         } else if (pos.x == starting.x && pos.x == ending.x && pos.y == starting.y) {
@@ -96,9 +96,9 @@ namespace KA::Object {
     }
 
     Grid::Action Grid::wallCreationUpdate() {
-        KA::Vector2i mousePos = this->event->getMousePosition();
-        KA::Vector2i mousePosGrid = this->transformPos(mousePos);
-        KA::Vector2i camPos = this->camera->getPos();
+        PA::Vector2i mousePos = this->event->getMousePosition();
+        PA::Vector2i mousePosGrid = this->transformPos(mousePos);
+        PA::Vector2i camPos = this->camera->getPos();
         if (this->event->isRightClick()) {
             this->firstWallPos = nullptr;
             this->wallCreation = false;
@@ -109,7 +109,7 @@ namespace KA::Object {
         }
         if (this->firstWallPos != nullptr) {
             if (this->event->isRelease()) {
-                for (std::shared_ptr<KA::Lib::SDL2::Image> wall : this->wallPreviews) {
+                for (std::shared_ptr<PA::Lib::SDL2::Graphic::Image> wall : this->wallPreviews) {
                     this->wallInfos.push_back({
                         wall->getPosition(),
                         wall->getIndex()
@@ -118,8 +118,8 @@ namespace KA::Object {
                 this->createWall(this->wallCreationName);
                 return (this->wallActions[this->wallCreationName]);
             } else {
-                KA::Vector2i starting = *this->firstWallPos, ending = (mousePosGrid + camPos);
-                KA::Vector2i diff = ending - starting;
+                PA::Vector2i starting = *this->firstWallPos, ending = (mousePosGrid + camPos);
+                PA::Vector2i diff = ending - starting;
                 if (diff.x < 0) {
                     int temp = starting.x;
                     starting.x = ending.x;
@@ -131,33 +131,33 @@ namespace KA::Object {
                     ending.y = temp;
                 }
                 for (int i = starting.x; i <= ending.x; i += squareDim.x) {
-                    KA::Vector2i pos = {i, starting.y};
+                    PA::Vector2i pos = {i, starting.y};
                     this->addWallToPreview(pos);
                     pos = {i, ending.y};
                     this->addWallToPreview(pos);
                 }
                 for (int i = starting.y; i <= ending.y; i += squareDim.y) {
-                    KA::Vector2i pos = {starting.x, i};
+                    PA::Vector2i pos = {starting.x, i};
                     this->addWallToPreview(pos);
                     pos = {ending.x, i};
                     this->addWallToPreview(pos);
                 }
-                auto condition = std::remove_if(this->wallPreviews.begin(), this->wallPreviews.end(), [&](std::shared_ptr<KA::Lib::SDL2::Image> img) {
-                    KA::Vector2i imgPos = img-> getPosition();
+                auto condition = std::remove_if(this->wallPreviews.begin(), this->wallPreviews.end(), [&](std::shared_ptr<PA::Lib::SDL2::Graphic::Image> img) {
+                    PA::Vector2i imgPos = img-> getPosition();
                     return ((imgPos.x != starting.x && imgPos.y != starting.y && imgPos.x != ending.x && imgPos.y != ending.y) || (imgPos.x < starting.x || imgPos.y < starting.y || imgPos.x > ending.x || imgPos.y > ending.y));
                 });
                 this->wallPreviews.erase(condition, this->wallPreviews.end());
-                for (std::shared_ptr<KA::Lib::SDL2::Image> &wall : this->wallPreviews) {
+                for (std::shared_ptr<PA::Lib::SDL2::Graphic::Image> &wall : this->wallPreviews) {
                     this->setWallIndex(wall, starting, ending);
                 }
             }
         } else {
             this->wallPreviews[0]->setPosition(mousePosGrid);
             if (this->event->isClick()) {
-                KA::Vector2i rectPos = mousePosGrid + camPos;
+                PA::Vector2i rectPos = mousePosGrid + camPos;
                 this->wallPreviews[0]->setPosition(rectPos);
-                this->wallPreviews[0]->setStatus(KA::Lib::SDL2::Camera::Status::MOVABLE);
-                this->firstWallPos = std::make_unique<KA::Vector2i>(rectPos);
+                this->wallPreviews[0]->setStatus(PA::Lib::SDL2::Camera::Status::MOVABLE);
+                this->firstWallPos = std::make_unique<PA::Vector2i>(rectPos);
             }
         }
         return (NONE);
@@ -182,7 +182,7 @@ namespace KA::Object {
 
     void Grid::createWall(std::string type) {
         if (std::find(this->allowedWalls.begin(), this->allowedWalls.end(), type) == this->allowedWalls.end()) {
-            throw KA::Error::InvalidArgument("type is not allowed", "Grid::createWall");
+            throw PA::Error::InvalidArgument("type is not allowed", "Grid::createWall");
         }
         this->wallCreation = true;
         this->firstWallPos = nullptr;
@@ -190,7 +190,7 @@ namespace KA::Object {
         this->wallImage = this->images[type];
         this->wallPreviews = {};
         this->waitForRelease = true;
-        this->wallPreviews.push_back(std::make_shared<KA::Lib::SDL2::Image>(*this->wallImage));
+        this->wallPreviews.push_back(std::make_shared<PA::Lib::SDL2::Graphic::Image>(*this->wallImage));
     }
 
     void Grid::draw()
@@ -199,23 +199,23 @@ namespace KA::Object {
             this->rectangles[i].draw();
         }
         if (this->wallCreation) {
-            for (std::shared_ptr<KA::Lib::SDL2::Image> wallPreview : this->wallPreviews) {
+            for (std::shared_ptr<PA::Lib::SDL2::Graphic::Image> wallPreview : this->wallPreviews) {
                 wallPreview->draw();
             }
         }
     }
 
-    KA::Vector2i Grid::getDim()
+    PA::Vector2i Grid::getDim()
     {
         return (this->squareDim);
     }
 
     // C'EST PARFAIT ON NE TOUCHE PAS !!!!
-    KA::Vector2i Grid::transformPos(KA::Vector2i pos)
+    PA::Vector2i Grid::transformPos(PA::Vector2i pos)
     {
-        KA::Vector2i camPos = this->camera->getPos();
-        KA::Vector2i mousePos = this->event->getMousePosition();
-        KA::Vector2i finalPos {
+        PA::Vector2i camPos = this->camera->getPos();
+        PA::Vector2i mousePos = this->event->getMousePosition();
+        PA::Vector2i finalPos {
             pos.x - pos.x % this->squareDim.x,
             pos.y - pos.y % this->squareDim.y
         };

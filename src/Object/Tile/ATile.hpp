@@ -5,18 +5,18 @@
     #include "Object/Map/Grid.hpp"
     #include "Object/Tile/ITile.hpp"
     #include "Lib/SDL2/Renderer.hpp"
-    #include "Lib/SDL2/Image.hpp"
+    #include "Lib/SDL2/Graphic/Image.hpp"
     #include <exception>
     #include <bits/stdc++.h>
 
-class KA::Object::Tile::ATile : public KA::Object::Tile::ITile {
+class PA::Object::Tile::ATile : public PA::Object::Tile::ITile {
 
     protected:
     bool colliding = false;
-    std::shared_ptr<KA::Lib::SDL2::Image> image = nullptr;
-    std::shared_ptr<KA::Object::Grid> grid;
+    std::shared_ptr<PA::Lib::SDL2::Graphic::Image> image = nullptr;
+    std::shared_ptr<PA::Object::Grid> grid;
     std::string name = "";
-    std::unordered_map<WallPosition, KA::Vector2i> wallPositions = {};
+    std::unordered_map<WallPosition, PA::Vector2i> wallPositions = {};
 
     public:
     ATile();

@@ -4,10 +4,10 @@
     #include <SDL2/SDL.h>
     #include <memory>
     #include <iostream>
-    #include "SDL2Namespace.hpp"
+    #include "Lib/SDL2/SDL2Namespace.hpp"
     #include "Window.hpp"
 
-class KA::Lib::SDL2::Window {
+class PA::Lib::SDL2::Window {
     private:
     SDL_Window *window;
 

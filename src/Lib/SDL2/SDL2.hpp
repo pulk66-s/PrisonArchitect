@@ -4,9 +4,9 @@
     #include <SDL2/SDL.h>
     #include <SDL2/SDL_ttf.h>
     #include <iostream>
-    #include "SDL2Namespace.hpp"
+    #include "Lib/SDL2/SDL2Namespace.hpp"
 
-class KA::Lib::SDL2::LSDL2 {
+class PA::Lib::SDL2::LSDL2 {
     public:
     LSDL2();
     ~LSDL2();

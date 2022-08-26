@@ -6,11 +6,11 @@
     #include "Lib/SDL2/Renderer.hpp"
     #include "Global/Vector.hpp"
 
-class KA::Object::Menu::Staff : public KA::Object::Menu::AIcon {
+class PA::Object::Menu::Staff : public PA::Object::Menu::AIcon {
 
     public:
     Staff();
-    KA::Object::Menu::AIcon::Action update();
+    PA::Object::Menu::AIcon::Action update();
 
 };
 

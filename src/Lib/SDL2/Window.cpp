@@ -1,6 +1,6 @@
 #include "Window.hpp"
 
-namespace KA::Lib::SDL2 {
+namespace PA::Lib::SDL2 {
 
     Window::Window(const char* title, int x, int y, int w, int h)
     {

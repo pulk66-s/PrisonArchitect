@@ -10,7 +10,7 @@
     #include <SDL2/SDL.h>
     #include <SDL2/SDL_image.h>
 
-class KA::Lib::SDL2::SpriteManager {
+class PA::Lib::SDL2::Graphic::SpriteManager {
 
     private:
     std::unordered_map<std::string, SDL_Surface *> sprites;

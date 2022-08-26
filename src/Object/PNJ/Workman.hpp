@@ -6,9 +6,9 @@
     #include "Lib/SDL2/Renderer.hpp"
     #include "IA/Workman.hpp"
 
-class KA::Object::PNJ::Workman : public KA::Object::PNJ::Pnj {
+class PA::Object::PNJ::Workman : public PA::Object::PNJ::Pnj {
     public:
-    Workman(KA::Vector2i pos={0, 0});
+    Workman(PA::Vector2i pos={0, 0});
 };
 
 #endif

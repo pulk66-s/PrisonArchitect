@@ -4,7 +4,7 @@
     #include "Object/ObjectNamespace.hpp"
     #include <memory>
 
-class KA::Object::PlayerInfo {
+class PA::Object::PlayerInfo {
 
     private:
     int money = 2000;

@@ -1,9 +1,9 @@
 #include "ATile.hpp"
 
-namespace KA::Object::Tile {
+namespace PA::Object::Tile {
 
     ATile::ATile() {
-        this->grid = KA::Object::Grid::getInstance();
+        this->grid = PA::Object::Grid::getInstance();
     }
 
     ATile::~ATile() {

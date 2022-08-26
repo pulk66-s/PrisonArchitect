@@ -4,9 +4,9 @@
     #include "Object/ObjectNamespace.hpp"
     #include "ARoom.hpp"
 
-class KA::Object::Room::Delivery : public KA::Object::Room::ARoom {
+class PA::Object::Room::Delivery : public PA::Object::Room::ARoom {
     public:
-    Delivery(KA::Vector2i dim, KA::Vector2i pos={0,0});
+    Delivery(PA::Vector2i dim, PA::Vector2i pos={0,0});
     using ARoom::draw;
 };
 

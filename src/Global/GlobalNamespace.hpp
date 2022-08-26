@@ -1,7 +1,7 @@
 #ifndef __GLOBAL_NAMESPACE_HPP__
     #define __GLOBAL_NAMESPACE_HPP__
 
-namespace KA {
+namespace PA {
     struct Vector2i;
     namespace Error {
         class AError;

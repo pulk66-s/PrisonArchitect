@@ -1,22 +1,22 @@
 #include "Image.hpp"
 
-namespace KA::Lib::SDL2 {
+namespace PA::Lib::SDL2::Graphic {
 
-    Image::Image(std::string path, KA::Vector2i dim, KA::Vector2i pos, bool isSpriteSheet, KA::Vector2i nbSprite, KA::Lib::SDL2::Camera::Status status)
+    Image::Image(std::string path, PA::Vector2i dim, PA::Vector2i pos, bool isSpriteSheet, PA::Vector2i nbSprite, PA::Lib::SDL2::Camera::Status status)
     {
         this->status = status;
         this->path = path;
-        this->renderer = KA::Lib::SDL2::Renderer::getInstance();
-        this->spriteManager = KA::Lib::SDL2::SpriteManager::getInstance();
+        this->renderer = PA::Lib::SDL2::Renderer::getInstance();
+        this->spriteManager = PA::Lib::SDL2::Graphic::SpriteManager::getInstance();
         SDL_Surface *surface = this->spriteManager->getSprite(path);
         if (surface == NULL) {
             std::cerr << "Error: " << SDL_GetError() << std::endl;
-            throw KA::Error::InvalidArgument("Image::Image", path);
+            throw PA::Error::InvalidArgument("Image::Image", path);
         }
         this->texture = SDL_CreateTextureFromSurface(renderer->get(), surface);
         if (this->texture == NULL) {
             std::cerr << "Error: " << SDL_GetError() << std::endl;
-            throw KA::Error::InvalidArgument("Image::Image", path);
+            throw PA::Error::InvalidArgument("Image::Image", path);
         }
         this->dim = dim;
         this->pos = pos;
@@ -24,18 +24,18 @@ namespace KA::Lib::SDL2 {
         if (isSpriteSheet) {
             this->isSpriteSheet = true;
             if (nbSprite.x == 0 || nbSprite.y == 0) {
-                throw KA::Error::InvalidArgument("Invalid number of sprite", "KA::Lib::SDL2::Image::Image");
+                throw PA::Error::InvalidArgument("Invalid number of sprite", "PA::Lib::SDL2::Graphic::Image::Image");
             } else {
                 this->nbSprite = nbSprite;
                 this->srcDim = {this->textureDim.x / nbSprite.x, this->textureDim.y / nbSprite.y};
             }
         }
-        this->event = KA::Lib::SDL2::Event::getInstance();
+        this->event = PA::Lib::SDL2::Event::getInstance();
     }
 
     Image::Image(SDL_Texture *texture) {
         this->texture = texture;
-        this->renderer = KA::Lib::SDL2::Renderer::getInstance();
+        this->renderer = PA::Lib::SDL2::Renderer::getInstance();
     }
 
     Image::Image(const Image &other)
@@ -49,14 +49,14 @@ namespace KA::Lib::SDL2 {
 
     bool Image::draw() {
         SDL_Rect rect = {this->pos.x, this->pos.y, this->dim.x, this->dim.y};
-        if (this->status == KA::Lib::SDL2::Camera::Status::MOVABLE) {
-            std::shared_ptr<KA::Lib::SDL2::Camera> camera = KA::Lib::SDL2::Camera::getInstance();
-            KA::Vector2i camPos = camera->getPos();
+        if (this->status == PA::Lib::SDL2::Camera::Status::MOVABLE) {
+            std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
+            PA::Vector2i camPos = camera->getPos();
             rect.x -= camPos.x;
             rect.y -= camPos.y;
         }
         if (this->isSpriteSheet) {
-            KA::Vector2i srcPos = {this->currIndex.x * this->srcDim.x, this->currIndex.y * this->srcDim.y};
+            PA::Vector2i srcPos = {this->currIndex.x * this->srcDim.x, this->currIndex.y * this->srcDim.y};
             SDL_Rect src = {srcPos.x, srcPos.y, this->srcDim.x, this->srcDim.y};
             return (SDL_RenderCopy(this->renderer->get(), this->texture, &src, &rect) == 0);
         } else {
@@ -64,19 +64,19 @@ namespace KA::Lib::SDL2 {
         }
     }
 
-    void Image::setPosition(KA::Vector2i pos) {
+    void Image::setPosition(PA::Vector2i pos) {
         this->pos = pos;
     }
 
-    void Image::setDimensions(KA::Vector2i dim) {
+    void Image::setDimensions(PA::Vector2i dim) {
         this->dim = dim;
     }
 
-    KA::Vector2i Image::getPosition() {
+    PA::Vector2i Image::getPosition() {
         return (this->pos);
     }
 
-    KA::Vector2i Image::getDimensions() {
+    PA::Vector2i Image::getDimensions() {
         return (this->dim);
     }
 
@@ -84,22 +84,22 @@ namespace KA::Lib::SDL2 {
         return (this->texture);
     }
 
-    void Image::setIndex(KA::Vector2i index) {
+    void Image::setIndex(PA::Vector2i index) {
         if (this->isSpriteSheet) {
             this->currIndex = index;
         } else {
-            throw KA::Error::InvalidArgument("Image is not a sprite sheet", "KA::Lib::SDL2::Image::setIndex");
+            throw PA::Error::InvalidArgument("Image is not a sprite sheet", "PA::Lib::SDL2::Graphic::Image::setIndex");
         }
     }
 
-    void Image::move(KA::Vector2i pos) {
+    void Image::move(PA::Vector2i pos) {
         this->pos.x += pos.x;
         this->pos.y += pos.y;
     }
 
     bool Image::isClick() {
         if (this->event->isClick()) {
-            KA::Vector2i mousePos = this->event->getClickPosition();
+            PA::Vector2i mousePos = this->event->getClickPosition();
             if (mousePos.x >= this->pos.x && mousePos.x <= this->pos.x + this->dim.x) {
                 if (mousePos.y >= this->pos.y && mousePos.y <= this->pos.y + this->dim.y) {
                     return (true);
@@ -111,7 +111,7 @@ namespace KA::Lib::SDL2 {
 
     bool Image::isClickOutside() {
         if (this->event->isClick()) {
-            KA::Vector2i mousePos = this->event->getClickPosition();
+            PA::Vector2i mousePos = this->event->getClickPosition();
             if (mousePos.x < this->pos.x || mousePos.x > this->pos.x + this->dim.x) {
                 return (true);
             }
@@ -122,11 +122,11 @@ namespace KA::Lib::SDL2 {
         return (false);
     }
 
-    void Image::setStatus(KA::Lib::SDL2::Camera::Status status) {
+    void Image::setStatus(PA::Lib::SDL2::Camera::Status status) {
         this->status = status;
     }
 
-    KA::Vector2i Image::getIndex() {
+    PA::Vector2i Image::getIndex() {
         return (this->currIndex);
     }
 

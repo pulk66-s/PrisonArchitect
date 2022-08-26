@@ -4,7 +4,7 @@
     #include "Object/ObjectNamespace.hpp"
     #include "Ia.hpp"
 
-class KA::Object::PNJ::IA::Workman : public KA::Object::PNJ::IA::Ia {
+class PA::Object::PNJ::IA::Workman : public PA::Object::PNJ::IA::Ia {
     public:
 };
 

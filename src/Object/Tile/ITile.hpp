@@ -3,7 +3,7 @@
 
     #include <string>
 
-class KA::Object::Tile::ITile {
+class PA::Object::Tile::ITile {
     public:
     enum WallPosition {
         CROSS,

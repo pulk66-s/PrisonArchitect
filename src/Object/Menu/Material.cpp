@@ -1,6 +1,6 @@
 #include "Material.hpp"
 
-namespace KA::Object::Menu {
+namespace PA::Object::Menu {
 
     Material::Material()
     : AIcon({240, 840}, {64, 64}, {2, 0}, "res/sprites/game/walls.png") {
@@ -9,15 +9,15 @@ namespace KA::Object::Menu {
         this->roomIcons["brickWall"].icon->setIndex({8, 10});
     }
 
-    KA::Object::Menu::AIcon::Action Material::update() {
+    PA::Object::Menu::AIcon::Action Material::update() {
         this->AIcon::update();
         if (this->displayed) {
             if (this->roomIcons["brickWall"].icon->isClick()) {
                 this->displayed = false;
-                return (KA::Object::Menu::AIcon::Action::BRICK_WALL);
+                return (PA::Object::Menu::AIcon::Action::BRICK_WALL);
             }
         }
-        return (KA::Object::Menu::AIcon::Action::NONE);
+        return (PA::Object::Menu::AIcon::Action::NONE);
     }
 
 }

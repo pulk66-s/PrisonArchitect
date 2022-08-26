@@ -1,6 +1,6 @@
 #include "SDL2.hpp"
 
-namespace KA::Lib::SDL2 {
+namespace PA::Lib::SDL2 {
 
     LSDL2::LSDL2()
     {

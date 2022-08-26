@@ -4,7 +4,7 @@
     #include "Global/GlobalNamespace.hpp"
     #include "AError.hpp"
 
-class KA::Error::BadInstance : public KA::Error::AError {
+class PA::Error::BadInstance : public PA::Error::AError {
     public:
     BadInstance(const std::string &message, const std::string &where);
 };
