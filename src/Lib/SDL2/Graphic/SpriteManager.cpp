@@ -6,20 +6,14 @@ namespace PA::Lib::SDL2::Graphic {
         this->sprites = {};
     }
 
-    SpriteManager::~SpriteManager() {
-        for (auto &sprite : this->sprites) {
-            SDL_FreeSurface(sprite.second);
-        }
-    }
-
     std::shared_ptr<SpriteManager> SpriteManager::getInstance() {
         static std::shared_ptr<SpriteManager> instance = std::make_shared<SpriteManager>();
         return (instance);
     }
 
-    SDL_Surface *SpriteManager::getSprite(std::string path) {
+    std::shared_ptr<PA::Lib::SDL2::Graphic::Surface> SpriteManager::getSprite(std::string path) {
         if (this->sprites.find(path) == this->sprites.end()) {
-            this->sprites[path] = IMG_Load(path.c_str());
+            this->sprites[path] = std::make_shared<Surface>(path);
         }
         return (this->sprites[path]);
     }

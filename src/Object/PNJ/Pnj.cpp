@@ -3,13 +3,15 @@
 namespace PA::Object::PNJ {
 
     Pnj::Pnj(std::string path, PA::Vector2i pos, unsigned short variant)
-    : spriteSheet(path, {50, 50}, pos, true, {4, 4})
     {
         this->pos = pos;
         this->nb_variant = variant;
+        this->spriteSheet = std::make_unique<PA::Lib::SDL2::Graphic::SpriteSheet>(
+            path, PA::Vector2i{4, 4}, PA::Vector2i{0, 0}, this->grid->getDim()
+        );
         if (variant > 1) {
             this->curr_variant = std::rand() % variant;
-            this->spriteSheet.setIndex({0, this->curr_variant});
+            this->spriteSheet->setIndex({0, this->curr_variant});
         }
         this->moveDirection = {
             {IA::Ia::Move::NONE, {0, 0}},
@@ -27,9 +29,9 @@ namespace PA::Object::PNJ {
         };
     }
 
-    bool Pnj::draw()
+    void Pnj::draw()
     {
-        return this->spriteSheet.draw();
+        this->spriteSheet->draw();
     }
 
     void Pnj::update()
@@ -46,8 +48,8 @@ namespace PA::Object::PNJ {
             }
             PA::Vector2i moveBuff = this->moveDirection[this->currMove];
             this->pos += moveBuff;
-            this->spriteSheet.setPosition(this->pos);
-            this->spriteSheet.setIndex({this->moveSpriteSheetIndex[this->currMove], this->curr_variant});
+            this->spriteSheet->setPosition(this->pos);
+            this->spriteSheet->setIndex({this->moveSpriteSheetIndex[this->currMove], this->curr_variant});
             this->moveOffset--;
         }
     }

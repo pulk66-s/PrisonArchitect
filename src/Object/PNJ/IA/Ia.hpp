@@ -3,7 +3,7 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/Map/Grid.hpp"
-    #include "Object/Map/TileManager.hpp"
+    #include "Object/Tile/TileManager.hpp"
 
 class PA::Object::PNJ::IA::Ia {
 

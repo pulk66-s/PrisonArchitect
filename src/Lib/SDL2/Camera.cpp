@@ -50,4 +50,13 @@ namespace PA::Lib::SDL2 {
         this->position += this->moveDirection;
     }
 
+    void Camera::applyCamera(PA::Vector2i *pos) {
+        *pos -= this->position;
+    }
+
+    void Camera::applyCamera(SDL_Rect *rect) {
+        rect->x -= this->position.x;
+        rect->y -= this->position.y;
+    }
+
 }

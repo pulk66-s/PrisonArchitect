@@ -14,15 +14,17 @@ class PA::Lib::SDL2::Camera {
     PA::Vector2i speed = {2, 2};
 
     public:
-    typedef enum Status_e {
+    enum Status {
         FIXED,
         MOVABLE
-    } Status;
+    };
     Camera();
     PA::Vector2i getPos();
     void setPos(PA::Vector2i pos);
     void move(PA::Vector2i pos);
     void update();
+    void applyCamera(PA::Vector2i *pos);
+    void applyCamera(SDL_Rect *rect);
     static std::shared_ptr<PA::Lib::SDL2::Camera> getInstance();
 
 };

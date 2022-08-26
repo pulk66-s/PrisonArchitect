@@ -13,7 +13,7 @@ class PA::Lib::SDL2::Renderer {
     public:
     Renderer(PA::Lib::SDL2::Window &window, int index, Uint32 flags);
     ~Renderer();
-    SDL_Renderer *get();
+    SDL_Renderer *getRenderer();
     void render();
     bool clear(int r, int g, int b, int a);
     static std::shared_ptr<PA::Lib::SDL2::Renderer> create(PA::Lib::SDL2::Window *window, int *index, Uint32 *flags);

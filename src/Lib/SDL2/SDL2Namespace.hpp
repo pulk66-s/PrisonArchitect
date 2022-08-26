@@ -9,8 +9,11 @@ namespace PA::Lib::SDL2 {
     class Camera;
     namespace Graphic {
         class Image;
+        class SpriteSheet;
         class Text;
+        class Surface;
         class SpriteManager;
+        class Texture;
     };
     namespace Shape {
         class Rectangle;

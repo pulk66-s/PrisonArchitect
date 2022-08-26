@@ -8,6 +8,20 @@ struct PA::Vector2i {
     int x;
     int y;
 
+    Vector2i(int x, int y) {
+        this->x = x;
+        this->y = y;
+    }
+
+    Vector2i() {
+        this->x = 0;
+        this->y = 0;
+    }
+
+    PA::Vector2i operator*(const PA::Vector2i& other) {
+        return (PA::Vector2i(this->x * other.x, this->y * other.y));
+    }
+
     PA::Vector2i operator+(const PA::Vector2i &other) const {
         return (PA::Vector2i{this->x + other.x, this->y + other.y});
     }
@@ -30,6 +44,10 @@ struct PA::Vector2i {
 
     PA::Vector2i operator/ (const int &other) {
         return (PA::Vector2i{this->x / other, this->y / other});
+    }
+
+    PA::Vector2i operator/ (const PA::Vector2i &other) {
+        return (PA::Vector2i{this->x / other.x, this->y / other.y});
     }
 
     bool operator==(const PA::Vector2i &other) const {

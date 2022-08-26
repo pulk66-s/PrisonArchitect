@@ -6,45 +6,28 @@ namespace PA::Lib::SDL2::Graphic {
     {
         this->status = status;
         this->path = path;
-        this->renderer = PA::Lib::SDL2::Renderer::getInstance();
-        this->spriteManager = PA::Lib::SDL2::Graphic::SpriteManager::getInstance();
-        SDL_Surface *surface = this->spriteManager->getSprite(path);
-        if (surface == NULL) {
-            std::cerr << "Error: " << SDL_GetError() << std::endl;
-            throw PA::Error::InvalidArgument("Image::Image", path);
-        }
-        this->texture = SDL_CreateTextureFromSurface(renderer->get(), surface);
-        if (this->texture == NULL) {
-            std::cerr << "Error: " << SDL_GetError() << std::endl;
-            throw PA::Error::InvalidArgument("Image::Image", path);
-        }
+        this->texture = std::make_unique<PA::Lib::SDL2::Graphic::Texture>(path);
         this->dim = dim;
         this->pos = pos;
-        this->textureDim = {surface->w, surface->h};
         if (isSpriteSheet) {
             this->isSpriteSheet = true;
             if (nbSprite.x == 0 || nbSprite.y == 0) {
                 throw PA::Error::InvalidArgument("Invalid number of sprite", "PA::Lib::SDL2::Graphic::Image::Image");
             } else {
+                PA::Vector2i textureDim = this->texture->getDim();
                 this->nbSprite = nbSprite;
-                this->srcDim = {this->textureDim.x / nbSprite.x, this->textureDim.y / nbSprite.y};
+                this->srcDim = textureDim / nbSprite;
             }
         }
-        this->event = PA::Lib::SDL2::Event::getInstance();
     }
 
     Image::Image(SDL_Texture *texture) {
-        this->texture = texture;
-        this->renderer = PA::Lib::SDL2::Renderer::getInstance();
+        this->texture = std::make_unique<PA::Lib::SDL2::Graphic::Texture>(texture);
     }
 
     Image::Image(const Image &other)
     : Image(other.path, other.dim, other.pos, other.isSpriteSheet, other.nbSprite, other.status) {
         this->currIndex = other.currIndex;
-    }
-
-    Image::~Image() {
-        SDL_DestroyTexture(this->texture);
     }
 
     bool Image::draw() {
@@ -58,9 +41,9 @@ namespace PA::Lib::SDL2::Graphic {
         if (this->isSpriteSheet) {
             PA::Vector2i srcPos = {this->currIndex.x * this->srcDim.x, this->currIndex.y * this->srcDim.y};
             SDL_Rect src = {srcPos.x, srcPos.y, this->srcDim.x, this->srcDim.y};
-            return (SDL_RenderCopy(this->renderer->get(), this->texture, &src, &rect) == 0);
+            return (SDL_RenderCopy(this->renderer->getRenderer(), this->texture->getTexture(), &src, &rect) == 0);
         } else {
-            return (SDL_RenderCopy(this->renderer->get(), this->texture, NULL, &rect) == 0);
+            return (SDL_RenderCopy(this->renderer->getRenderer(), this->texture->getTexture(), NULL, &rect) == 0);
         }
     }
 
@@ -78,10 +61,6 @@ namespace PA::Lib::SDL2::Graphic {
 
     PA::Vector2i Image::getDimensions() {
         return (this->dim);
-    }
-
-    SDL_Texture *Image::getTexture() {
-        return (this->texture);
     }
 
     void Image::setIndex(PA::Vector2i index) {

@@ -2,6 +2,7 @@
     #define __LIB_SDL2_SPRITE_MANAGER_HPP__
 
     #include "Lib/SDL2/SDL2Namespace.hpp"
+    #include "Lib/SDL2/Graphic/Surface.hpp"
     #include "Global/Error/InvalidArgument.hpp"
     #include <unordered_map>
     #include <string>
@@ -13,13 +14,12 @@
 class PA::Lib::SDL2::Graphic::SpriteManager {
 
     private:
-    std::unordered_map<std::string, SDL_Surface *> sprites;
+    std::unordered_map<std::string, std::shared_ptr<PA::Lib::SDL2::Graphic::Surface>> sprites;
 
     public:
     SpriteManager();
-    ~SpriteManager();
     static std::shared_ptr<SpriteManager> getInstance();
-    SDL_Surface *getSprite(std::string path);
+    std::shared_ptr<PA::Lib::SDL2::Graphic::Surface> getSprite(std::string path);
 
 };
 

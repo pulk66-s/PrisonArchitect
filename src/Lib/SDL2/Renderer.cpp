@@ -16,7 +16,7 @@ namespace PA::Lib::SDL2 {
         SDL_DestroyRenderer(this->renderer);
     }
 
-    SDL_Renderer *Renderer::get()
+    SDL_Renderer *Renderer::getRenderer()
     {
         return (this->renderer);
     }

@@ -23,7 +23,7 @@ namespace PA::Lib::SDL2::Graphic {
     }
 
     void Text::draw() {
-        SDL_Texture *texture = SDL_CreateTextureFromSurface(this->renderer->get(), this->surface);
+        SDL_Texture *texture = SDL_CreateTextureFromSurface(this->renderer->getRenderer(), this->surface);
         SDL_Rect rect = {this->pos.x, this->pos.y, this->dim.x, this->dim.y};
         if (this->status == PA::Lib::SDL2::Camera::Status::MOVABLE) {
             std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
@@ -31,7 +31,7 @@ namespace PA::Lib::SDL2::Graphic {
             rect.x -= camPos.x;
             rect.y -= camPos.y;
         }
-        SDL_RenderCopy(this->renderer->get(), texture, NULL, &rect);
+        SDL_RenderCopy(this->renderer->getRenderer(), texture, NULL, &rect);
         SDL_DestroyTexture(texture);
     }
 

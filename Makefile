@@ -13,8 +13,11 @@ SRC			= src/main.cpp \
 			$(LIB_PATH)/SDL2/Event.cpp \
 			$(LIB_PATH)/SDL2/Camera.cpp \
 			$(LIB_PATH)/SDL2/Graphic/Image.cpp \
+			$(LIB_PATH)/SDL2/Graphic/SpriteSheet.cpp \
 			$(LIB_PATH)/SDL2/Graphic/Text.cpp \
+			$(LIB_PATH)/SDL2/Graphic/Texture.cpp \
 			$(LIB_PATH)/SDL2/Graphic/SpriteManager.cpp \
+			$(LIB_PATH)/SDL2/Graphic/Surface.cpp \
 			$(LIB_PATH)/SDL2/Shape/Rectangle.cpp \
 			$(GLOBAL_PATH)/Error/AError.cpp \
 			$(GLOBAL_PATH)/Error/InvalidArgument.cpp \

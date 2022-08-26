@@ -2,7 +2,8 @@
     #define __OBJECT_PNJ_PNJ_HPP__
 
     #include "Object/ObjectNamespace.hpp"
-    #include "Lib/SDL2/Graphic/Image.hpp"
+    #include "Object/Map/Grid.hpp"
+    #include "Lib/SDL2/Graphic/SpriteSheet.hpp"
     #include "Lib/SDL2/Renderer.hpp"
     #include "Global/Vector.hpp"
     #include "Global/Error/BadInstance.hpp"
@@ -14,7 +15,9 @@
 
 class PA::Object::PNJ::Pnj {
     protected:
-    PA::Lib::SDL2::Graphic::Image spriteSheet;
+    std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
+
+    std::unique_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet;
     unsigned short nb_variant, curr_variant = 0;
     PA::Vector2i spriteIndex;
     PA::Vector2i pos;
@@ -32,7 +35,7 @@ class PA::Object::PNJ::Pnj {
 
     public:
     Pnj(std::string path, PA::Vector2i pos={0, 0}, unsigned short variant=1);
-    bool draw();
+    void draw();
     void update();
 
 };

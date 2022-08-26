@@ -8,7 +8,7 @@
     #include "Global/Vector.hpp"
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PNJ/PnjManager.hpp"
-    #include "Object/Map/TileManager.hpp"
+    #include "Object/Tile/TileManager.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Object/Map/Background.hpp"
     #include "Object/Room/RoomManager.hpp"

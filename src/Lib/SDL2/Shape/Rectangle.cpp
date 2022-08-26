@@ -30,17 +30,17 @@ namespace PA::Lib::SDL2::Shape {
             finalRect.x -= cameraPos.x;
             finalRect.y -= cameraPos.y;
         }
-        if (SDL_SetRenderDrawColor(this->renderer->get(), this->color->r, this->color->g, this->color->b, this->color->a) != 0) {
+        if (SDL_SetRenderDrawColor(this->renderer->getRenderer(), this->color->r, this->color->g, this->color->b, this->color->a) != 0) {
             std::cerr << "SDL_SetRenderDrawColor Error: " << SDL_GetError() << std::endl;
             return (false);
         }
         if (this->isFilled) {
-            if (SDL_RenderFillRect(this->renderer->get(), &finalRect) != 0) {
+            if (SDL_RenderFillRect(this->renderer->getRenderer(), &finalRect) != 0) {
                 std::cerr << "SDL_RenderFillRect Error: " << SDL_GetError() << std::endl;
                 return (false);
             }
         } else {
-            if (SDL_RenderDrawRect(this->renderer->get(), &finalRect) != 0) {
+            if (SDL_RenderDrawRect(this->renderer->getRenderer(), &finalRect) != 0) {
                 std::cerr << "SDL_RenderDrawRect Error: " << SDL_GetError() << std::endl;
                 return (false);
             }
