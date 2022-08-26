@@ -1,6 +1,6 @@
 #include "Background.hpp"
 
-namespace PA::Object {
+namespace PA::Object::Map {
     Background::Background() {
         this->images = {
             {"dirt", CREATE_IMAGE}

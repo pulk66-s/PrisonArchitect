@@ -1,18 +1,18 @@
 #include "Map.hpp"
 
-namespace PA::Object {
+namespace PA::Object::Map {
     Map::Map()
     {
-        this->grid = PA::Object::Grid::getInstance();
+        this->grid = PA::Object::Map::Grid::getInstance();
         this->camera = PA::Lib::SDL2::Camera::getInstance();
-        this->tileManager = PA::Object::TileManager::getInstance();
+        this->tileManager = PA::Object::Tile::TileManager::getInstance();
     }
 
     void Map::update()
     {
         this->camera->update();
-        PA::Object::Grid::Action gridAction = this->grid->update();
-        if (gridAction != PA::Object::Grid::Action::NONE) {
+        PA::Object::Map::Grid::Action gridAction = this->grid->update();
+        if (gridAction != PA::Object::Map::Grid::Action::NONE) {
             this->tileManager->createTiles(gridAction);
         }
         this->roomManager.update();

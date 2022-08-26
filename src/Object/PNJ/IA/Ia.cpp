@@ -4,8 +4,8 @@ namespace PA::Object::PNJ::IA {
 
     Ia::Ia()
     {
-        this->grid = PA::Object::Grid::getInstance();
-        this->tileManager = PA::Object::TileManager::getInstance();
+        this->grid = PA::Object::Map::Grid::getInstance();
+        this->tileManager = PA::Object::Tile::TileManager::getInstance();
     }
 
     void Ia::update(PA::Vector2i pos)

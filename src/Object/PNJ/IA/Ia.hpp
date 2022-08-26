@@ -17,8 +17,8 @@ class PA::Object::PNJ::IA::Ia {
     };
 
     protected:
-    std::shared_ptr<PA::Object::Grid> grid;
-    std::shared_ptr<PA::Object::TileManager> tileManager;
+    std::shared_ptr<PA::Object::Map::Grid> grid;
+    std::shared_ptr<PA::Object::Tile::TileManager> tileManager;
     Move nextMove = NONE;
 
     public:

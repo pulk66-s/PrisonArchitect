@@ -12,7 +12,7 @@ int main(void)
         Uint32 flags = SDL_RENDERER_ACCELERATED;
         std::shared_ptr<PA::Lib::SDL2::Renderer> renderer = PA::Lib::SDL2::Renderer::create(&window, &index, &flags);
         std::shared_ptr<PA::Lib::SDL2::Event> event = PA::Lib::SDL2::Event::getInstance();
-        PA::Object::Map map;
+        PA::Object::Map::Map map;
 
         while (!event->isQuit()) {
             renderer->clear(0, 0, 0, 255);

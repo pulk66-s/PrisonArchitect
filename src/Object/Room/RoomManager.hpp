@@ -17,14 +17,14 @@
 class PA::Object::Room::RoomManager {
 
     private:
-    std::map<std::string, std::vector<std::shared_ptr<PA::Object::Room::ARoom>>> rooms;
+    std::unordered_map<std::string, std::vector<std::shared_ptr<PA::Object::Room::ARoom>>> rooms;
     std::shared_ptr<PA::Lib::SDL2::Event> event;
     std::shared_ptr<PA::Lib::SDL2::Camera> camera;
 
     // room creation
     bool roomCreation = false;
     std::unique_ptr<PA::Lib::SDL2::Shape::Rectangle> roomCreationRect;
-    std::shared_ptr<PA::Object::Grid> grid = nullptr;
+    std::shared_ptr<PA::Object::Map::Grid> grid = nullptr;
     std::unique_ptr<PA::Vector2i> roomCreationFirstPoint = nullptr;
     std::string roomCreationName;
     bool waitingForRelease = false;

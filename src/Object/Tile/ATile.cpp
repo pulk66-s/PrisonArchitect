@@ -3,7 +3,7 @@
 namespace PA::Object::Tile {
 
     ATile::ATile() {
-        this->grid = PA::Object::Grid::getInstance();
+        this->grid = PA::Object::Map::Grid::getInstance();
     }
 
     ATile::~ATile() {

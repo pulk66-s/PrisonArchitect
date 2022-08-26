@@ -1,11 +1,11 @@
 #include "TileManager.hpp"
 
-namespace PA::Object {
+namespace PA::Object::Tile {
 
     TileManager::TileManager() {
-        this->grid = PA::Object::Grid::getInstance();
+        this->grid = PA::Object::Map::Grid::getInstance();
         this->wallNames = {
-            {PA::Object::Grid::Action::CREATE_BRICK_WALL, "brickWall"},
+            {PA::Object::Map::Grid::Action::CREATE_BRICK_WALL, "brickWall"},
         };
         this->colliders = {};
     }
@@ -43,8 +43,8 @@ namespace PA::Object {
             tile->setWallPosition(PA::Object::Tile::ITile::WallPosition::UP);
     }
 
-    void TileManager::createTiles(PA::Object::Grid::Action action) {
-        std::vector<PA::Object::Grid::WallInfo> walls = this->grid->getWallsInfo();
+    void TileManager::createTiles(PA::Object::Map::Grid::Action action) {
+        std::vector<PA::Object::Map::Grid::WallInfo> walls = this->grid->getWallsInfo();
         for (auto wall : walls) {
             PA::Vector2i position = wall.pos;
             PA::Vector2i index = wall.index;

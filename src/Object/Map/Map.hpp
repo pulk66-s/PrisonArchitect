@@ -19,15 +19,15 @@
     #include <map>
     #include <memory>
 
-class PA::Object::Map {
+class PA::Object::Map::Map {
 
     private:
-    std::shared_ptr<PA::Object::TileManager> tileManager;
+    std::shared_ptr<PA::Object::Tile::TileManager> tileManager;
     PA::Object::PNJ::PnjManager pnjManager;
-    std::shared_ptr<PA::Object::Grid> grid;
+    std::shared_ptr<PA::Object::Map::Grid> grid;
     PA::Object::Room::RoomManager roomManager;
     PA::Object::Menu::GameUI gameUI;
-    PA::Object::Background background;
+    PA::Object::Map::Background background;
     std::shared_ptr<PA::Lib::SDL2::Camera> camera;
 
     public:

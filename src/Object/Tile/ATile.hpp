@@ -14,7 +14,7 @@ class PA::Object::Tile::ATile : public PA::Object::Tile::ITile {
     protected:
     bool colliding = false;
     std::shared_ptr<PA::Lib::SDL2::Graphic::Image> image = nullptr;
-    std::shared_ptr<PA::Object::Grid> grid;
+    std::shared_ptr<PA::Object::Map::Grid> grid;
     std::string name = "";
     std::unordered_map<WallPosition, PA::Vector2i> wallPositions = {};
 

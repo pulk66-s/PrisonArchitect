@@ -2,13 +2,14 @@
     #define __OBJECT_NAMESPACE_HPP__
 
 namespace PA::Object {
-    class Map;
-    class MapManager;
-    class Grid;
-    class Background;
-    class TileManager;
+    namespace Map {
+        class Map;
+        class Grid;
+        class Background;
+    }
     class PlayerInfo;
     namespace Tile {
+        class TileManager;
         class ITile;
         class ATile;
         class Factory;

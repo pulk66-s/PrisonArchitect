@@ -14,7 +14,7 @@
     #include <algorithm>
     #include <unordered_map>
 
-class PA::Object::Grid {
+class PA::Object::Map::Grid {
 
     public:
     enum Action {

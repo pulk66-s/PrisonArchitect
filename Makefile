@@ -22,7 +22,6 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Map/Map.cpp \
 			$(OBJECT_PATH)/Map/Grid.cpp \
 			$(OBJECT_PATH)/Map/Background.cpp \
-			$(OBJECT_PATH)/Map/TileManager.cpp \
 			$(OBJECT_PATH)/PNJ/Pnj.cpp \
 			$(OBJECT_PATH)/PNJ/PnjManager.cpp \
 			$(OBJECT_PATH)/PNJ/Workman.cpp \
@@ -36,6 +35,7 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Menu/Room.cpp \
 			$(OBJECT_PATH)/Menu/Staff.cpp \
 			$(OBJECT_PATH)/Menu/Material.cpp \
+			$(OBJECT_PATH)/Tile/TileManager.cpp \
 			$(OBJECT_PATH)/Tile/ATile.cpp \
 			$(OBJECT_PATH)/Tile/BrickWall.cpp \
 			$(OBJECT_PATH)/Tile/TileFactory.cpp \

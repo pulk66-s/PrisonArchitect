@@ -14,7 +14,7 @@ namespace PA::Object::Room {
             SDL_Color{0, 200, 0, 255}, true, PA::Lib::SDL2::Camera::Status::FIXED
         );
         this->camera = PA::Lib::SDL2::Camera::getInstance();
-        this->grid = PA::Object::Grid::getInstance();
+        this->grid = PA::Object::Map::Grid::getInstance();
     }
 
     // PARFAIT DONC ON TOUCHE PAS !!!

@@ -14,7 +14,7 @@
         true, PA::Vector2i{1, 1} \
     )
 
-class PA::Object::Background {
+class PA::Object::Map::Background {
 
     private:
     PA::Vector2i dim = {100, 100};

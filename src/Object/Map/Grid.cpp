@@ -1,6 +1,6 @@
 #include "Grid.hpp"
 
-namespace PA::Object {
+namespace PA::Object::Map {
     
     Grid::Grid()
     {
