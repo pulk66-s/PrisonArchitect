@@ -19,7 +19,7 @@ class PA::Object::Menu::GameUI {
     PA::Object::Menu::Room roomIcon;
     PA::Object::Menu::Staff staffIcon;
     PA::Object::Menu::Material materialIcon;
-    PA::Object::Menu::PlayerInfo playerInfo;
+    PA::Object::Menu::Player::PlayerInfo playerInfo;
     PA::Object::Menu::Errors errors;
 
     public:

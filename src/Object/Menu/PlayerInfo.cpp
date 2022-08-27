@@ -1,6 +1,6 @@
 #include "PlayerInfo.hpp"
 
-namespace PA::Object::Menu {
+namespace PA::Object::Menu::Player {
 
     void PlayerInfo::draw() {
         this->playerMoney.draw();

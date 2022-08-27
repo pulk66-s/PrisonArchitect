@@ -1,6 +1,6 @@
 #include "Object/Menu/PlayerMoney.hpp"
 
-namespace PA::Object::Menu {
+namespace PA::Object::Menu::Player {
 
     PlayerMoney::PlayerMoney() {
         std::string text = std::to_string(this->playerInfo->getMoney()) + "$";

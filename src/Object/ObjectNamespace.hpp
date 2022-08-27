@@ -31,9 +31,11 @@ namespace PA::Object {
         class Delivery;
     }
     namespace Menu {
-        class PlayerInfo;
-        class PlayerMoney;
-        class PlayerMoneyIncome;
+        namespace Player {
+            class PlayerInfo;
+            class PlayerMoney;
+            class PlayerMoneyIncome;
+        }
         class GameUI;
         class AIcon;
         class Room;

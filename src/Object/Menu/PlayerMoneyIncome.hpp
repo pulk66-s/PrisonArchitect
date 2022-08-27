@@ -8,7 +8,7 @@
     #include <memory>
     #include <ctime>
 
-class PA::Object::Menu::PlayerMoneyIncome {
+class PA::Object::Menu::Player::PlayerMoneyIncome {
 
     private:
     std::shared_ptr<PA::Object::PlayerInfo> playerInfo = PA::Object::PlayerInfo::getInstance();

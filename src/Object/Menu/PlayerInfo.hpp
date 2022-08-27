@@ -10,11 +10,11 @@
     #include <memory>
     #include <ctime>
 
-class PA::Object::Menu::PlayerInfo {
+class PA::Object::Menu::Player::PlayerInfo {
 
     private:
-    PA::Object::Menu::PlayerMoney playerMoney;
-    PA::Object::Menu::PlayerMoneyIncome playerMoneyIncome;
+    PA::Object::Menu::Player::PlayerMoney playerMoney;
+    PA::Object::Menu::Player::PlayerMoneyIncome playerMoneyIncome;
 
     public:
     void draw();
