@@ -5,7 +5,7 @@
 int main(void)
 {
     try {
-        std::srand(std::time(nullptr));
+        srand(time(0));
         PA::Lib::SDL2::LSDL2 sdl2;
         PA::Lib::SDL2::Window window("Hello World!", 100, 100, 1200, 900);
         int index = -1;

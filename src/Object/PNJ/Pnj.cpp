@@ -7,7 +7,7 @@ namespace PA::Object::PNJ {
         this->pos = pos;
         this->nb_variant = variant;
         this->spriteSheet = std::make_unique<PA::Lib::SDL2::Graphic::SpriteSheet>(
-            path, PA::Vector2i{4, 4}, PA::Vector2i{0, 0}, this->grid->getDim()
+            path, PA::Vector2i{4, 4}, PA::Vector2i{0, 0}, this->grid->getSquareDim()
         );
         if (variant > 1) {
             this->curr_variant = std::rand() % variant;
@@ -40,6 +40,7 @@ namespace PA::Object::PNJ {
             return;
         this->ia->update(this->pos);
         unsigned int currentTime = SDL_GetTicks();
+        PA::Vector2i squareDim = this->grid->getSquareDim();
         if (currentTime > this->lastUpdateTime + 1000 * this->moveTimeOffset) {
             this->lastUpdateTime = currentTime;
             if (this->moveOffset <= 0) {
@@ -47,9 +48,19 @@ namespace PA::Object::PNJ {
                 this->moveOffset = this->maxMoveOffset;
             }
             PA::Vector2i moveBuff = this->moveDirection[this->currMove];
-            this->pos += moveBuff;
-            this->spriteSheet->setPosition(this->pos);
-            this->spriteSheet->setIndex({this->moveSpriteSheetIndex[this->currMove], this->curr_variant});
+            PA::Vector2i nextPos = this->grid->transformPos(this->pos + moveBuff);
+            if (this->currMove == IA::Ia::Move::RIGHT) {
+                nextPos.x += squareDim.x;
+            }
+            if (this->currMove == IA::Ia::Move::DOWN) {
+                nextPos.y += squareDim.y;
+            }
+            std::shared_ptr<PA::Object::Tile::ITile> tile = this->tileManager->getTile(nextPos);
+            if (tile == nullptr) {
+                this->pos += moveBuff;
+                this->spriteSheet->setPos(this->pos);
+                this->spriteSheet->setIndex({this->moveSpriteSheetIndex[this->currMove], this->curr_variant});
+            }
             this->moveOffset--;
         }
     }

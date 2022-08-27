@@ -25,7 +25,9 @@ class PA::Lib::SDL2::Graphic::SpriteSheet {
     SpriteSheet(std::string path, PA::Vector2i nbSprite, PA::Vector2i pos, PA::Vector2i dim, PA::Lib::SDL2::Camera::Status status = PA::Lib::SDL2::Camera::Status::MOVABLE);
     void draw();
     void setIndex(PA::Vector2i index);
-    void setPosition(PA::Vector2i pos);
+    void setPos(PA::Vector2i pos);
+    PA::Vector2i getPos();
+    void setStatus(PA::Lib::SDL2::Camera::Status status);
 
 };
 

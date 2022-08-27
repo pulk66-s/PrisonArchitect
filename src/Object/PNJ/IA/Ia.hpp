@@ -4,6 +4,8 @@
     #include "Object/ObjectNamespace.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Object/Tile/TileManager.hpp"
+    #include <ctime>
+    #include <cstdlib>
 
 class PA::Object::PNJ::IA::Ia {
 
@@ -17,12 +19,11 @@ class PA::Object::PNJ::IA::Ia {
     };
 
     protected:
-    std::shared_ptr<PA::Object::Map::Grid> grid;
-    std::shared_ptr<PA::Object::Tile::TileManager> tileManager;
+    std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
+    std::shared_ptr<PA::Object::Tile::TileManager> tileManager = PA::Object::Tile::TileManager::getInstance();
     Move nextMove = NONE;
 
     public:
-    Ia();
     void update(PA::Vector2i pos);
     Move getMove();
 };

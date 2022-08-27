@@ -1,7 +1,7 @@
 CC			= g++
 INCLUDES	= -Isrc
 DEBUG_FLAGS	= -g3 -fsanitize=address
-CPPFLAGS	= -W -Wall -Wextra -lSDL2 -lSDL2_image -lSDL2_ttf $(INCLUDES) -O3
+CPPFLAGS	= -W -Wall -Wextra -lSDL2 -lSDL2_image -lSDL2_ttf $(INCLUDES) -O3 $(DEBUG_FLAGS)
 
 LIB_PATH	= src/Lib
 GLOBAL_PATH	= src/Global
@@ -28,6 +28,7 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/PNJ/Pnj.cpp \
 			$(OBJECT_PATH)/PNJ/PnjManager.cpp \
 			$(OBJECT_PATH)/PNJ/Workman.cpp \
+			$(OBJECT_PATH)/PNJ/Factory.cpp \
 			$(OBJECT_PATH)/PNJ/IA/Ia.cpp \
 			$(OBJECT_PATH)/PNJ/IA/Workman.cpp \
 			$(OBJECT_PATH)/Room/ARoom.cpp \

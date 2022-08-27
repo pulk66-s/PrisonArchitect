@@ -6,6 +6,7 @@
     #include "Object/Tile/BrickWall.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Global/Vector.hpp"
+    #include "Global/Error/InvalidArgument.hpp"
     #include "Lib/SDL2/Renderer.hpp"
     #include <unordered_map>
     #include <memory>
@@ -23,7 +24,7 @@ class PA::Object::Tile::Factory {
 
     public:
     Factory();
-    std::shared_ptr<PA::Object::Tile::ITile> create(std::string component, PA::Vector2i pos, PA::Vector2i index);
+    std::shared_ptr<PA::Object::Tile::ITile> create(std::string component, PA::Vector2i index = {0, 0}, PA::Vector2i pos = {0, 0});
 
 };
 

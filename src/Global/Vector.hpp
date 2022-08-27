@@ -18,6 +18,10 @@ struct PA::Vector2i {
         this->y = 0;
     }
 
+    PA::Vector2i operator%(PA::Vector2i other) {
+        return (PA::Vector2i(this->x % other.x, this->y % other.y));
+    }
+
     PA::Vector2i operator*(const PA::Vector2i& other) {
         return (PA::Vector2i(this->x * other.x, this->y * other.y));
     }

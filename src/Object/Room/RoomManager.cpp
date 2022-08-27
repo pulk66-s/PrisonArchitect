@@ -22,7 +22,7 @@ namespace PA::Object::Room {
         PA::Vector2i mousePos = this->event->getMousePosition();
         PA::Vector2i mousePosGrid = this->grid->transformPos(mousePos);
         PA::Vector2i camPos = this->camera->getPos();
-        PA::Vector2i gridDim = this->grid->getDim();
+        PA::Vector2i gridDim = this->grid->getSquareDim();
         if (this->roomCreationFirstPoint == nullptr) {
             this->roomCreationRect->setPos(mousePosGrid);
         } else {
@@ -116,7 +116,7 @@ namespace PA::Object::Room {
     void RoomManager::createRoom(std::string name) {
         this->roomCreation = true;
         this->waitingForRelease = true;
-        this->roomCreationRect->setDim(this->grid->getDim());
+        this->roomCreationRect->setDim(this->grid->getSquareDim());
         this->roomCreationName = name;
     }
 

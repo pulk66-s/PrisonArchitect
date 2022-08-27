@@ -13,6 +13,7 @@
     #include <vector>
     #include <map>
     #include <memory>
+    #include <unordered_map>
 
 class PA::Object::Room::RoomManager {
 

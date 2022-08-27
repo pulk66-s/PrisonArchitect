@@ -19,6 +19,7 @@ namespace PA::Object {
         class PnjManager;
         class Pnj;
         class Workman;
+        class Factory;
         namespace IA {
             class Ia;
             class Workman;

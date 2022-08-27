@@ -6,12 +6,12 @@ namespace PA::Object::Tile
     {
         this->colliding = true;
         this->name = "brickWall";
-        PA::Vector2i gridDim = this->grid->getDim();
-        this->image = std::make_shared<PA::Lib::SDL2::Graphic::Image>(
-            "res/sprites/game/walls.png", gridDim, pos,
-            true, PA::Vector2i{32, 32}
+        PA::Vector2i gridDim = this->grid->getSquareDim();
+        this->spriteSheet = std::make_shared<PA::Lib::SDL2::Graphic::SpriteSheet>(
+            "res/sprites/game/walls.png", PA::Vector2i(32, 32),
+            pos, gridDim
         );
-        this->image->setIndex(index);
+        this->spriteSheet->setIndex(index);
         this->wallPositions = {
             {PA::Object::Tile::ITile::WallPosition::CROSS, PA::Vector2i{14, 10}},
             {PA::Object::Tile::ITile::WallPosition::CORNER_UPPER_LEFT, PA::Vector2i{10, 8}},

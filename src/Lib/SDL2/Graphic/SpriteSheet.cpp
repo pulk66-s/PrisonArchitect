@@ -27,8 +27,16 @@ namespace PA::Lib::SDL2::Graphic {
         this->src = {this->srcPos.x, this->srcPos.y, this->srcDim.x, this->srcDim.y};
     }
 
-    void SpriteSheet::setPosition(PA::Vector2i pos) {
+    void SpriteSheet::setPos(PA::Vector2i pos) {
         this->pos = pos;
+    }
+
+    PA::Vector2i SpriteSheet::getPos() {
+        return (this->pos);
+    }
+
+    void SpriteSheet::setStatus(PA::Lib::SDL2::Camera::Status status) {
+        this->status = status;
     }
 
 }

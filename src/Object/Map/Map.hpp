@@ -22,16 +22,15 @@
 class PA::Object::Map::Map {
 
     private:
-    std::shared_ptr<PA::Object::Tile::TileManager> tileManager;
-    PA::Object::PNJ::PnjManager pnjManager;
-    std::shared_ptr<PA::Object::Map::Grid> grid;
+    std::shared_ptr<PA::Object::Tile::TileManager> tileManager = PA::Object::Tile::TileManager::getInstance();
+    PA::Object::PNJ::PnjManager pnjManager = PA::Object::PNJ::PnjManager();
+    std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     PA::Object::Room::RoomManager roomManager;
     PA::Object::Menu::GameUI gameUI;
     PA::Object::Map::Background background;
-    std::shared_ptr<PA::Lib::SDL2::Camera> camera;
+    std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
 
     public:
-    Map();
     void update();
     void draw();
 
