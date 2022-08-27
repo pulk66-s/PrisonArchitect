@@ -24,6 +24,13 @@ namespace PA::Object {
             class Ia;
             class Workman;
         }
+        namespace Task {
+            class TaskManager;
+            class TaskRepartiter;
+            class ATask;
+            class Factory;
+            class WallTask;
+        };
     }
     namespace Room {
         class ARoom;

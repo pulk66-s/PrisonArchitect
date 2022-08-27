@@ -5,6 +5,7 @@
     #include "Object/Map/Grid.hpp"
     #include "Object/Tile/ITile.hpp"
     #include "Object/Tile/TileManager.hpp"
+    #include "Object/PNJ/Tasks/TaskManager.hpp"
     #include "Lib/SDL2/Graphic/SpriteSheet.hpp"
     #include "Lib/SDL2/Renderer.hpp"
     #include "Global/Vector.hpp"
@@ -19,6 +20,7 @@ class PA::Object::PNJ::Pnj {
     protected:
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     std::shared_ptr<PA::Object::Tile::TileManager> tileManager = PA::Object::Tile::TileManager::getInstance();
+    PA::Object::PNJ::Tasks::TaskManager taskManager;
 
     std::unique_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet;
     unsigned short nb_variant, curr_variant = 0;

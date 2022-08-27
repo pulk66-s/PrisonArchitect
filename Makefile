@@ -34,6 +34,11 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/PNJ/Factory.cpp \
 			$(OBJECT_PATH)/PNJ/IA/Ia.cpp \
 			$(OBJECT_PATH)/PNJ/IA/Workman.cpp \
+			$(OBJECT_PATH)/PNJ/Tasks/ATask.cpp \
+			$(OBJECT_PATH)/PNJ/Tasks/TaskManager.cpp \
+			$(OBJECT_PATH)/PNJ/Tasks/TaskRepartiter.cpp \
+			$(OBJECT_PATH)/PNJ/Tasks/Factory.cpp \
+			$(OBJECT_PATH)/PNJ/Tasks/WallTask.cpp \
 			$(OBJECT_PATH)/Room/ARoom.cpp \
 			$(OBJECT_PATH)/Room/RoomManager.cpp \
 			$(OBJECT_PATH)/Room/Delivery.cpp \
