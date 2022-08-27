@@ -6,13 +6,12 @@ namespace PA::Object::Map {
     {
         try {
             this->camera->update();
-            this->roomManager.update();
             this->pnjManager.update();
             this->tileManager->update();
             PA::Object::Menu::AIcon::Action gameUIAction = this->gameUI.update();
             switch (gameUIAction) {
                 case PA::Object::Menu::AIcon::Action::DELIVERIES:
-                    this->roomManager.createRoom("delivery");
+                    this->tileManager->createTiles("delivery");
                     break;
                 case PA::Object::Menu::AIcon::Action::WORKMAN:
                     this->pnjManager.createPNJ("workman");
@@ -35,7 +34,6 @@ namespace PA::Object::Map {
     void Map::draw()
     {
         this->background.draw();
-        this->roomManager.draw();
         this->pnjManager.draw();
         this->tileManager->draw();
         this->gameUI.draw();

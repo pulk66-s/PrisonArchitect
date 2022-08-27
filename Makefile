@@ -52,12 +52,12 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Menu/Notif/Success.cpp \
 			$(OBJECT_PATH)/Menu/Notif/ANotif.cpp \
 			$(OBJECT_PATH)/Tile/Room/ARoom.cpp \
-			$(OBJECT_PATH)/Tile/Room/RoomManager.cpp \
+			$(OBJECT_PATH)/Tile/Room/Manager.cpp \
 			$(OBJECT_PATH)/Tile/Room/Delivery.cpp \
 			$(OBJECT_PATH)/Tile/TileManager.cpp \
 			$(OBJECT_PATH)/Tile/ATile.cpp \
 			$(OBJECT_PATH)/Tile/BrickWall.cpp \
-			$(OBJECT_PATH)/Tile/TileFactory.cpp \
+			$(OBJECT_PATH)/Tile/Factory.cpp \
 			$(OBJECT_PATH)/Items/Factory.cpp \
 			$(OBJECT_PATH)/Items/AItem.cpp \
 			$(OBJECT_PATH)/Items/ItemManager.cpp \

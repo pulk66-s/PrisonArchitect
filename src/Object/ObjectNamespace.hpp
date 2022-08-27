@@ -16,7 +16,7 @@ namespace PA::Object {
         class BrickWall;
         namespace Room {
             class ARoom;
-            class RoomManager;
+            class Manager;
             class Delivery;
         }
     };

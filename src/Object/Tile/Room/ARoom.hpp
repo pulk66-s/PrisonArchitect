@@ -1,25 +1,23 @@
-#ifndef __OBJECT_ROOM_AROOM_HPP__
-    #define __OBJECT_ROOM_AROOM_HPP__
+#ifndef __PA_OBJECT_ROOM_AROOM_HPP__
+    #define __PA_OBJECT_ROOM_AROOM_HPP__
 
     #include "Object/ObjectNamespace.hpp"
-    #include "Lib/SDL2/Renderer.hpp"
-    #include "Lib/SDL2/Graphic/Text.hpp"
-    #include "Lib/SDL2/Shape/Rectangle.hpp"
+    #include "Object/Tile/ATile.hpp"
+    #include "Object/Map/Grid.hpp"
     #include "Global/Vector.hpp"
+    #include "Lib/SDL2/Shape/Rectangle.hpp"
     #include <vector>
     #include <memory>
 
-class PA::Object::Tile::Room::ARoom {
+class PA::Object::Tile::Room::ARoom : public PA::Object::Tile::ATile {
 
     protected:
-    PA::Vector2i dim = {1, 1}, pos = {0, 0};
-    const PA::Vector2i gridDim = {30, 30};
-    std::string name = "";
-    std::vector<PA::Lib::SDL2::Shape::Rectangle> rectangles;
-    std::unique_ptr<PA::Lib::SDL2::Graphic::Text> text;
+    std::vector<PA::Lib::SDL2::Shape::Rectangle> backGround = {};
+    std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
 
     public:
-    ARoom(PA::Vector2i dim, PA::Vector2i pos={0,0}, std::string name="Unknown");
+    ARoom(__attribute__((unused))PA::Vector2i index, PA::Vector2i pos, std::string name);
+    void update();
     void draw();
 
 };

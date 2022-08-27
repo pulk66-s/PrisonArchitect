@@ -4,6 +4,7 @@
     #include "Object/ObjectNamespace.hpp"
     #include "Object/Tile/ITile.hpp"
     #include "Object/Tile/BrickWall.hpp"
+    #include "Object/Tile/Room/Delivery.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Global/Vector.hpp"
     #include "Global/Error/InvalidArgument.hpp"

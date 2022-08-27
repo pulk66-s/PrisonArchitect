@@ -4,8 +4,9 @@
     #include "Object/ObjectNamespace.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Object/Tile/ITile.hpp"
-    #include "Object/Tile/TileFactory.hpp"
+    #include "Object/Tile/Factory.hpp"
     #include "Object/PlayerInfo.hpp"
+    #include "Object/Tile/Room/Manager.hpp"
     #include "Global/Vector.hpp"
     #include "Lib/SDL2/Renderer.hpp"
     #include "Lib/SDL2/Camera.hpp"
@@ -23,9 +24,10 @@ class PA::Object::Tile::TileManager {
     std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Event> event = PA::Lib::SDL2::Event::getInstance();
     std::shared_ptr<PA::Object::PlayerInfo> playerInfo = PA::Object::PlayerInfo::getInstance();
+    Room::Manager roomManager;
 
     Factory tileFactory;
-    std::map<PA::Vector2i, std::shared_ptr<ITile>> colliders = {};
+    std::map<PA::Vector2i, std::shared_ptr<ITile>> tiles = {};
     std::shared_ptr<PA::Vector2i> firstPos = nullptr;
     std::shared_ptr<ITile> firstTile = nullptr;
     std::unordered_set<std::shared_ptr<ITile>> tilesPreviewSet = {};

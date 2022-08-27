@@ -50,6 +50,18 @@ struct PA::Vector2i {
         return (PA::Vector2i{this->x / other, this->y / other});
     }
 
+    PA::Vector2i operator/= (const int &other) {
+        this->x /= other;
+        this->y /= other;
+        return (*this);
+    }
+
+    PA::Vector2i operator/= (const PA::Vector2i &other) {
+        this->x /= other.x;
+        this->y /= other.y;
+        return (*this);
+    }
+
     PA::Vector2i operator/ (const PA::Vector2i &other) {
         return (PA::Vector2i{this->x / other.x, this->y / other.y});
     }

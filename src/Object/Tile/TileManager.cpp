@@ -73,23 +73,23 @@ namespace PA::Object::Tile {
         }
         for (auto tile : this->tilesPreviewSet) {
             tile->setColliding(true);
-            this->colliders.insert({tile->getPos(), tile});
+            this->tiles.insert({tile->getPos(), tile});
         }
         PA::Vector2i squareDim = this->grid->getSquareDim();
         for (auto tile : this->tilesPreviewSet) {
             PA::Vector2i pos = tile->getPos();
-            this->triggerColliderRedirection(this->colliders[pos]);
+            this->triggerColliderRedirection(this->tiles[pos]);
             if (this->getCollider(tile->getPos() + PA::Vector2i(0, -squareDim.y)) != nullptr) {
-                this->triggerColliderRedirection(this->colliders[pos + PA::Vector2i(0, -squareDim.y)]);
+                this->triggerColliderRedirection(this->tiles[pos + PA::Vector2i(0, -squareDim.y)]);
             }
             if (this->getCollider(tile->getPos() + PA::Vector2i(squareDim.x, 0)) != nullptr) {
-                this->triggerColliderRedirection(this->colliders[pos + PA::Vector2i(squareDim.x, 0)]);
+                this->triggerColliderRedirection(this->tiles[pos + PA::Vector2i(squareDim.x, 0)]);
             }
             if (this->getCollider(tile->getPos() + PA::Vector2i(0, squareDim.y)) != nullptr) {
-                this->triggerColliderRedirection(this->colliders[pos + PA::Vector2i(0, squareDim.y)]);
+                this->triggerColliderRedirection(this->tiles[pos + PA::Vector2i(0, squareDim.y)]);
             }
             if (this->getCollider(tile->getPos() + PA::Vector2i(-squareDim.x, 0)) != nullptr) {
-                this->triggerColliderRedirection(this->colliders[pos + PA::Vector2i(-squareDim.x, 0)]);
+                this->triggerColliderRedirection(this->tiles[pos + PA::Vector2i(-squareDim.x, 0)]);
             }
         }
         this->tilesPreviewSet.clear();
@@ -133,10 +133,12 @@ namespace PA::Object::Tile {
         if (this->tilesCreation) {
             this->tilesCreationUpdate();
         }
+        this->roomManager.update();
     }
 
     void TileManager::draw() {
-        for (auto wall : this->colliders) {
+        this->roomManager.draw();
+        for (auto wall : this->tiles) {
             if (wall.second != nullptr) {
                 wall.second->draw();
             }
@@ -149,8 +151,8 @@ namespace PA::Object::Tile {
     }
 
     std::shared_ptr<PA::Object::Tile::ITile> TileManager::getTile(PA::Vector2i index) {
-        if (this->colliders.find(index) != this->colliders.end()) {
-            return (this->colliders[index]);
+        if (this->tiles.find(index) != this->tiles.end()) {
+            return (this->tiles[index]);
         }
         return (nullptr);
     }
@@ -165,17 +167,22 @@ namespace PA::Object::Tile {
         if (tile == nullptr) {
             throw PA::Error::InvalidArgument("Invalid tile name", __FILE__);
         }
-        this->tileName = tileName;
-        this->firstTile = tile;
-        tile->setStatus(PA::Lib::SDL2::Camera::Status::FIXED);
-        this->tilesPreviewSet.insert(tile);
-        this->tilesCreation = true;
-        this->waitForRelease = true;
+        if (dynamic_cast<Room::ARoom *>(tile.get())) {
+            this->roomManager.createRoom(tile, &this->tiles);
+        } else {
+            this->tilesPreviewSet.insert(tile);
+            this->tileName = tileName;
+            this->firstTile = tile;
+            tile->setStatus(PA::Lib::SDL2::Camera::Status::FIXED);
+            this->tilesPreviewSet.insert(tile);
+            this->tilesCreation = true;
+            this->waitForRelease = true;
+        }
     }
 
     std::shared_ptr<ITile> TileManager::getCollider(PA::Vector2i index) {
-        if (this->colliders.find(index) != this->colliders.end()) {
-            return (this->colliders[index]);
+        if (this->tiles.find(index) != this->tiles.end()) {
+            return (this->tiles[index]);
         }
         return (nullptr);
     }

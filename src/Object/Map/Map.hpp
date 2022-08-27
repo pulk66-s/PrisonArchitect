@@ -13,10 +13,10 @@
     #include "Object/Tile/TileManager.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Object/Map/Background.hpp"
-    #include "Object/Tile/Room/RoomManager.hpp"
+    #include "Object/Tile/Room/Manager.hpp"
     #include "Object/Menu/GameUI.hpp"
     #include "Object/Tile/ITile.hpp"
-    #include "Object/Tile/TileFactory.hpp"
+    #include "Object/Tile/Factory.hpp"
     #include <unordered_map>
     #include <map>
     #include <memory>
@@ -28,7 +28,6 @@ class PA::Object::Map::Map {
     PA::Object::PNJ::PnjManager pnjManager;
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
-    PA::Object::Tile::Room::RoomManager roomManager;
     PA::Object::Menu::GameUI gameUI;
     PA::Object::Map::Background background;
 
