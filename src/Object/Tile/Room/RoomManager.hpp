@@ -2,8 +2,8 @@
     #define __OBJECT_ROOM_ROOMMANAGER_HPP__
 
     #include "Object/ObjectNamespace.hpp"
-    #include "Object/Room/Delivery.hpp"
-    #include "Object/Room/ARoom.hpp"
+    #include "Object/Tile/Room/Delivery.hpp"
+    #include "Object/Tile/Room/ARoom.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Lib/SDL2/Renderer.hpp"
     #include "Lib/SDL2/Event.hpp"
@@ -15,10 +15,10 @@
     #include <memory>
     #include <unordered_map>
 
-class PA::Object::Room::RoomManager {
+class PA::Object::Tile::Room::RoomManager {
 
     private:
-    std::unordered_map<std::string, std::vector<std::shared_ptr<PA::Object::Room::ARoom>>> rooms;
+    std::unordered_map<std::string, std::vector<std::shared_ptr<PA::Object::Tile::Room::ARoom>>> rooms;
     std::shared_ptr<PA::Lib::SDL2::Event> event;
     std::shared_ptr<PA::Lib::SDL2::Camera> camera;
 
@@ -39,7 +39,7 @@ class PA::Object::Room::RoomManager {
     void update();
     void createRoom(std::string name);
     // Create room by name and return
-    std::shared_ptr<PA::Object::Room::ARoom> createRoom(std::string name, PA::Vector2i dim, PA::Vector2i pos);
+    std::shared_ptr<PA::Object::Tile::Room::ARoom> createRoom(std::string name, PA::Vector2i dim, PA::Vector2i pos);
 
 };
 

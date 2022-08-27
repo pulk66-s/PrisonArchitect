@@ -9,7 +9,7 @@
     #include <vector>
     #include <memory>
 
-class PA::Object::Room::ARoom {
+class PA::Object::Tile::Room::ARoom {
 
     protected:
     PA::Vector2i dim = {1, 1}, pos = {0, 0};

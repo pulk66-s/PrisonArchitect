@@ -1,6 +1,6 @@
 #include "ARoom.hpp"
 
-namespace PA::Object::Room {
+namespace PA::Object::Tile::Room {
 
     ARoom::ARoom(PA::Vector2i dim, PA::Vector2i pos, std::string name) {
         this->name = name;

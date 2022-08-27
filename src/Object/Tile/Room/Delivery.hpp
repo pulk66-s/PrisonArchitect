@@ -4,7 +4,7 @@
     #include "Object/ObjectNamespace.hpp"
     #include "ARoom.hpp"
 
-class PA::Object::Room::Delivery : public PA::Object::Room::ARoom {
+class PA::Object::Tile::Room::Delivery : public PA::Object::Tile::Room::ARoom {
     public:
     Delivery(PA::Vector2i dim, PA::Vector2i pos={0,0});
     using ARoom::draw;

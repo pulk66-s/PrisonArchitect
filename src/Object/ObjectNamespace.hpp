@@ -14,6 +14,11 @@ namespace PA::Object {
         class ATile;
         class Factory;
         class BrickWall;
+        namespace Room {
+            class ARoom;
+            class RoomManager;
+            class Delivery;
+        }
     };
     namespace PNJ {
         class PnjManager;
@@ -31,11 +36,6 @@ namespace PA::Object {
             class Factory;
             class WallTask;
         };
-    }
-    namespace Room {
-        class ARoom;
-        class RoomManager;
-        class Delivery;
     }
     namespace Menu {
         namespace Player {

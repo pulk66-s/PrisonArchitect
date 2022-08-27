@@ -39,9 +39,6 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/PNJ/Tasks/TaskRepartiter.cpp \
 			$(OBJECT_PATH)/PNJ/Tasks/Factory.cpp \
 			$(OBJECT_PATH)/PNJ/Tasks/WallTask.cpp \
-			$(OBJECT_PATH)/Room/ARoom.cpp \
-			$(OBJECT_PATH)/Room/RoomManager.cpp \
-			$(OBJECT_PATH)/Room/Delivery.cpp \
 			$(OBJECT_PATH)/Menu/GameUI.cpp \
 			$(OBJECT_PATH)/Menu/AIcon.cpp \
 			$(OBJECT_PATH)/Menu/Room.cpp \
@@ -54,6 +51,9 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Menu/Notif/Error.cpp \
 			$(OBJECT_PATH)/Menu/Notif/Success.cpp \
 			$(OBJECT_PATH)/Menu/Notif/ANotif.cpp \
+			$(OBJECT_PATH)/Tile/Room/ARoom.cpp \
+			$(OBJECT_PATH)/Tile/Room/RoomManager.cpp \
+			$(OBJECT_PATH)/Tile/Room/Delivery.cpp \
 			$(OBJECT_PATH)/Tile/TileManager.cpp \
 			$(OBJECT_PATH)/Tile/ATile.cpp \
 			$(OBJECT_PATH)/Tile/BrickWall.cpp \

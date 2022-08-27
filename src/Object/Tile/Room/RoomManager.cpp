@@ -1,6 +1,6 @@
 #include "RoomManager.hpp"
 
-namespace PA::Object::Room {
+namespace PA::Object::Tile::Room {
 
     RoomManager::RoomManager() {
         this->rooms = {
