@@ -8,6 +8,7 @@ namespace PA {
         class InvalidArgument;
         class BadInstance;
         class NotEnoughMoney;
+        class NotifSuccess;
     }
 }
 

@@ -3,6 +3,7 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PlayerInfo.hpp"
+    #include "Global/Error/NotifSuccess.hpp"
     #include "Lib/SDL2/Graphic/Text.hpp"
     #include "Lib/SDL2/Shape/Rectangle.hpp"
     #include <memory>

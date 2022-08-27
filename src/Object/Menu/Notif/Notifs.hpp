@@ -3,16 +3,18 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/Menu/Notif/Error.hpp"
+    #include "Object/Menu/Notif/Success.hpp"
+    #include "Object/Menu/Notif/ANotif.hpp"
     #include "Global/Vector.hpp"
     #include <vector>
     #include <algorithm>
     #include <numeric>
 
-class PA::Object::Menu::Notif::Errors {
+class PA::Object::Menu::Notif::Notifs {
 
     private:
-    std::vector<Error> errors = {};
-    PA::Vector2i pos = {400, 100};
+    std::vector<ANotif> notifs = {};
+    PA::Vector2i pos = {450, 100};
     PA::Vector2i textDim = {300, 30};
     PA::Vector2i buff = {0, 5};
 
@@ -20,6 +22,7 @@ class PA::Object::Menu::Notif::Errors {
     void draw();
     void update();
     void addError(std::string message);
+    void addSuccess(std::string message);
 
 };
 

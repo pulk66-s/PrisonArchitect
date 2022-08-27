@@ -25,6 +25,8 @@ namespace PA::Object::Map {
             }
         } catch (PA::Error::NotEnoughMoney &e) {
             this->gameUI.addError(e.what());
+        } catch (PA::Error::NotifSuccess &e) {
+            this->gameUI.addSuccess(e.what());
         } catch (PA::Error::InvalidArgument &e) {
             std::cerr << e.what() << std::endl;
         }

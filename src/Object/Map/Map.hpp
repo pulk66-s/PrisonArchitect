@@ -6,6 +6,7 @@
     #include "Lib/SDL2/Camera.hpp"
     #include "Global/Error/InvalidArgument.hpp"
     #include "Global/Error/NotEnoughMoney.hpp"
+    #include "Global/Error/NotifSuccess.hpp"
     #include "Global/Vector.hpp"
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PNJ/PnjManager.hpp"

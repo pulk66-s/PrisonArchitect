@@ -21,6 +21,7 @@ namespace PA::Object::Menu::Player {
         if (now - this->lastUpdate > this->playerInfo->getIncomeTimer() * CLOCKS_PER_SEC) {
             this->playerInfo->addMoney(this->playerInfo->getIncome());
             this->lastUpdate = now;
+            throw PA::Error::NotifSuccess("You have earned " + std::to_string(this->playerInfo->getIncome()) + "$", __FILE__);
         }
     }
 

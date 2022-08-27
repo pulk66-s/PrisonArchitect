@@ -23,6 +23,7 @@ SRC			= src/main.cpp \
 			$(GLOBAL_PATH)/Error/InvalidArgument.cpp \
 			$(GLOBAL_PATH)/Error/BadInstance.cpp \
 			$(GLOBAL_PATH)/Error/NotEnoughMoney.cpp \
+			$(GLOBAL_PATH)/Error/NotifSuccess.cpp \
 			$(OBJECT_PATH)/PlayerInfo.cpp \
 			$(OBJECT_PATH)/Map/Map.cpp \
 			$(OBJECT_PATH)/Map/Grid.cpp \
@@ -44,7 +45,7 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Menu/Player/PlayerInfo.cpp \
 			$(OBJECT_PATH)/Menu/Player/PlayerMoney.cpp \
 			$(OBJECT_PATH)/Menu/Player/PlayerMoneyIncome.cpp \
-			$(OBJECT_PATH)/Menu/Notif/Errors.cpp \
+			$(OBJECT_PATH)/Menu/Notif/Notifs.cpp \
 			$(OBJECT_PATH)/Menu/Notif/Error.cpp \
 			$(OBJECT_PATH)/Menu/Notif/Success.cpp \
 			$(OBJECT_PATH)/Menu/Notif/ANotif.cpp \

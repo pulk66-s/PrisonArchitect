@@ -42,7 +42,8 @@ namespace PA::Object {
         class Staff;
         class Material;
         namespace Notif {
-            class Errors;
+            class ANotif;
+            class Notifs;
             class Error;
             class Success;
         }

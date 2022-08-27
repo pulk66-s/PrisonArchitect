@@ -6,7 +6,7 @@
     #include "Object/Menu/Staff.hpp"
     #include "Object/Menu/Material.hpp"
     #include "Object/Menu/Player/PlayerInfo.hpp"
-    #include "Object/Menu/Notif/Errors.hpp"
+    #include "Object/Menu/Notif/Notifs.hpp"
     #include "Lib/SDL2/Renderer.hpp"
     #include "Global/Vector.hpp"
     #include <memory>
@@ -16,16 +16,17 @@
 class PA::Object::Menu::GameUI {
 
     private:
+    PA::Object::Menu::Notif::Notifs notifs;
     PA::Object::Menu::Room roomIcon;
     PA::Object::Menu::Staff staffIcon;
     PA::Object::Menu::Material materialIcon;
     PA::Object::Menu::Player::PlayerInfo playerInfo;
-    PA::Object::Menu::Notif::Errors errors;
 
     public:
     void draw();
     PA::Object::Menu::AIcon::Action update();
     void addError(std::string message);
+    void addSuccess(std::string message);
 
 };
 

@@ -7,12 +7,12 @@ namespace PA::Object::Menu {
         this->staffIcon.draw();
         this->materialIcon.draw();
         this->playerInfo.draw();
-        this->errors.draw();
+        this->notifs.draw();
     }
 
     PA::Object::Menu::AIcon::Action GameUI::update() {
         this->playerInfo.update();
-        this->errors.update();
+        this->notifs.update();
         PA::Object::Menu::AIcon::Action roomAction = this->roomIcon.update();
         if (roomAction != PA::Object::Menu::AIcon::Action::NONE) {
             return (roomAction);
@@ -29,7 +29,11 @@ namespace PA::Object::Menu {
     }
 
     void GameUI::addError(std::string message) {
-        this->errors.addError(message);
+        this->notifs.addError(message);
+    }
+
+    void GameUI::addSuccess(std::string message) {
+        this->notifs.addSuccess(message);
     }
 
 }
