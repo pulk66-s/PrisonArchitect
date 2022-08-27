@@ -20,7 +20,7 @@ class PA::Object::PNJ::Pnj {
     protected:
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     std::shared_ptr<PA::Object::Tile::TileManager> tileManager = PA::Object::Tile::TileManager::getInstance();
-    PA::Object::PNJ::Tasks::TaskManager taskManager;
+    PA::Object::PNJ::Task::TaskManager taskManager;
 
     std::unique_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet;
     unsigned short nb_variant, curr_variant = 0;

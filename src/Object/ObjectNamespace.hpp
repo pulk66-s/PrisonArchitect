@@ -55,6 +55,12 @@ namespace PA::Object {
             class Success;
         }
     }
+    namespace Item {
+        class ItemManager;
+        class Factory;
+        class AItem;
+        class Brick;
+    }
 }
 
 #endif

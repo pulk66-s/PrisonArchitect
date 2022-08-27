@@ -58,6 +58,10 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Tile/ATile.cpp \
 			$(OBJECT_PATH)/Tile/BrickWall.cpp \
 			$(OBJECT_PATH)/Tile/TileFactory.cpp \
+			$(OBJECT_PATH)/Items/Factory.cpp \
+			$(OBJECT_PATH)/Items/AItem.cpp \
+			$(OBJECT_PATH)/Items/ItemManager.cpp \
+			$(OBJECT_PATH)/Items/Brick.cpp \
 
 OBJ			= $(SRC:.cpp=.o)
 NAME		= prisonArchitect
