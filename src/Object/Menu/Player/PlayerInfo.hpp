@@ -3,8 +3,8 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PlayerInfo.hpp"
-    #include "Object/Menu/PlayerMoney.hpp"
-    #include "Object/Menu/PlayerMoneyIncome.hpp"
+    #include "Object/Menu/Player/PlayerMoney.hpp"
+    #include "Object/Menu/Player/PlayerMoneyIncome.hpp"
     #include "Lib/SDL2/Graphic/Text.hpp"
     #include "Lib/SDL2/Shape/Rectangle.hpp"
     #include <memory>

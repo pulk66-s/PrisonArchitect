@@ -1,6 +1,6 @@
-#include "Object/Menu/Error.hpp"
+#include "Object/Menu/Notif/Error.hpp"
 
-namespace PA::Object::Menu {
+namespace PA::Object::Menu::Notif {
 
     Error::Error(std::string message, PA::Vector2i pos, PA::Vector2i dim) {
         this->message = message;

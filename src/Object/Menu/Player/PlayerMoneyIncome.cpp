@@ -1,4 +1,4 @@
-#include "Object/Menu/PlayerMoneyIncome.hpp"
+#include "Object/Menu/Player/PlayerMoneyIncome.hpp"
 
 namespace PA::Object::Menu::Player {
 

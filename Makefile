@@ -41,11 +41,13 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Menu/Room.cpp \
 			$(OBJECT_PATH)/Menu/Staff.cpp \
 			$(OBJECT_PATH)/Menu/Material.cpp \
-			$(OBJECT_PATH)/Menu/PlayerInfo.cpp \
-			$(OBJECT_PATH)/Menu/PlayerMoney.cpp \
-			$(OBJECT_PATH)/Menu/PlayerMoneyIncome.cpp \
-			$(OBJECT_PATH)/Menu/Errors.cpp \
-			$(OBJECT_PATH)/Menu/Error.cpp \
+			$(OBJECT_PATH)/Menu/Player/PlayerInfo.cpp \
+			$(OBJECT_PATH)/Menu/Player/PlayerMoney.cpp \
+			$(OBJECT_PATH)/Menu/Player/PlayerMoneyIncome.cpp \
+			$(OBJECT_PATH)/Menu/Notif/Errors.cpp \
+			$(OBJECT_PATH)/Menu/Notif/Error.cpp \
+			$(OBJECT_PATH)/Menu/Notif/Success.cpp \
+			$(OBJECT_PATH)/Menu/Notif/ANotif.cpp \
 			$(OBJECT_PATH)/Tile/TileManager.cpp \
 			$(OBJECT_PATH)/Tile/ATile.cpp \
 			$(OBJECT_PATH)/Tile/BrickWall.cpp \

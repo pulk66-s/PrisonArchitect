@@ -2,13 +2,13 @@
     #define __PA_OBJECT_MENU_ERRORS_HPP__
 
     #include "Object/ObjectNamespace.hpp"
-    #include "Object/Menu/Error.hpp"
+    #include "Object/Menu/Notif/Error.hpp"
     #include "Global/Vector.hpp"
     #include <vector>
     #include <algorithm>
     #include <numeric>
 
-class PA::Object::Menu::Errors {
+class PA::Object::Menu::Notif::Errors {
 
     private:
     std::vector<Error> errors = {};

@@ -5,8 +5,8 @@
     #include "Object/Menu/Room.hpp"
     #include "Object/Menu/Staff.hpp"
     #include "Object/Menu/Material.hpp"
-    #include "Object/Menu/PlayerInfo.hpp"
-    #include "Object/Menu/Errors.hpp"
+    #include "Object/Menu/Player/PlayerInfo.hpp"
+    #include "Object/Menu/Notif/Errors.hpp"
     #include "Lib/SDL2/Renderer.hpp"
     #include "Global/Vector.hpp"
     #include <memory>
@@ -20,7 +20,7 @@ class PA::Object::Menu::GameUI {
     PA::Object::Menu::Staff staffIcon;
     PA::Object::Menu::Material materialIcon;
     PA::Object::Menu::Player::PlayerInfo playerInfo;
-    PA::Object::Menu::Errors errors;
+    PA::Object::Menu::Notif::Errors errors;
 
     public:
     void draw();

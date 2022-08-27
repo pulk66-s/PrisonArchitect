@@ -8,7 +8,7 @@
     #include <string>
     #include <memory>
 
-class PA::Object::Menu::Error {
+class PA::Object::Menu::Notif::Error {
 
     private:
     std::string message = "";

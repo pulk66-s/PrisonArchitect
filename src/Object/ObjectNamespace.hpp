@@ -41,8 +41,11 @@ namespace PA::Object {
         class Room;
         class Staff;
         class Material;
-        class Errors;
-        class Error;
+        namespace Notif {
+            class Errors;
+            class Error;
+            class Success;
+        }
     }
 }
 

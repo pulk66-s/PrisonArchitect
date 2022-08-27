@@ -1,6 +1,6 @@
-#include "Object/Menu/Errors.hpp"
+#include "Object/Menu/Notif/Errors.hpp"
 
-namespace PA::Object::Menu {
+namespace PA::Object::Menu::Notif {
 
     void Errors::addError(std::string message) {
         int errorSize = this->errors.size();
