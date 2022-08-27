@@ -16,7 +16,18 @@ namespace PA::Object {
     }
 
     void PlayerInfo::addMoney(int money) {
+        if (this->money + money < 0) {
+            throw PA::Error::NotEnoughMoney("Not enough money " + std::to_string(money), __FILE__);
+        }
         this->money += money;
+    }
+
+    int PlayerInfo::getIncome() const {
+        return (this->income);
+    }
+
+    int PlayerInfo::getIncomeTimer() const {
+        return (this->incomeTimer);
     }
 
 }

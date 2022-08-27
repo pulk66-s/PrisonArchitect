@@ -7,6 +7,7 @@ namespace PA {
         class AError;
         class InvalidArgument;
         class BadInstance;
+        class NotEnoughMoney;
     }
 }
 

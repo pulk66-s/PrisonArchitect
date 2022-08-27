@@ -32,11 +32,15 @@ namespace PA::Object {
     }
     namespace Menu {
         class PlayerInfo;
+        class PlayerMoney;
+        class PlayerMoneyIncome;
         class GameUI;
         class AIcon;
         class Room;
         class Staff;
         class Material;
+        class Errors;
+        class Error;
     }
 }
 

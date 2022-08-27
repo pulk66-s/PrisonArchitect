@@ -60,6 +60,17 @@ namespace PA::Object::Tile {
             throw PA::Error::InvalidArgument("Invalid tile name", __FILE__);
         }
         this->firstTile = tile;
+        int size = this->tilesPreviewSet.size();
+        int price = size * this->firstTile->getPrice();
+        try {
+            this->playerInfo->addMoney(-price);
+        } catch (PA::Error::NotEnoughMoney &e) {
+            this->tilesPreviewSet.clear();
+            this->tilesCreation = false;
+            this->firstPos = nullptr;
+            this->firstTile = nullptr;
+            throw e;
+        }
         for (auto tile : this->tilesPreviewSet) {
             tile->setColliding(true);
             this->colliders.insert({tile->getPos(), tile});

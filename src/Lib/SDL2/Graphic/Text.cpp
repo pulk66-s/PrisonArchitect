@@ -45,4 +45,22 @@ namespace PA::Lib::SDL2::Graphic {
         return (this->text);
     }
 
+    void Text::setColor(SDL_Color color) {
+        this->color = color;
+        SDL_FreeSurface(this->surface);
+        this->surface = TTF_RenderText_Blended(this->font, this->text.c_str(), this->color);
+    }
+
+    void Text::setStatus(PA::Lib::SDL2::Camera::Status status) {
+        this->status = status;
+    }
+
+    SDL_Color Text::getColor() {
+        return (this->color);
+    }
+
+    void Text::setPos(PA::Vector2i pos) {
+        this->pos = pos;
+    }
+
 }

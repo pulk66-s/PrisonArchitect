@@ -17,6 +17,7 @@ class PA::Object::Tile::ATile : public PA::Object::Tile::ITile {
     std::shared_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet = nullptr;
     std::string name = "";
     std::unordered_map<WallPosition, PA::Vector2i> wallPositions = {};
+    int price = 0;
 
     public:
     bool isColliding();
@@ -30,6 +31,7 @@ class PA::Object::Tile::ATile : public PA::Object::Tile::ITile {
     void setStatus(PA::Lib::SDL2::Camera::Status status);
     PA::Vector2i getWallPosition(WallPosition position);
     bool operator<(const ATile& tile) const;
+    int getPrice();
 };
 
 #endif

@@ -24,8 +24,12 @@ class PA::Lib::SDL2::Graphic::Text {
     Text(std::string text, PA::Vector2i pos, PA::Vector2i dim, PA::Lib::SDL2::Camera::Status status=PA::Lib::SDL2::Camera::Status::MOVABLE, SDL_Color color={255, 255, 255, 255}, std::string font="res/font/arial.ttf");
     ~Text();
     void draw();
+    void setColor(SDL_Color color);
+    SDL_Color getColor();
     void setText(std::string text);
     std::string getText();
+    void setStatus(PA::Lib::SDL2::Camera::Status status);
+    void setPos(PA::Vector2i pos);
 
 };
 

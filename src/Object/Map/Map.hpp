@@ -5,6 +5,7 @@
     #include "Lib/SDL2/Event.hpp"
     #include "Lib/SDL2/Camera.hpp"
     #include "Global/Error/InvalidArgument.hpp"
+    #include "Global/Error/NotEnoughMoney.hpp"
     #include "Global/Vector.hpp"
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PNJ/PnjManager.hpp"
@@ -23,12 +24,12 @@ class PA::Object::Map::Map {
 
     private:
     std::shared_ptr<PA::Object::Tile::TileManager> tileManager = PA::Object::Tile::TileManager::getInstance();
-    PA::Object::PNJ::PnjManager pnjManager = PA::Object::PNJ::PnjManager();
+    PA::Object::PNJ::PnjManager pnjManager;
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
+    std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
     PA::Object::Room::RoomManager roomManager;
     PA::Object::Menu::GameUI gameUI;
     PA::Object::Map::Background background;
-    std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
 
     public:
     void update();

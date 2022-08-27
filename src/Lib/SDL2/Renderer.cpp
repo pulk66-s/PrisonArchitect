@@ -5,6 +5,7 @@ namespace PA::Lib::SDL2 {
     Renderer::Renderer(PA::Lib::SDL2::Window &window, int index, Uint32 flags)
     {
         this->renderer = SDL_CreateRenderer(window.get(), index, flags);
+        SDL_SetRenderDrawBlendMode(this->renderer, SDL_BLENDMODE_BLEND);
         if (this->renderer == nullptr) {
             std::cerr << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
             exit(1);

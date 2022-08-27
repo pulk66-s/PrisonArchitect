@@ -3,17 +3,20 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PlayerInfo.hpp"
+    #include "Object/Menu/PlayerMoney.hpp"
+    #include "Object/Menu/PlayerMoneyIncome.hpp"
     #include "Lib/SDL2/Graphic/Text.hpp"
+    #include "Lib/SDL2/Shape/Rectangle.hpp"
     #include <memory>
+    #include <ctime>
 
 class PA::Object::Menu::PlayerInfo {
 
     private:
-    std::shared_ptr<PA::Object::PlayerInfo> playerInfo;
-    std::unique_ptr<PA::Lib::SDL2::Graphic::Text> playerMoneyText;
+    PA::Object::Menu::PlayerMoney playerMoney;
+    PA::Object::Menu::PlayerMoneyIncome playerMoneyIncome;
 
     public:
-    PlayerInfo();
     void draw();
     void update();
 

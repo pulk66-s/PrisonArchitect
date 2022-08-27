@@ -29,6 +29,8 @@ class PA::Lib::SDL2::Shape::Rectangle {
     PA::Vector2i getDim();
     PA::Vector2i getPos();
     void setStatus(PA::Lib::SDL2::Camera::Status status);
+    void setColor(SDL_Color color);
+    SDL_Color getColor() const;
 };
 
 #endif

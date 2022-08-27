@@ -34,6 +34,7 @@ class PA::Object::Tile::ITile {
     virtual std::string getName() = 0;
     virtual void setStatus(PA::Lib::SDL2::Camera::Status status) = 0;
     virtual void setWallPosition(WallPosition position) = 0;
+    virtual int getPrice() = 0;
     virtual PA::Vector2i getWallPosition(WallPosition position) = 0;
 };
 

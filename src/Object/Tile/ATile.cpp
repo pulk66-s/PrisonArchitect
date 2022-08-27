@@ -44,4 +44,8 @@ namespace PA::Object::Tile {
         return (this->wallPositions[position]);
     }
 
+    int ATile::getPrice() {
+        return (this->price);
+    }
+
 }

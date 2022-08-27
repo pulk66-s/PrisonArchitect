@@ -29,6 +29,7 @@ namespace PA::Object::Tile
             {PA::Object::Tile::ITile::WallPosition::TRI_LEFT, PA::Vector2i{13, 10}},
             {PA::Object::Tile::ITile::WallPosition::TRI_RIGHT, PA::Vector2i{12, 10}},
         };
+        this->price = 50;
     }
 
     void BrickWall::update() {

@@ -5,6 +5,7 @@
     #include "Object/Map/Grid.hpp"
     #include "Object/Tile/ITile.hpp"
     #include "Object/Tile/TileFactory.hpp"
+    #include "Object/PlayerInfo.hpp"
     #include "Global/Vector.hpp"
     #include "Lib/SDL2/Renderer.hpp"
     #include "Lib/SDL2/Camera.hpp"
@@ -21,6 +22,7 @@ class PA::Object::Tile::TileManager {
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Event> event = PA::Lib::SDL2::Event::getInstance();
+    std::shared_ptr<PA::Object::PlayerInfo> playerInfo = PA::Object::PlayerInfo::getInstance();
 
     Factory tileFactory;
     std::map<PA::Vector2i, std::shared_ptr<ITile>> colliders = {};

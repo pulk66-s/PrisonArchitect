@@ -22,6 +22,8 @@ SRC			= src/main.cpp \
 			$(GLOBAL_PATH)/Error/AError.cpp \
 			$(GLOBAL_PATH)/Error/InvalidArgument.cpp \
 			$(GLOBAL_PATH)/Error/BadInstance.cpp \
+			$(GLOBAL_PATH)/Error/NotEnoughMoney.cpp \
+			$(OBJECT_PATH)/PlayerInfo.cpp \
 			$(OBJECT_PATH)/Map/Map.cpp \
 			$(OBJECT_PATH)/Map/Grid.cpp \
 			$(OBJECT_PATH)/Map/Background.cpp \
@@ -39,6 +41,11 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Menu/Room.cpp \
 			$(OBJECT_PATH)/Menu/Staff.cpp \
 			$(OBJECT_PATH)/Menu/Material.cpp \
+			$(OBJECT_PATH)/Menu/PlayerInfo.cpp \
+			$(OBJECT_PATH)/Menu/PlayerMoney.cpp \
+			$(OBJECT_PATH)/Menu/PlayerMoneyIncome.cpp \
+			$(OBJECT_PATH)/Menu/Errors.cpp \
+			$(OBJECT_PATH)/Menu/Error.cpp \
 			$(OBJECT_PATH)/Tile/TileManager.cpp \
 			$(OBJECT_PATH)/Tile/ATile.cpp \
 			$(OBJECT_PATH)/Tile/BrickWall.cpp \

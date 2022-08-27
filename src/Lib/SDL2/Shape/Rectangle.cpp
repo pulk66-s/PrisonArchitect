@@ -106,4 +106,17 @@ namespace PA::Lib::SDL2::Shape {
         this->status = status;
     }
 
+    void Rectangle::setColor(SDL_Color color)
+    {
+        this->color->r = color.r;
+        this->color->g = color.g;
+        this->color->b = color.b;
+        this->color->a = color.a;
+    }
+
+    SDL_Color Rectangle::getColor() const   
+    {
+        return (*this->color);
+    }
+
 }

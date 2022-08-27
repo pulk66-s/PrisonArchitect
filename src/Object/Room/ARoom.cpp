@@ -11,12 +11,12 @@ namespace PA::Object::Room {
                 PA::Vector2i subPos = {i * this->gridDim.x + this->pos.x * this->gridDim.x, j * this->gridDim.y + this->pos.y * this->gridDim.y};
                 PA::Vector2i subDim = {this->gridDim.x / 2, this->gridDim.y / 2};
                 this->rectangles.push_back(PA::Lib::SDL2::Shape::Rectangle(
-                    subPos, subDim, {150, 150, 150, 0}, true
+                    subPos, subDim, {150, 150, 150, 255}, true
                 ));
                 subPos.x += subDim.x;
                 subPos.y += subDim.y;
                 this->rectangles.push_back(PA::Lib::SDL2::Shape::Rectangle(
-                    subPos, subDim, {150, 150, 150, 0}, true
+                    subPos, subDim, {150, 150, 150, 255}, true
                 ));
             }
         }

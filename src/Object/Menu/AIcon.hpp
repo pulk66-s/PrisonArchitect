@@ -20,25 +20,25 @@
 class PA::Object::Menu::AIcon {
 
     protected:
-    typedef struct Icon_s {
+    struct Icon {
         std::shared_ptr<PA::Lib::SDL2::Graphic::Image> icon;
         std::shared_ptr<PA::Lib::SDL2::Graphic::Text> text;
-    } Icon;
+    };
     std::string spritesheetPath;
     PA::Vector2i pos, dim, spriteSheetDim = {1, 1};
-    SDL_Color menuBackgroundColor = {0, 0, 0, 0};
+    SDL_Color menuBackgroundColor = {0, 0, 0, 200};
     std::unique_ptr<PA::Lib::SDL2::Graphic::Image> roomImage;
     bool displayed = false;
     std::unique_ptr<PA::Lib::SDL2::Shape::Rectangle> menuBackground;
     std::unordered_map<std::string, Icon> roomIcons;
 
     public:
-    typedef enum Action_e {
+    enum Action {
         DELIVERIES,
         WORKMAN,
         BRICK_WALL,
         NONE
-    } Action;
+    };
     AIcon(PA::Vector2i pos, PA::Vector2i dim, PA::Vector2i index, std::string spritesheetPath);
     PA::Object::Menu::AIcon::Action update();
     void draw();
