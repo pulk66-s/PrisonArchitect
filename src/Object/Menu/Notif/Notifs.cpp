@@ -4,14 +4,14 @@ namespace PA::Object::Menu::Notif {
 
     void Notifs::addError(std::string message) {
         int notifSize = this->notifs.size();
-        PA::Vector2i rectPos = this->pos;
+        PA::Vector2<int> rectPos = this->pos;
         rectPos.y += notifSize * (textDim.y + buff.y);
         this->notifs.push_back(Error(message, this->pos, this->textDim));
     }
 
     void Notifs::addSuccess(std::string message) {
         int notifSize = this->notifs.size();
-        PA::Vector2i rectPos = this->pos;
+        PA::Vector2<int> rectPos = this->pos;
         rectPos.y += notifSize * (textDim.y + buff.y);
         this->notifs.push_back(Success(message, this->pos, this->textDim));
     }
@@ -39,7 +39,7 @@ namespace PA::Object::Menu::Notif {
         }
         int index = 0;
         for (auto& notif : this->notifs) {
-            notif.setPos(this->pos + PA::Vector2i(0, index * (this->textDim.y + this->buff.y)));
+            notif.setPos(this->pos + PA::Vector2<int>(0, index * (this->textDim.y + this->buff.y)));
             index++;
         }
     }

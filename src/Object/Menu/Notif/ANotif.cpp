@@ -2,13 +2,13 @@
 
 namespace PA::Object::Menu::Notif {
 
-    ANotif::ANotif(std::string message, PA::Vector2i pos, PA::Vector2i dim) {
+    ANotif::ANotif(std::string message, PA::Vector2<int> pos, PA::Vector2<int> dim) {
         this->message = message;
         this->text = std::make_unique<PA::Lib::SDL2::Graphic::Text>(message, pos, dim);
         this->text->setStatus(PA::Lib::SDL2::Camera::Status::FIXED);
         this->background = std::make_unique<PA::Lib::SDL2::Shape::Rectangle>(
-            pos - PA::Vector2i(10, 10),
-            dim + PA::Vector2i(20, 20),
+            pos - PA::Vector2<int>(10, 10),
+            dim + PA::Vector2<int>(20, 20),
             SDL_Color{0, 0, 0, 200},
             true, PA::Lib::SDL2::Camera::Status::FIXED
         );
@@ -42,8 +42,8 @@ namespace PA::Object::Menu::Notif {
         return (this->_isDone);
     }
 
-    void ANotif::setPos(PA::Vector2i pos) {
-        this->background->setPos(pos - PA::Vector2i(10, 10));
+    void ANotif::setPos(PA::Vector2<int> pos) {
+        this->background->setPos(pos - PA::Vector2<int>(10, 10));
         this->text->setPos(pos);
     }
 

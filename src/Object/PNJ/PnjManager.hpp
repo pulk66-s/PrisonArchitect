@@ -28,7 +28,7 @@ class PA::Object::PNJ::PnjManager {
     bool pnjCreation = false;
     std::vector<std::string> validNames;
     std::unordered_map<std::string, std::shared_ptr<PA::Lib::SDL2::Graphic::Image>> images;
-    std::unordered_map<std::string, PA::Vector2i> imagePos;
+    std::unordered_map<std::string, PA::Vector2<int>> imagePos;
     std::shared_ptr<PA::Lib::SDL2::Graphic::Image> currImage;
     void pnjCreationUpdate();
     void addPnjToMap(std::string name);

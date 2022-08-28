@@ -32,21 +32,21 @@ class PA::Object::Tile::Wall::AWall : public PA::Object::Tile::ATile {
 
     protected:
     std::shared_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet = nullptr;
-    std::unordered_map<WallPosition, PA::Vector2i> wallPositions = {};
+    std::unordered_map<WallPosition, PA::Vector2<int>> wallPositions = {};
     std::string item = "";
 
     public:
     AWall();
     AWall(AWall *other);
     void setWallPosition(WallPosition position);
-    void setPos(PA::Vector2i position);
-    PA::Vector2i getPos() const;
+    void setPos(PA::Vector2<int> position);
+    PA::Vector2<int> getPos() const;
     void setStatus(PA::Lib::SDL2::Camera::Status status);
     void draw();
-    PA::Vector2i getWallPosition(WallPosition position);
+    PA::Vector2<int> getWallPosition(WallPosition position);
     bool operator<(const AWall& other) const;
     void update();
-    void createSpriteSheet(PA::Vector2i pos, PA::Vector2i index);
+    void createSpriteSheet(PA::Vector2<int> pos, PA::Vector2<int> index);
     std::string getItem();
 
 };

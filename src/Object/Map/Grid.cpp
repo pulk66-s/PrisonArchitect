@@ -7,14 +7,14 @@ namespace PA::Object::Map {
         return (instance);
     }
 
-    PA::Vector2i Grid::getSquareDim() {
+    PA::Vector2<int> Grid::getSquareDim() {
         return (this->squareDim);
     }
 
-    PA::Vector2i Grid::transformPos(PA::Vector2i pos) {
-        PA::Vector2i camPos = this->camera->getPos();
-        PA::Vector2i mousePos = this->event->getMousePosition();
-        PA::Vector2i finalPos = pos - (pos % this->squareDim) - (camPos % this->squareDim);
+    PA::Vector2<int> Grid::transformPos(PA::Vector2<int> pos) {
+        PA::Vector2<int> camPos = this->camera->getPos();
+        PA::Vector2<int> mousePos = this->event->getMousePosition();
+        PA::Vector2<int> finalPos = pos - (pos % this->squareDim) - (camPos % this->squareDim);
         if (mousePos.x % this->squareDim.x > this->squareDim.x - camPos.x % this->squareDim.x) {
             finalPos.x += this->squareDim.x;
         }

@@ -10,14 +10,14 @@
 class PA::Object::Map::Grid {
 
     private:
-    PA::Vector2i squareDim = {30, 30};
+    PA::Vector2<int> squareDim = {30, 30};
     std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Event> event = PA::Lib::SDL2::Event::getInstance();
 
     public:
     static std::shared_ptr<Grid> getInstance();
-    PA::Vector2i getSquareDim();
-    PA::Vector2i transformPos(PA::Vector2i pos);
+    PA::Vector2<int> getSquareDim();
+    PA::Vector2<int> transformPos(PA::Vector2<int> pos);
 
 };
 

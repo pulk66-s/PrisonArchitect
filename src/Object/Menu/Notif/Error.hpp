@@ -12,7 +12,7 @@
 class PA::Object::Menu::Notif::Error : public PA::Object::Menu::Notif::ANotif {
 
     public:
-    Error(std::string message, PA::Vector2i pos, PA::Vector2i dim);
+    Error(std::string message, PA::Vector2<int> pos, PA::Vector2<int> dim);
 };
 
 #endif

@@ -16,12 +16,12 @@ class PA::Lib::SDL2::Graphic::Text {
     TTF_Font *font;
     SDL_Surface *surface;
     SDL_Color color;
-    PA::Vector2i pos, dim;
+    PA::Vector2<int> pos, dim;
     PA::Lib::SDL2::Camera::Status status;
     std::string text;
 
     public:
-    Text(std::string text, PA::Vector2i pos, PA::Vector2i dim, PA::Lib::SDL2::Camera::Status status=PA::Lib::SDL2::Camera::Status::MOVABLE, SDL_Color color={255, 255, 255, 255}, std::string font="res/font/arial.ttf");
+    Text(std::string text, PA::Vector2<int> pos, PA::Vector2<int> dim, PA::Lib::SDL2::Camera::Status status=PA::Lib::SDL2::Camera::Status::MOVABLE, SDL_Color color={255, 255, 255, 255}, std::string font="res/font/arial.ttf");
     ~Text();
     void draw();
     void setColor(SDL_Color color);
@@ -29,7 +29,7 @@ class PA::Lib::SDL2::Graphic::Text {
     void setText(std::string text);
     std::string getText();
     void setStatus(PA::Lib::SDL2::Camera::Status status);
-    void setPos(PA::Vector2i pos);
+    void setPos(PA::Vector2<int> pos);
 
 };
 

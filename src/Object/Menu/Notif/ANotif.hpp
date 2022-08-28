@@ -17,11 +17,11 @@ class PA::Object::Menu::Notif::ANotif {
     bool _isDone = false;
 
     public:
-    ANotif(std::string message, PA::Vector2i pos, PA::Vector2i dim);
+    ANotif(std::string message, PA::Vector2<int> pos, PA::Vector2<int> dim);
     void draw();
     void update();
     bool isDone() const;
-    void setPos(PA::Vector2i pos);
+    void setPos(PA::Vector2<int> pos);
 
 };
 

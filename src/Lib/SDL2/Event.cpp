@@ -28,7 +28,7 @@ namespace PA::Lib::SDL2 {
         return (this->isClickEvent);
     }
 
-    PA::Vector2i Event::getClickPosition() {
+    PA::Vector2<int> Event::getClickPosition() {
         return (this->clickPosition);
     }
 
@@ -37,10 +37,10 @@ namespace PA::Lib::SDL2 {
         return (instance);
     }
 
-    PA::Vector2i Event::getMousePosition() {
+    PA::Vector2<int> Event::getMousePosition() {
         int x, y;
         SDL_GetMouseState(&x, &y);
-        return (PA::Vector2i{x, y});
+        return (PA::Vector2<int>{x, y});
     }
 
     bool Event::isRelease() {

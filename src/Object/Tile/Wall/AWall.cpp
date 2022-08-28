@@ -17,11 +17,11 @@ namespace PA::Object::Tile::Wall {
         this->spriteSheet->setIndex(this->wallPositions[position]);
     }
 
-    void AWall::setPos(PA::Vector2i position) {
+    void AWall::setPos(PA::Vector2<int> position) {
         this->spriteSheet->setPos(position);
     }
 
-    PA::Vector2i AWall::getPos() const {
+    PA::Vector2<int> AWall::getPos() const {
         return (this->spriteSheet->getPos());
     }
 
@@ -33,7 +33,7 @@ namespace PA::Object::Tile::Wall {
         return (this->getPos() < other.getPos());
     }
 
-    PA::Vector2i AWall::getWallPosition(WallPosition position) {
+    PA::Vector2<int> AWall::getWallPosition(WallPosition position) {
         return (this->wallPositions[position]);
     }
 
@@ -46,10 +46,10 @@ namespace PA::Object::Tile::Wall {
     void AWall::update() {
     }
 
-    void AWall::createSpriteSheet(PA::Vector2i pos, PA::Vector2i index) {
-        PA::Vector2i gridDim = this->grid->getSquareDim();
+    void AWall::createSpriteSheet(PA::Vector2<int> pos, PA::Vector2<int> index) {
+        PA::Vector2<int> gridDim = this->grid->getSquareDim();
         this->spriteSheet = std::make_shared<PA::Lib::SDL2::Graphic::SpriteSheet>(
-            "res/sprites/game/walls.png", PA::Vector2i(32, 32),
+            "res/sprites/game/walls.png", PA::Vector2<int>(32, 32),
             pos, gridDim
         );
         this->spriteSheet->setIndex(index);

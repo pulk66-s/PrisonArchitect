@@ -2,7 +2,7 @@
 
 namespace PA::Lib::SDL2::Graphic {
 
-    Image::Image(std::string path, PA::Vector2i dim, PA::Vector2i pos, bool isSpriteSheet, PA::Vector2i nbSprite, PA::Lib::SDL2::Camera::Status status)
+    Image::Image(std::string path, PA::Vector2<int> dim, PA::Vector2<int> pos, bool isSpriteSheet, PA::Vector2<int> nbSprite, PA::Lib::SDL2::Camera::Status status)
     {
         this->status = status;
         this->path = path;
@@ -14,7 +14,7 @@ namespace PA::Lib::SDL2::Graphic {
             if (nbSprite.x == 0 || nbSprite.y == 0) {
                 throw PA::Error::InvalidArgument("Invalid number of sprite", "PA::Lib::SDL2::Graphic::Image::Image");
             } else {
-                PA::Vector2i textureDim = this->texture->getDim();
+                PA::Vector2<int> textureDim = this->texture->getDim();
                 this->nbSprite = nbSprite;
                 this->srcDim = textureDim / nbSprite;
             }
@@ -34,12 +34,12 @@ namespace PA::Lib::SDL2::Graphic {
         SDL_Rect rect = {this->pos.x, this->pos.y, this->dim.x, this->dim.y};
         if (this->status == PA::Lib::SDL2::Camera::Status::MOVABLE) {
             std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
-            PA::Vector2i camPos = camera->getPos();
+            PA::Vector2<int> camPos = camera->getPos();
             rect.x -= camPos.x;
             rect.y -= camPos.y;
         }
         if (this->isSpriteSheet) {
-            PA::Vector2i srcPos = {this->currIndex.x * this->srcDim.x, this->currIndex.y * this->srcDim.y};
+            PA::Vector2<int> srcPos = {this->currIndex.x * this->srcDim.x, this->currIndex.y * this->srcDim.y};
             SDL_Rect src = {srcPos.x, srcPos.y, this->srcDim.x, this->srcDim.y};
             return (SDL_RenderCopy(this->renderer->getRenderer(), this->texture->getTexture(), &src, &rect) == 0);
         } else {
@@ -47,23 +47,23 @@ namespace PA::Lib::SDL2::Graphic {
         }
     }
 
-    void Image::setPosition(PA::Vector2i pos) {
+    void Image::setPosition(PA::Vector2<int> pos) {
         this->pos = pos;
     }
 
-    void Image::setDimensions(PA::Vector2i dim) {
+    void Image::setDimensions(PA::Vector2<int> dim) {
         this->dim = dim;
     }
 
-    PA::Vector2i Image::getPosition() {
+    PA::Vector2<int> Image::getPosition() {
         return (this->pos);
     }
 
-    PA::Vector2i Image::getDimensions() {
+    PA::Vector2<int> Image::getDimensions() {
         return (this->dim);
     }
 
-    void Image::setIndex(PA::Vector2i index) {
+    void Image::setIndex(PA::Vector2<int> index) {
         if (this->isSpriteSheet) {
             this->currIndex = index;
         } else {
@@ -71,14 +71,14 @@ namespace PA::Lib::SDL2::Graphic {
         }
     }
 
-    void Image::move(PA::Vector2i pos) {
+    void Image::move(PA::Vector2<int> pos) {
         this->pos.x += pos.x;
         this->pos.y += pos.y;
     }
 
     bool Image::isClick() {
         if (this->event->isClick()) {
-            PA::Vector2i mousePos = this->event->getClickPosition();
+            PA::Vector2<int> mousePos = this->event->getClickPosition();
             if (mousePos.x >= this->pos.x && mousePos.x <= this->pos.x + this->dim.x) {
                 if (mousePos.y >= this->pos.y && mousePos.y <= this->pos.y + this->dim.y) {
                     return (true);
@@ -90,7 +90,7 @@ namespace PA::Lib::SDL2::Graphic {
 
     bool Image::isClickOutside() {
         if (this->event->isClick()) {
-            PA::Vector2i mousePos = this->event->getClickPosition();
+            PA::Vector2<int> mousePos = this->event->getClickPosition();
             if (mousePos.x < this->pos.x || mousePos.x > this->pos.x + this->dim.x) {
                 return (true);
             }
@@ -105,7 +105,7 @@ namespace PA::Lib::SDL2::Graphic {
         this->status = status;
     }
 
-    PA::Vector2i Image::getIndex() {
+    PA::Vector2<int> Image::getIndex() {
         return (this->currIndex);
     }
 

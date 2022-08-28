@@ -7,7 +7,7 @@
 class PA::Object::Tile::Room::Delivery : public PA::Object::Tile::Room::ARoom {
 
     public:
-    Delivery(PA::Vector2i index, PA::Vector2i pos);
+    Delivery(PA::Vector2<int> index, PA::Vector2<int> pos);
     using ARoom::update;
     using ARoom::draw;
 

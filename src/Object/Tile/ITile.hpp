@@ -12,8 +12,8 @@ class PA::Object::Tile::ITile {
     virtual void update() = 0;
     virtual bool isColliding() = 0;
     virtual void setColliding(bool collide) = 0;
-    virtual void setPos(PA::Vector2i pos) = 0;
-    virtual PA::Vector2i getPos() const = 0;
+    virtual void setPos(PA::Vector2<int> pos) = 0;
+    virtual PA::Vector2<int> getPos() const = 0;
     virtual std::string getName() const = 0;
     virtual int getPrice() const = 0;
 };

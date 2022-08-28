@@ -2,11 +2,11 @@
 
 namespace PA::Object::Tile::Wall {
 
-    Manager::Manager(std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles) {
+    Manager::Manager(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles) {
         this->tiles = tiles;
     }
 
-    std::shared_ptr<Manager> Manager::create(std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles) {
+    std::shared_ptr<Manager> Manager::create(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles) {
         static std::shared_ptr<Manager> instance = std::make_shared<Manager>(tiles);
         return (instance);
     }
@@ -48,26 +48,26 @@ namespace PA::Object::Tile::Wall {
             throw e;
         }
         for (auto tile : this->tilesPreviewSet) {
-            std::shared_ptr<Preview> preview = std::make_shared<Preview>(PA::Vector2i(13, 0), tile->getPos());
+            std::shared_ptr<Preview> preview = std::make_shared<Preview>(PA::Vector2<int>(13, 0), tile->getPos());
             preview->setBuildWall(tile->getName());
             preview->setColliding(true);
             this->tiles->insert({preview->getPos(), preview});
         }
-        PA::Vector2i squareDim = this->grid->getSquareDim();
+        PA::Vector2<int> squareDim = this->grid->getSquareDim();
         for (auto tile : this->tilesPreviewSet) {
-            PA::Vector2i pos = tile->getPos();
+            PA::Vector2<int> pos = tile->getPos();
             this->triggerColliderRedirection((*this->tiles)[pos]);
-            if (this->getCollider(tile->getPos() + PA::Vector2i(0, -squareDim.y)) != nullptr) {
-                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2i(0, -squareDim.y)]);
+            if (this->getCollider(tile->getPos() + PA::Vector2<int>(0, -squareDim.y)) != nullptr) {
+                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2<int>(0, -squareDim.y)]);
             }
-            if (this->getCollider(tile->getPos() + PA::Vector2i(squareDim.x, 0)) != nullptr) {
-                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2i(squareDim.x, 0)]);
+            if (this->getCollider(tile->getPos() + PA::Vector2<int>(squareDim.x, 0)) != nullptr) {
+                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2<int>(squareDim.x, 0)]);
             }
-            if (this->getCollider(tile->getPos() + PA::Vector2i(0, squareDim.y)) != nullptr) {
-                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2i(0, squareDim.y)]);
+            if (this->getCollider(tile->getPos() + PA::Vector2<int>(0, squareDim.y)) != nullptr) {
+                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2<int>(0, squareDim.y)]);
             }
-            if (this->getCollider(tile->getPos() + PA::Vector2i(-squareDim.x, 0)) != nullptr) {
-                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2i(-squareDim.x, 0)]);
+            if (this->getCollider(tile->getPos() + PA::Vector2<int>(-squareDim.x, 0)) != nullptr) {
+                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2<int>(-squareDim.x, 0)]);
             }
         }
         this->tilesPreviewSet.clear();
@@ -76,9 +76,9 @@ namespace PA::Object::Tile::Wall {
     }
 
     void Manager::tilesCreationUpdate() {
-        PA::Vector2i mousePos = this->event->getMousePosition();
-        PA::Vector2i mousePosGrid = this->grid->transformPos(mousePos);
-        PA::Vector2i camPos = this->camera->getPos();
+        PA::Vector2<int> mousePos = this->event->getMousePosition();
+        PA::Vector2<int> mousePosGrid = this->grid->transformPos(mousePos);
+        PA::Vector2<int> camPos = this->camera->getPos();
         if (this->event->isRightClick()) {
             this->tilesCreation = false;
             this->tilesPreviewSet.clear();
@@ -86,8 +86,8 @@ namespace PA::Object::Tile::Wall {
         if (this->firstPos == nullptr) {
             this->firstTile->setPos(mousePosGrid);
             if (this->event->isClick()) {
-                PA::Vector2i tilePos = mousePosGrid + camPos;
-                this->firstPos = std::make_shared<PA::Vector2i>(tilePos);
+                PA::Vector2<int> tilePos = mousePosGrid + camPos;
+                this->firstPos = std::make_shared<PA::Vector2<int>>(tilePos);
                 this->firstTile->setPos(tilePos);
                 this->firstTile->setStatus(PA::Lib::SDL2::Camera::Status::MOVABLE);
             }
@@ -122,12 +122,12 @@ namespace PA::Object::Tile::Wall {
     }
 
     void Manager::placeTilesPreview() {
-        PA::Vector2i mousePos = this->event->getMousePosition();
-        PA::Vector2i mousePosGrid = this->grid->transformPos(mousePos);
-        PA::Vector2i camPos = this->camera->getPos();
-        PA::Vector2i ending = mousePosGrid + camPos;
-        PA::Vector2i starting = *this->firstPos;
-        PA::Vector2i gridDim = this->grid->getSquareDim();
+        PA::Vector2<int> mousePos = this->event->getMousePosition();
+        PA::Vector2<int> mousePosGrid = this->grid->transformPos(mousePos);
+        PA::Vector2<int> camPos = this->camera->getPos();
+        PA::Vector2<int> ending = mousePosGrid + camPos;
+        PA::Vector2<int> starting = *this->firstPos;
+        PA::Vector2<int> gridDim = this->grid->getSquareDim();
         if (starting.x > ending.x) {
             int tmp = starting.x;
             starting.x = ending.x;
@@ -156,16 +156,16 @@ namespace PA::Object::Tile::Wall {
         int index = 0;
         for (auto tile : this->tilesPreviewSet) {
             if (index < sizeX / 2) {
-                PA::Vector2i pos = {starting.x + index * gridDim.x, starting.y};
+                PA::Vector2<int> pos = {starting.x + index * gridDim.x, starting.y};
                 tile->setPos(pos);
             } else if (index >= sizeX / 2 && index < sizeX) {
-                PA::Vector2i pos = {starting.x + (index - sizeX / 2) * gridDim.x, ending.y};
+                PA::Vector2<int> pos = {starting.x + (index - sizeX / 2) * gridDim.x, ending.y};
                 tile->setPos(pos);
             } else if (index >= sizeX && index < sizeX + sizeY / 2) {
-                PA::Vector2i pos = {starting.x, starting.y + (index - sizeX + 1) * gridDim.y};
+                PA::Vector2<int> pos = {starting.x, starting.y + (index - sizeX + 1) * gridDim.y};
                 tile->setPos(pos);
             } else {
-                PA::Vector2i pos = {ending.x, starting.y + (index - sizeX + 1 - sizeY / 2) * gridDim.y};
+                PA::Vector2<int> pos = {ending.x, starting.y + (index - sizeX + 1 - sizeY / 2) * gridDim.y};
                 tile->setPos(pos);
             }
             index++;
@@ -173,13 +173,13 @@ namespace PA::Object::Tile::Wall {
     }
 
     void Manager::triggerColliderRedirection(std::shared_ptr<ITile> tileFactory) {
-        PA::Vector2i pos = tileFactory->getPos();
-        PA::Vector2i gridPos = this->grid->getSquareDim();
+        PA::Vector2<int> pos = tileFactory->getPos();
+        PA::Vector2<int> gridPos = this->grid->getSquareDim();
         std::unordered_map<std::string, std::shared_ptr<ITile>> tiles = {
-            {"up", this->getCollider(pos + PA::Vector2i{0, -gridPos.y})},
-            {"down", this->getCollider(pos + PA::Vector2i{0, gridPos.y})},
-            {"left", this->getCollider(pos + PA::Vector2i{-gridPos.x, 0})},
-            {"right", this->getCollider(pos + PA::Vector2i{gridPos.x, 0})}
+            {"up", this->getCollider(pos + PA::Vector2<int>{0, -gridPos.y})},
+            {"down", this->getCollider(pos + PA::Vector2<int>{0, gridPos.y})},
+            {"left", this->getCollider(pos + PA::Vector2<int>{-gridPos.x, 0})},
+            {"right", this->getCollider(pos + PA::Vector2<int>{gridPos.x, 0})}
         };
         std::unordered_map<std::string, bool> dir = {
             {"up", tiles["up"] != nullptr},
@@ -224,7 +224,7 @@ namespace PA::Object::Tile::Wall {
         }
     }
 
-    std::shared_ptr<ITile> Manager::getCollider(PA::Vector2i index) {
+    std::shared_ptr<ITile> Manager::getCollider(PA::Vector2<int> index) {
         if (this->tiles->find(index) != this->tiles->end()) {
             return ((*this->tiles)[index]);
         }

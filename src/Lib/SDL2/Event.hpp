@@ -11,7 +11,7 @@ class PA::Lib::SDL2::Event {
     SDL_Event event;
     bool isQuitEvent = false;
     bool isClickEvent = false;
-    PA::Vector2i clickPosition = {0, 0};
+    PA::Vector2<int> clickPosition = {0, 0};
 
     public:
     Event();
@@ -22,8 +22,8 @@ class PA::Lib::SDL2::Event {
     bool isRelease();
     bool isKeyPressed(SDL_Scancode key);
     bool isKeyReleased(SDL_Scancode key);
-    PA::Vector2i getClickPosition();
-    PA::Vector2i getMousePosition();
+    PA::Vector2<int> getClickPosition();
+    PA::Vector2<int> getMousePosition();
     static std::shared_ptr<PA::Lib::SDL2::Event> getInstance();
 };
 

@@ -2,8 +2,8 @@
 
 namespace PA::Object::Tile::Room {
     
-    ARoom::ARoom(__attribute__((unused))PA::Vector2i index, PA::Vector2i pos, std::string name) {
-        PA::Vector2i squareDim = this->grid->getSquareDim();
+    ARoom::ARoom(__attribute__((unused))PA::Vector2<int> index, PA::Vector2<int> pos, std::string name) {
+        PA::Vector2<int> squareDim = this->grid->getSquareDim();
         this->backGround.push_back(PA::Lib::SDL2::Shape::Rectangle(
             pos, squareDim / 2, SDL_Color{200, 200, 200, 200}, true
         ));
@@ -23,13 +23,13 @@ namespace PA::Object::Tile::Room {
         }
     }
 
-    void ARoom::setPos(PA::Vector2i pos) {
+    void ARoom::setPos(PA::Vector2<int> pos) {
         for (auto& rectangle : backGround) {
             rectangle.setPos(pos);
         }
     }
 
-    PA::Vector2i ARoom::getPos() const {
+    PA::Vector2<int> ARoom::getPos() const {
         return (this->backGround[0].getPos());
     }
 

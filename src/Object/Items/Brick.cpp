@@ -6,7 +6,7 @@ namespace PA::Object::Item {
     : AItem("brick") {
         this->setSpriteSheet(
             "res/sprites/items/bricks.png",
-            PA::Vector2i(1, 1)
+            PA::Vector2<int>(1, 1)
         );
     }
 

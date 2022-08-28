@@ -6,7 +6,7 @@ namespace PA::Object::Map {
             {"dirt", CREATE_IMAGE}
         };
         this->spriteIndex = {
-            {"dirt", PA::Vector2i{0, 0}}
+            {"dirt", PA::Vector2<int>{0, 0}}
         };
         for (auto &image : this->images) {
             image.second->setIndex(this->spriteIndex[image.first]);

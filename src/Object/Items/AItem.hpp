@@ -19,8 +19,8 @@ class PA::Object::Item::AItem {
     AItem(std::string name);
     void draw();
     void update();
-    void setSpriteSheet(std::string path, PA::Vector2i nbSprite);
-    void setPos(PA::Vector2i pos);
+    void setSpriteSheet(std::string path, PA::Vector2<int> nbSprite);
+    void setPos(PA::Vector2<int> pos);
 
 };
 

@@ -2,7 +2,7 @@
 
 namespace PA::Lib::SDL2::Graphic {
 
-    Text::Text(std::string text, PA::Vector2i pos, PA::Vector2i dim, PA::Lib::SDL2::Camera::Status status, SDL_Color color, std::string font) {
+    Text::Text(std::string text, PA::Vector2<int> pos, PA::Vector2<int> dim, PA::Lib::SDL2::Camera::Status status, SDL_Color color, std::string font) {
         this->status = status;
         this->text = text;
         this->color = color;
@@ -27,7 +27,7 @@ namespace PA::Lib::SDL2::Graphic {
         SDL_Rect rect = {this->pos.x, this->pos.y, this->dim.x, this->dim.y};
         if (this->status == PA::Lib::SDL2::Camera::Status::MOVABLE) {
             std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
-            PA::Vector2i camPos = camera->getPos();
+            PA::Vector2<int> camPos = camera->getPos();
             rect.x -= camPos.x;
             rect.y -= camPos.y;
         }
@@ -59,7 +59,7 @@ namespace PA::Lib::SDL2::Graphic {
         return (this->color);
     }
 
-    void Text::setPos(PA::Vector2i pos) {
+    void Text::setPos(PA::Vector2<int> pos) {
         this->pos = pos;
     }
 

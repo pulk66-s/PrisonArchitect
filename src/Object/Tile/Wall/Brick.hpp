@@ -9,7 +9,7 @@
 class PA::Object::Tile::Wall::Brick : public PA::Object::Tile::Wall::AWall {
 
     public:
-    Brick(PA::Vector2i index, PA::Vector2i pos);
+    Brick(PA::Vector2<int> index, PA::Vector2<int> pos);
 
 };
 

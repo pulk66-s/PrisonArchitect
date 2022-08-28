@@ -21,7 +21,7 @@ class PA::Lib::SDL2::Graphic::Texture {
     Texture(SDL_Texture *texture);
     ~Texture();
     SDL_Texture *getTexture();
-    PA::Vector2i getDim();
+    PA::Vector2<int> getDim();
 
 };
 

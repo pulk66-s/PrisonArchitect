@@ -8,12 +8,12 @@
     #include <unordered_map>
     #include <string>
 
-    #define CREATE_PNJ_LAMBDA(className) [](PA::Vector2i pos) -> \
+    #define CREATE_PNJ_LAMBDA(className) [](PA::Vector2<int> pos) -> \
     std::shared_ptr<Pnj> { \
         return (std::make_shared<className>(pos)); \
     }
 
-    #define LAMBDA std::function<std::shared_ptr<Pnj>(PA::Vector2i pos)>
+    #define LAMBDA std::function<std::shared_ptr<Pnj>(PA::Vector2<int> pos)>
 
 class PA::Object::PNJ::Factory {
 
@@ -22,7 +22,7 @@ class PA::Object::PNJ::Factory {
 
     public:
     Factory();
-    std::shared_ptr<Pnj> create(std::string component, PA::Vector2i pos);
+    std::shared_ptr<Pnj> create(std::string component, PA::Vector2<int> pos);
 
 };
 

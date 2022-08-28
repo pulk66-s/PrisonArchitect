@@ -24,17 +24,17 @@ class PA::Object::Tile::TileManager {
     std::shared_ptr<Map::Grid> grid = Map::Grid::getInstance();
 
     Factory tileFactory;
-    std::map<PA::Vector2i, std::shared_ptr<ITile>> tiles = {};
+    std::map<PA::Vector2<int>, std::shared_ptr<ITile>> tiles = {};
 
     public:
     TileManager();
-    std::shared_ptr<ITile> getTile(PA::Vector2i index);
+    std::shared_ptr<ITile> getTile(PA::Vector2<int> index);
     void draw();
     void update();
     static std::shared_ptr<TileManager> getInstance();
     void createTiles(std::string tileName);
-    std::shared_ptr<ITile> getCollider(PA::Vector2i index);
-    void createRoom(std::string name, PA::Vector2i pos, PA::Vector2i dim);
+    std::shared_ptr<ITile> getCollider(PA::Vector2<int> index);
+    void createRoom(std::string name, PA::Vector2<int> pos, PA::Vector2<int> dim);
 
 };
 

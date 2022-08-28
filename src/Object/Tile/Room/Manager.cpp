@@ -2,7 +2,7 @@
 
 namespace PA::Object::Tile::Room {
 
-    std::shared_ptr<Manager> Manager::create(std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles) {
+    std::shared_ptr<Manager> Manager::create(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles) {
         static std::shared_ptr<Manager> instance = std::make_shared<Manager>(tiles);
         return (instance);
     }
@@ -11,30 +11,30 @@ namespace PA::Object::Tile::Room {
         return (Manager::create());
     }
 
-    Manager::Manager(std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles) {
+    Manager::Manager(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles) {
         this->tiles = tiles;
     }
 
     void Manager::roomCreationUpdate() {
-        PA::Vector2i mousePos = this->event->getMousePosition();
-        PA::Vector2i mousePosGrid = this->grid->transformPos(mousePos);
-        PA::Vector2i camPos = this->camera->getPos();
-        PA::Vector2i gridDim = this->grid->getSquareDim();
+        PA::Vector2<int> mousePos = this->event->getMousePosition();
+        PA::Vector2<int> mousePosGrid = this->grid->transformPos(mousePos);
+        PA::Vector2<int> camPos = this->camera->getPos();
+        PA::Vector2<int> gridDim = this->grid->getSquareDim();
         if (this->event->isRightClick()) {
             this->endCreation();
         }
         if (this->firstPos == nullptr) {
             this->roomCreationRect->setPos(mousePosGrid);
             if (this->event->isClick()) {
-                PA::Vector2i rectPos = mousePosGrid + camPos;
-                this->firstPos = std::make_unique<PA::Vector2i>(rectPos);
+                PA::Vector2<int> rectPos = mousePosGrid + camPos;
+                this->firstPos = std::make_unique<PA::Vector2<int>>(rectPos);
                 this->roomCreationRect->setStatus(PA::Lib::SDL2::Camera::Status::MOVABLE);
                 this->roomCreationRect->setPos(rectPos);
                 this->waitForRelease = true;
             }
         } else {
-            PA::Vector2i rectDim = mousePosGrid + camPos - *this->firstPos;
-            PA::Vector2i rectPos = *this->firstPos;
+            PA::Vector2<int> rectDim = mousePosGrid + camPos - *this->firstPos;
+            PA::Vector2<int> rectPos = *this->firstPos;
             if (rectDim.x < 0) {
                 rectPos.x += gridDim.x;
                 rectDim.x -= gridDim.x;
@@ -65,10 +65,10 @@ namespace PA::Object::Tile::Room {
         }
     }
 
-    void Manager::addRoomToGrid(PA::Vector2i pos, PA::Vector2i dim) {
+    void Manager::addRoomToGrid(PA::Vector2<int> pos, PA::Vector2<int> dim) {
         for (int i = pos.x; i < pos.x + dim.x; i++) {
             for (int j = pos.y; j < pos.y + dim.y; j++) {
-                PA::Vector2i tilePos = PA::Vector2i(i, j) * this->grid->getSquareDim();
+                PA::Vector2<int> tilePos = PA::Vector2<int>(i, j) * this->grid->getSquareDim();
                 (*this->tiles)[tilePos] = this->tileFactory.create(this->tile->getName(), {0, 0}, tilePos);
             }
         }
@@ -107,15 +107,15 @@ namespace PA::Object::Tile::Room {
         this->roomCreation = true;
         this->waitForRelease = true;
         this->tile = tile;
-        PA::Vector2i squareDim = this->grid->getSquareDim();
+        PA::Vector2<int> squareDim = this->grid->getSquareDim();
         this->roomCreationRect = std::make_unique<PA::Lib::SDL2::Shape::Rectangle>(
-            PA::Vector2i(0, 0), squareDim, SDL_Color{0, 200, 0, 200}, true,
+            PA::Vector2<int>(0, 0), squareDim, SDL_Color{0, 200, 0, 200}, true,
             PA::Lib::SDL2::Camera::Status::FIXED
         );
     }
 
-    std::vector<PA::Vector2i> Manager::getRoomPos(std::string name) {
-        std::vector<PA::Vector2i> pos = {};
+    std::vector<PA::Vector2<int>> Manager::getRoomPos(std::string name) {
+        std::vector<PA::Vector2<int>> pos = {};
         if (this->tiles == nullptr) {
             throw PA::Error::NullPtr("tiles", __FILE__);
         }

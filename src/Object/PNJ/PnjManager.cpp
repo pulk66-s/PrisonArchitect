@@ -5,7 +5,7 @@ namespace PA::Object::PNJ {
     PnjManager::PnjManager()
     {
         for (int i = 0; i < 10; i++) {
-            PA::Vector2i pos = {std::rand() % 1200, std::rand() % 900};
+            PA::Vector2<int> pos = {std::rand() % 1200, std::rand() % 900};
             this->workers.push_back(std::make_shared<PA::Object::PNJ::Workman>(pos));
         }
         this->validNames = {
@@ -15,8 +15,8 @@ namespace PA::Object::PNJ {
             {
                 "workman", std::make_shared<PA::Lib::SDL2::Graphic::Image>(
                     "res/sprites/pnj/workman.png",
-                    PA::Vector2i{32, 32}, PA::Vector2i{0, 0}, 
-                    true, PA::Vector2i{4, 4}, PA::Lib::SDL2::Camera::Status::FIXED
+                    PA::Vector2<int>{32, 32}, PA::Vector2<int>{0, 0}, 
+                    true, PA::Vector2<int>{4, 4}, PA::Lib::SDL2::Camera::Status::FIXED
                 )
             },
         };
@@ -29,10 +29,10 @@ namespace PA::Object::PNJ {
 
     void PnjManager::addPnjToMap(std::string name)
     {
-        PA::Vector2i mousePos = this->event->getMousePosition();
-        PA::Vector2i imageDim = this->images[name]->getDimensions();
-        PA::Vector2i camPos = this->camera->getPos();
-        mousePos -= PA::Vector2i{imageDim.x / 2, imageDim.y / 2};
+        PA::Vector2<int> mousePos = this->event->getMousePosition();
+        PA::Vector2<int> imageDim = this->images[name]->getDimensions();
+        PA::Vector2<int> camPos = this->camera->getPos();
+        mousePos -= PA::Vector2<int>{imageDim.x / 2, imageDim.y / 2};
         mousePos += camPos;
         if (name == "workman") {
             this->workers.push_back(std::make_shared<PA::Object::PNJ::Workman>(mousePos));
@@ -40,9 +40,9 @@ namespace PA::Object::PNJ {
     }
 
     void PnjManager::pnjCreationUpdate() {
-        PA::Vector2i mousePos = this->event->getMousePosition();
-        PA::Vector2i imageDim = this->currImage->getDimensions();
-        mousePos -= PA::Vector2i{imageDim.x / 2, imageDim.y / 2};
+        PA::Vector2<int> mousePos = this->event->getMousePosition();
+        PA::Vector2<int> imageDim = this->currImage->getDimensions();
+        mousePos -= PA::Vector2<int>{imageDim.x / 2, imageDim.y / 2};
         this->currImage->setPosition(mousePos);
         if (this->event->isClick()) {
             this->addPnjToMap(this->pnjName);

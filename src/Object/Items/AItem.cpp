@@ -16,14 +16,14 @@ namespace PA::Object::Item {
 
     }
 
-    void AItem::setSpriteSheet(std::string path, PA::Vector2i nbSprite) {
-        PA::Vector2i squareDim = this->grid->getSquareDim();
+    void AItem::setSpriteSheet(std::string path, PA::Vector2<int> nbSprite) {
+        PA::Vector2<int> squareDim = this->grid->getSquareDim();
         this->spriteSheet = std::make_unique<PA::Lib::SDL2::Graphic::SpriteSheet>(
-            path, nbSprite, PA::Vector2i(0, 0), squareDim
+            path, nbSprite, PA::Vector2<int>(0, 0), squareDim
         );
     }
 
-    void AItem::setPos(PA::Vector2i pos) {
+    void AItem::setPos(PA::Vector2<int> pos) {
         this->spriteSheet->setPos(pos);
     }
 

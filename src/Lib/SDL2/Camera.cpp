@@ -8,7 +8,7 @@ namespace PA::Lib::SDL2 {
         this->event = PA::Lib::SDL2::Event::getInstance();
     }
     
-    PA::Vector2i Camera::getPos() {
+    PA::Vector2<int> Camera::getPos() {
         return (this->position);
     }
     
@@ -17,11 +17,11 @@ namespace PA::Lib::SDL2 {
         return instance;
     }
 
-    void Camera::setPos(PA::Vector2i pos) {
+    void Camera::setPos(PA::Vector2<int> pos) {
         this->position = pos;
     }
 
-    void Camera::move(PA::Vector2i pos) {
+    void Camera::move(PA::Vector2<int> pos) {
         this->position.x += pos.x;
         this->position.y += pos.y;
     }
@@ -50,7 +50,7 @@ namespace PA::Lib::SDL2 {
         this->position += this->moveDirection;
     }
 
-    void Camera::applyCamera(PA::Vector2i *pos) {
+    void Camera::applyCamera(PA::Vector2<int> *pos) {
         *pos -= this->position;
     }
 

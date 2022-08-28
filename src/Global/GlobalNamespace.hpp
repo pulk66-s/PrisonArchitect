@@ -2,7 +2,8 @@
     #define __GLOBAL_NAMESPACE_HPP__
 
 namespace PA {
-    struct Vector2i;
+    template<class T>
+    struct Vector2;
     namespace Error {
         class AError;
         class InvalidArgument;

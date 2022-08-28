@@ -2,7 +2,7 @@
 
 namespace PA::Lib::SDL2::Shape {
 
-    Rectangle::Rectangle(PA::Vector2i pos, PA::Vector2i dim, SDL_Color color, bool isFilled, PA::Lib::SDL2::Camera::Status status) {
+    Rectangle::Rectangle(PA::Vector2<int> pos, PA::Vector2<int> dim, SDL_Color color, bool isFilled, PA::Lib::SDL2::Camera::Status status) {
         this->rectangle = std::make_unique<SDL_Rect>();
         this->color = std::make_unique<SDL_Color>();
         this->pos = pos;
@@ -26,7 +26,7 @@ namespace PA::Lib::SDL2::Shape {
         SDL_Rect finalRect = *this->rectangle;
         if (this->status == PA::Lib::SDL2::Camera::Status::MOVABLE) {
             std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
-            PA::Vector2i cameraPos = camera->getPos();
+            PA::Vector2<int> cameraPos = camera->getPos();
             finalRect.x -= cameraPos.x;
             finalRect.y -= cameraPos.y;
         }
@@ -51,7 +51,7 @@ namespace PA::Lib::SDL2::Shape {
     bool Rectangle::isClick()
     {
         if (this->event->isClick()) {
-            PA::Vector2i click = this->event->getClickPosition();
+            PA::Vector2<int> click = this->event->getClickPosition();
             if (click.x >= this->pos.x && click.x <= this->pos.x + this->dim.x && click.y >= this->pos.y && click.y <= this->pos.y + this->dim.y) {
                 return (true);
             }
@@ -62,7 +62,7 @@ namespace PA::Lib::SDL2::Shape {
     bool Rectangle::isClickOutside()
     {
         if (this->event->isClick()) {
-            PA::Vector2i click = this->event->getClickPosition();
+            PA::Vector2<int> click = this->event->getClickPosition();
             if (click.x < this->pos.x || click.x > this->pos.x + this->dim.x || click.y < this->pos.y || click.y > this->pos.y + this->dim.y) {
                 return (true);
             }
@@ -70,31 +70,31 @@ namespace PA::Lib::SDL2::Shape {
         return (false);
     }
 
-    void Rectangle::setDim(PA::Vector2i dim)
+    void Rectangle::setDim(PA::Vector2<int> dim)
     {
         this->dim = dim;
         this->rectangle->w = this->dim.x;
         this->rectangle->h = this->dim.y;
     }
 
-    void Rectangle::setPos(PA::Vector2i pos)
+    void Rectangle::setPos(PA::Vector2<int> pos)
     {
         this->pos = pos;
         this->rectangle->x = this->pos.x;
         this->rectangle->y = this->pos.y;
     }
 
-    PA::Vector2i Rectangle::getDim()
+    PA::Vector2<int> Rectangle::getDim()
     {
         return (this->dim);
     }
 
-    PA::Vector2i Rectangle::getPos() const
+    PA::Vector2<int> Rectangle::getPos() const
     {
-        PA::Vector2i finalPos = this->pos;
+        PA::Vector2<int> finalPos = this->pos;
         if (this->status == PA::Lib::SDL2::Camera::Status::MOVABLE) {
             std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
-            PA::Vector2i cameraPos = camera->getPos();
+            PA::Vector2<int> cameraPos = camera->getPos();
             finalPos.x += cameraPos.x;
             finalPos.y += cameraPos.y;
         }

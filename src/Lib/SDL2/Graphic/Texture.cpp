@@ -19,8 +19,8 @@ namespace PA::Lib::SDL2::Graphic {
         return (this->texture);
     }
 
-    PA::Vector2i Texture::getDim() {
-        PA::Vector2i dim;
+    PA::Vector2<int> Texture::getDim() {
+        PA::Vector2<int> dim;
         SDL_QueryTexture(this->texture, NULL, NULL, &dim.x, &dim.y);
         return (dim);
     }

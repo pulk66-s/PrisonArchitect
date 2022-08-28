@@ -25,25 +25,25 @@ class PA::Lib::SDL2::Graphic::Image {
 
     std::string path;
     std::unique_ptr<PA::Lib::SDL2::Graphic::Texture> texture;
-    PA::Vector2i pos = {0, 0}, dim = {0, 0};
-    PA::Vector2i srcDim = {0, 0};
-    PA::Vector2i nbSprite = {0, 0};
-    PA::Vector2i currIndex = {0, 0};
+    PA::Vector2<int> pos = {0, 0}, dim = {0, 0};
+    PA::Vector2<int> srcDim = {0, 0};
+    PA::Vector2<int> nbSprite = {0, 0};
+    PA::Vector2<int> currIndex = {0, 0};
     bool isSpriteSheet = false;
     PA::Lib::SDL2::Camera::Status status = PA::Lib::SDL2::Camera::Status::MOVABLE;
 
     public:
-    Image(std::string path, PA::Vector2i dim, PA::Vector2i pos={0, 0}, bool isSpriteSheet=false, PA::Vector2i nbSprite={0, 0}, PA::Lib::SDL2::Camera::Status status=PA::Lib::SDL2::Camera::Status::MOVABLE);
+    Image(std::string path, PA::Vector2<int> dim, PA::Vector2<int> pos={0, 0}, bool isSpriteSheet=false, PA::Vector2<int> nbSprite={0, 0}, PA::Lib::SDL2::Camera::Status status=PA::Lib::SDL2::Camera::Status::MOVABLE);
     Image(SDL_Texture *texture);
     Image(const Image &other);
     bool draw();
-    void setPosition(PA::Vector2i pos);
-    void setDimensions(PA::Vector2i dim);
-    PA::Vector2i getPosition();
-    PA::Vector2i getDimensions();
-    PA::Vector2i getIndex();
-    void setIndex(PA::Vector2i index);
-    void move(PA::Vector2i pos);
+    void setPosition(PA::Vector2<int> pos);
+    void setDimensions(PA::Vector2<int> dim);
+    PA::Vector2<int> getPosition();
+    PA::Vector2<int> getDimensions();
+    PA::Vector2<int> getIndex();
+    void setIndex(PA::Vector2<int> index);
+    void move(PA::Vector2<int> pos);
     bool isClick();
     bool isClickOutside();
     void setStatus(PA::Lib::SDL2::Camera::Status status);

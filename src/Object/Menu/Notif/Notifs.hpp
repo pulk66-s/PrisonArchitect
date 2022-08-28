@@ -14,9 +14,9 @@ class PA::Object::Menu::Notif::Notifs {
 
     private:
     std::vector<ANotif> notifs = {};
-    PA::Vector2i pos = {450, 100};
-    PA::Vector2i textDim = {300, 30};
-    PA::Vector2i buff = {0, 5};
+    PA::Vector2<int> pos = {450, 100};
+    PA::Vector2<int> textDim = {300, 30};
+    PA::Vector2<int> buff = {0, 5};
 
     public:
     void draw();

@@ -8,7 +8,7 @@ namespace PA::Object::Tile {
         this->lambdaMap["preview"] = CREATE_LAMBDA(Wall::Preview);
     }
 
-    std::shared_ptr<PA::Object::Tile::ITile> Factory::create(std::string wall, PA::Vector2i index, PA::Vector2i pos) {
+    std::shared_ptr<PA::Object::Tile::ITile> Factory::create(std::string wall, PA::Vector2<int> index, PA::Vector2<int> pos) {
         if (this->lambdaMap.find(wall) == this->lambdaMap.end()) {
             throw PA::Error::InvalidArgument("wall not existing " + wall, __FILE__);
         }

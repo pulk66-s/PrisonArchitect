@@ -7,7 +7,7 @@
 class PA::Object::Menu::Notif::Success : public PA::Object::Menu::Notif::ANotif {
 
     public:
-    Success(std::string message, PA::Vector2i pos, PA::Vector2i dim);
+    Success(std::string message, PA::Vector2<int> pos, PA::Vector2<int> dim);
 
 };
 

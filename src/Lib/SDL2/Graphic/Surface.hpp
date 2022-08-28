@@ -18,7 +18,7 @@ class PA::Lib::SDL2::Graphic::Surface {
     Surface(std::string path);
     ~Surface();
     SDL_Surface *getSurface();
-    PA::Vector2i getDim();
+    PA::Vector2<int> getDim();
     
 };
 

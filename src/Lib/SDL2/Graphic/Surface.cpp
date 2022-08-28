@@ -17,8 +17,8 @@ namespace PA::Lib::SDL2::Graphic {
         return (this->surface);
     }
 
-    PA::Vector2i Surface::getDim() {
-        return (PA::Vector2i(this->surface->w, this->surface->h));
+    PA::Vector2<int> Surface::getDim() {
+        return (PA::Vector2<int>(this->surface->w, this->surface->h));
     }
 
 }

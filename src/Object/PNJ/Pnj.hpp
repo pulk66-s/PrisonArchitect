@@ -24,22 +24,22 @@ class PA::Object::PNJ::Pnj {
 
     std::unique_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet;
     unsigned short nb_variant, curr_variant = 0;
-    PA::Vector2i spriteIndex;
-    PA::Vector2i pos;
-    std::unordered_map<PA::Object::PNJ::IA::Ia::Move, PA::Vector2i> moveDirection;
+    PA::Vector2<int> spriteIndex;
+    PA::Vector2<int> pos;
+    std::unordered_map<PA::Object::PNJ::IA::Ia::Move, PA::Vector2<int>> moveDirection;
     std::unordered_map<PA::Object::PNJ::IA::Ia::Move, int> moveSpriteSheetIndex;
 
     // IA
     std::unique_ptr<PA::Object::PNJ::IA::Ia> ia = nullptr;
     unsigned int lastUpdateTime = SDL_GetTicks();
     float moveTimeOffset = 0.1; // seconds
-    PA::Vector2i speed = {1, 1};
+    PA::Vector2<int> speed = {1, 1};
     PA::Object::PNJ::IA::Ia::Move currMove = PA::Object::PNJ::IA::Ia::Move::NONE;
     int moveOffset = 0;
     int maxMoveOffset = 10;
 
     public:
-    Pnj(std::string path, PA::Vector2i pos={0, 0}, unsigned short variant=1);
+    Pnj(std::string path, PA::Vector2<int> pos={0, 0}, unsigned short variant=1);
     void draw();
     void update();
 

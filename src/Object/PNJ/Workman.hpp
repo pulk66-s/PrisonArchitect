@@ -8,7 +8,7 @@
 
 class PA::Object::PNJ::Workman : public PA::Object::PNJ::Pnj {
     public:
-    Workman(PA::Vector2i pos={0, 0});
+    Workman(PA::Vector2<int> pos={0, 0});
 };
 
 #endif

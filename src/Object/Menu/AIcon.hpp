@@ -13,9 +13,9 @@
 
     #define CREATE_ICON(name, x, y, w, h) Icon{std::make_shared<PA::Lib::SDL2::Graphic::Image>( \
         this->spritesheetPath, \
-        PA::Vector2i{w, h}, PA::Vector2i{x, y}, \
+        PA::Vector2<int>{w, h}, PA::Vector2<int>{x, y}, \
         true, this->spriteSheetDim, PA::Lib::SDL2::Camera::Status::FIXED \
-    ), std::make_shared<PA::Lib::SDL2::Graphic::Text>(name, PA::Vector2i{x, y + w}, PA::Vector2i{w, 14}, PA::Lib::SDL2::Camera::Status::FIXED)}
+    ), std::make_shared<PA::Lib::SDL2::Graphic::Text>(name, PA::Vector2<int>{x, y + w}, PA::Vector2<int>{w, 14}, PA::Lib::SDL2::Camera::Status::FIXED)}
 
 class PA::Object::Menu::AIcon {
 
@@ -25,7 +25,7 @@ class PA::Object::Menu::AIcon {
         std::shared_ptr<PA::Lib::SDL2::Graphic::Text> text;
     };
     std::string spritesheetPath;
-    PA::Vector2i pos, dim, spriteSheetDim = {1, 1};
+    PA::Vector2<int> pos, dim, spriteSheetDim = {1, 1};
     SDL_Color menuBackgroundColor = {0, 0, 0, 200};
     std::unique_ptr<PA::Lib::SDL2::Graphic::Image> roomImage;
     bool displayed = false;
@@ -39,7 +39,7 @@ class PA::Object::Menu::AIcon {
         BRICK_WALL,
         NONE
     };
-    AIcon(PA::Vector2i pos, PA::Vector2i dim, PA::Vector2i index, std::string spritesheetPath);
+    AIcon(PA::Vector2<int> pos, PA::Vector2<int> dim, PA::Vector2<int> index, std::string spritesheetPath);
     PA::Object::Menu::AIcon::Action update();
     void draw();
     bool isDisplayed();

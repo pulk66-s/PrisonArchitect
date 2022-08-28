@@ -17,13 +17,13 @@ namespace PA::Object::Item {
     }
 
     void ItemManager::createItem(std::string name) {
-        PA::Vector2i squareDim = this->grid->getSquareDim();
+        PA::Vector2<int> squareDim = this->grid->getSquareDim();
         std::shared_ptr<AItem> item = this->itemFactory.createItem(name);
         if (item == nullptr) {
             throw PA::Error::NullPtr("Item not found" + name, __FILE__);
         }
-        std::vector<PA::Vector2i> pos = this->roomManager->getRoomPos("delivery");
-        for (PA::Vector2i tilePos : pos) {
+        std::vector<PA::Vector2<int>> pos = this->roomManager->getRoomPos("delivery");
+        for (PA::Vector2<int> tilePos : pos) {
             if (this->isFree(tilePos)) {
                 item->setPos(tilePos * squareDim);
                 this->items[tilePos] = item;
@@ -32,7 +32,7 @@ namespace PA::Object::Item {
         }
     }
 
-    bool ItemManager::isFree(PA::Vector2i pos) {
+    bool ItemManager::isFree(PA::Vector2<int> pos) {
         if (this->items.find(pos) != this->items.end()) {
             return (false);
         }
