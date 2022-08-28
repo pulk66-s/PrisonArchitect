@@ -2,7 +2,7 @@
 
 namespace PA::Object::PNJ::IA {
 
-    void Ia::update(PA::Vector2i pos)
+    void Ia::update()
     {
         PA::Vector2i gridDim = this->grid->getSquareDim();
         std::unordered_map<PA::Object::PNJ::IA::Ia::Move, PA::Vector2i> buff = {

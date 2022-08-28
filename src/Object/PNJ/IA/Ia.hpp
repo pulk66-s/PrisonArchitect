@@ -24,7 +24,7 @@ class PA::Object::PNJ::IA::Ia {
     Move nextMove = NONE;
 
     public:
-    void update(PA::Vector2i pos);
+    void update();
     Move getMove();
 };
 

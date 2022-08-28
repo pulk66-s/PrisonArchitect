@@ -145,11 +145,11 @@ namespace PA::Object::Tile::Wall {
             size = 1;
         }
         if (this->tilesPreviewSet.size() < size) {
-            for (int i = this->tilesPreviewSet.size(); i < size; i++) {
+            for (std::size_t i = this->tilesPreviewSet.size(); i < size; i++) {
                 this->tilesPreviewSet.insert(this->tileFactory.create(this->tileName));
             }
         } else if (this->tilesPreviewSet.size() > size) {
-            for (int i = this->tilesPreviewSet.size(); i > size; i--) {
+            for (std::size_t i = this->tilesPreviewSet.size(); i > size; i--) {
                 this->tilesPreviewSet.erase(this->tilesPreviewSet.begin());
             }
         }

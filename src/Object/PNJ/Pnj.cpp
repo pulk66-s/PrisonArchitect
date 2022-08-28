@@ -38,7 +38,7 @@ namespace PA::Object::PNJ {
     {
         if (this->ia == nullptr)
             return;
-        this->ia->update(this->pos);
+        this->ia->update();
         unsigned int currentTime = SDL_GetTicks();
         PA::Vector2i squareDim = this->grid->getSquareDim();
         if (currentTime > this->lastUpdateTime + 1000 * this->moveTimeOffset) {
