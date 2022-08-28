@@ -6,7 +6,7 @@ namespace PA::Object::PNJ {
     {
         for (int i = 0; i < 10; i++) {
             PA::Vector2<int> pos = {std::rand() % 1200, std::rand() % 900};
-            this->workers.push_back(std::make_shared<PA::Object::PNJ::Workman>(pos));
+            this->pnjs->add(std::make_shared<PA::Object::PNJ::Workman>(pos));
         }
         this->validNames = {
             "workman",
@@ -35,7 +35,7 @@ namespace PA::Object::PNJ {
         mousePos -= PA::Vector2<int>{imageDim.x / 2, imageDim.y / 2};
         mousePos += camPos;
         if (name == "workman") {
-            this->workers.push_back(std::make_shared<PA::Object::PNJ::Workman>(mousePos));
+            this->pnjs->add(std::make_shared<PA::Object::PNJ::Workman>(mousePos));
         }
     }
 
@@ -55,8 +55,8 @@ namespace PA::Object::PNJ {
 
     void PnjManager::update()
     {
-        for (auto &worker : this->workers)
-            worker->update();
+        for (auto &pnj : *this->pnjs->getPnjs())
+            pnj->update();
         if (this->waitForRelease) {
             if (this->event->isRelease()) {
                 this->waitForRelease = false;
@@ -71,8 +71,8 @@ namespace PA::Object::PNJ {
 
     void PnjManager::draw()
     {
-        for (auto &worker : this->workers)
-            worker->draw();
+        for (auto &pnj : *this->pnjs->getPnjs())
+            pnj->draw();
         if (this->pnjCreation) {
             this->currImage->draw();
         }

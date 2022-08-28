@@ -11,4 +11,8 @@ namespace PA::Object::PNJ {
         this->maxMoveOffset = 30;
     }
 
+    Workman::~Workman()
+    {
+    }
+
 }

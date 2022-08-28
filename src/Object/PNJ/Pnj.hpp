@@ -5,22 +5,20 @@
     #include "Object/Map/Grid.hpp"
     #include "Object/Tile/ITile.hpp"
     #include "Object/Tile/TileManager.hpp"
-    #include "Object/PNJ/Tasks/TaskManager.hpp"
+    #include "Object/PNJ/Tasks/Tasks.hpp"
+    #include "Object/PNJ/IPnj.hpp"
     #include "Lib/SDL2/Graphic/SpriteSheet.hpp"
-    #include "Lib/SDL2/Renderer.hpp"
     #include "Global/Vector.hpp"
-    #include "Global/Error/BadInstance.hpp"
-    #include "Global/Error/InvalidArgument.hpp"
     #include "IA/Workman.hpp"
     #include <string>
     #include <memory>
     #include <unordered_map>
 
-class PA::Object::PNJ::Pnj {
+class PA::Object::PNJ::Pnj : public PA::Object::PNJ::IPnj {
     protected:
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     std::shared_ptr<PA::Object::Tile::TileManager> tileManager = PA::Object::Tile::TileManager::getInstance();
-    PA::Object::PNJ::Task::TaskManager taskManager;
+    PA::Object::PNJ::Task::Tasks tasks;
 
     std::unique_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet;
     unsigned short nb_variant, curr_variant = 0;
@@ -40,8 +38,11 @@ class PA::Object::PNJ::Pnj {
 
     public:
     Pnj(std::string path, PA::Vector2<int> pos={0, 0}, unsigned short variant=1);
+    virtual ~Pnj();
     void draw();
     void update();
+    int getNbTask() const;
+    void addTask(std::shared_ptr<Task::ATask> task);
 
 };
 

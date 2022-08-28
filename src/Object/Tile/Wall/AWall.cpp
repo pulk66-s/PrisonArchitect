@@ -11,6 +11,7 @@ namespace PA::Object::Tile::Wall {
         this->price = other->price;
         this->name = other->name;
         this->item = other->item;
+        this->task = other->task;
     }
 
     void AWall::setWallPosition(WallPosition position) {
@@ -57,6 +58,10 @@ namespace PA::Object::Tile::Wall {
 
     std::string AWall::getItem() {
         return (this->item);
+    }
+
+    std::string AWall::getTask() {
+        return (this->task);
     }
 
 }

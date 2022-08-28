@@ -7,8 +7,9 @@
     #include <unordered_map>
     #include <algorithm>
     #include "Object/ObjectNamespace.hpp"
-    #include "Pnj.hpp"
-    #include "Workman.hpp"
+    #include "Object/PNJ/Pnj.hpp"
+    #include "Object/PNJ/Pnjs.hpp"
+    #include "Object/PNJ/Workman.hpp"
     #include "Lib/SDL2/Renderer.hpp"
     #include "Lib/SDL2/Graphic/Image.hpp"
     #include "Lib/SDL2/Event.hpp"
@@ -18,10 +19,10 @@
 class PA::Object::PNJ::PnjManager {
 
     private:
-    std::vector<std::shared_ptr<PA::Object::PNJ::Workman>> workers;
     std::shared_ptr<PA::Lib::SDL2::Camera> camera = nullptr;
     std::shared_ptr<PA::Lib::SDL2::Event> event = nullptr;
     bool waitForRelease = false;
+    std::shared_ptr<PNJ::Pnjs> pnjs = PNJ::Pnjs::getInstance();
 
     // PNJ creation
     std::string pnjName = "";

@@ -3,11 +3,13 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PNJ/Tasks/ATask.hpp"
+    #include <iostream>
 
 class PA::Object::PNJ::Task::WallTask : public PA::Object::PNJ::Task::ATask {
     
     public:
     WallTask();
+    void update();
 
 };
 

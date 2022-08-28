@@ -4,6 +4,7 @@
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PNJ/Tasks/ATask.hpp"
     #include "Object/PNJ/Tasks/WallTask.hpp"
+    #include "Global/Error/InvalidArgument.hpp"
     #include <unordered_map>
     #include <string>
     #include <memory>

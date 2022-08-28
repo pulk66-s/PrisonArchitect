@@ -34,6 +34,7 @@ class PA::Object::Tile::Wall::AWall : public PA::Object::Tile::ATile {
     std::shared_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet = nullptr;
     std::unordered_map<WallPosition, PA::Vector2<int>> wallPositions = {};
     std::string item = "";
+    std::string task = "";
 
     public:
     AWall();
@@ -48,6 +49,7 @@ class PA::Object::Tile::Wall::AWall : public PA::Object::Tile::ATile {
     void update();
     void createSpriteSheet(PA::Vector2<int> pos, PA::Vector2<int> index);
     std::string getItem();
+    std::string getTask();
 
 };
 

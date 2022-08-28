@@ -8,6 +8,7 @@
     #include "Object/Items/ItemManager.hpp"
     #include "Object/PlayerInfo.hpp"
     #include "Object/Map/Grid.hpp"
+    #include "Object/PNJ/Tasks/Manager.hpp"
     #include "Global/Vector.hpp"
     #include "Lib/SDL2/Event.hpp"
     #include "Lib/SDL2/Camera.hpp"
@@ -25,6 +26,7 @@ class PA::Object::Tile::Wall::Manager {
     std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
     std::shared_ptr<Item::ItemManager> itemManager = Item::ItemManager::getInstance();
 
+    PNJ::Task::Manager taskManager;
     std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles = {};
     std::shared_ptr<PA::Vector2<int>> firstPos = nullptr;
     std::shared_ptr<AWall> firstTile = nullptr;

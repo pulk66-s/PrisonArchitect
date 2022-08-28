@@ -8,4 +8,8 @@ namespace PA::Object::PNJ::Task {
 
     }
 
+    void WallTask::update() {
+        std::cout << "update WallTask" << std::endl;
+    }
+
 }

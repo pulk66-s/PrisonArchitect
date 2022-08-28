@@ -3,10 +3,10 @@
 namespace PA::Object::PNJ {
     
     Factory::Factory() {
-        this->factory["Workman"] = CREATE_PNJ_LAMBDA(Workman);
+        this->factory["Workman"] = CREATE_PNJ_LAMBDA(PNJ::Workman);
     }
 
-    std::shared_ptr<Pnj> Factory::create(std::string component, Vector2<int> pos) {
+    std::shared_ptr<IPnj> Factory::create(std::string component, Vector2<int> pos) {
         return (this->factory[component](pos));
     }
 

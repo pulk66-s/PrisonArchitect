@@ -27,7 +27,9 @@ namespace PA::Object {
     };
     namespace PNJ {
         class PnjManager;
+        class IPnj;
         class Pnj;
+        class Pnjs;
         class Workman;
         class Factory;
         namespace IA {
@@ -35,9 +37,10 @@ namespace PA::Object {
             class Workman;
         }
         namespace Task {
-            class TaskManager;
-            class TaskRepartiter;
+            class ITask;
             class ATask;
+            class Tasks;
+            class Manager;
             class Factory;
             class WallTask;
         };

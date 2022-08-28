@@ -5,4 +5,12 @@ namespace PA::Object::PNJ::Task {
         this->name = name;
         this->description = description;
     }
+
+    ATask::~ATask() {
+    }
+
+    bool ATask::isDone() const {
+        return (this->status == DONE);
+    }
+
 }

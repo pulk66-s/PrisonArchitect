@@ -30,14 +30,15 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Map/Grid.cpp \
 			$(OBJECT_PATH)/Map/Background.cpp \
 			$(OBJECT_PATH)/PNJ/Pnj.cpp \
+			$(OBJECT_PATH)/PNJ/Pnjs.cpp \
 			$(OBJECT_PATH)/PNJ/PnjManager.cpp \
 			$(OBJECT_PATH)/PNJ/Workman.cpp \
 			$(OBJECT_PATH)/PNJ/Factory.cpp \
 			$(OBJECT_PATH)/PNJ/IA/Ia.cpp \
 			$(OBJECT_PATH)/PNJ/IA/Workman.cpp \
 			$(OBJECT_PATH)/PNJ/Tasks/ATask.cpp \
-			$(OBJECT_PATH)/PNJ/Tasks/TaskManager.cpp \
-			$(OBJECT_PATH)/PNJ/Tasks/TaskRepartiter.cpp \
+			$(OBJECT_PATH)/PNJ/Tasks/Manager.cpp \
+			$(OBJECT_PATH)/PNJ/Tasks/Tasks.cpp \
 			$(OBJECT_PATH)/PNJ/Tasks/Factory.cpp \
 			$(OBJECT_PATH)/PNJ/Tasks/WallTask.cpp \
 			$(OBJECT_PATH)/Menu/GameUI.cpp \

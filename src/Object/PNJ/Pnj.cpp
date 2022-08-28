@@ -29,6 +29,10 @@ namespace PA::Object::PNJ {
         };
     }
 
+    Pnj::~Pnj()
+    {
+    }
+
     void Pnj::draw()
     {
         this->spriteSheet->draw();
@@ -36,8 +40,7 @@ namespace PA::Object::PNJ {
 
     void Pnj::update()
     {
-        if (this->ia == nullptr)
-            return;
+        this->tasks.update();
         this->ia->update();
         unsigned int currentTime = SDL_GetTicks();
         PA::Vector2<int> squareDim = this->grid->getSquareDim();
@@ -63,6 +66,17 @@ namespace PA::Object::PNJ {
             }
             this->moveOffset--;
         }
+    }
+
+    int Pnj::getNbTask() const
+    {
+        return (this->tasks.size());
+    }
+
+    void Pnj::addTask(std::shared_ptr<Task::ATask> task)
+    {
+        std::cout << "Add task" << std::endl;
+        this->tasks.addTask(task);
     }
 
 }

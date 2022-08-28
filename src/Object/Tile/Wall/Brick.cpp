@@ -9,6 +9,7 @@ namespace PA::Object::Tile::Wall
         this->createSpriteSheet(pos, index);
         this->price = 50;
         this->item = "brick";
+        this->task = "buildWallBrick";
         this->wallPositions = {
             {Wall::AWall::WallPosition::CROSS, PA::Vector2<int>{14, 10}},
             {Wall::AWall::WallPosition::CORNER_UPPER_LEFT, PA::Vector2<int>{10, 8}},
