@@ -2,6 +2,19 @@
 
 namespace PA::Object::Tile::Room {
 
+    std::shared_ptr<Manager> Manager::create(std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles) {
+        static std::shared_ptr<Manager> instance = std::make_shared<Manager>(tiles);
+        return (instance);
+    }
+
+    std::shared_ptr<Manager> Manager::getInstance() {
+        return (Manager::create());
+    }
+
+    Manager::Manager(std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles) {
+        this->tiles = tiles;
+    }
+
     void Manager::roomCreationUpdate() {
         PA::Vector2i mousePos = this->event->getMousePosition();
         PA::Vector2i mousePosGrid = this->grid->transformPos(mousePos);
@@ -90,7 +103,7 @@ namespace PA::Object::Tile::Room {
         }
     }
 
-    void Manager::createRoom(std::shared_ptr<ITile> tile, std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles) {
+    void Manager::createRoom(std::shared_ptr<ITile> tile) {
         this->roomCreation = true;
         this->waitForRelease = true;
         this->tile = tile;
@@ -99,7 +112,20 @@ namespace PA::Object::Tile::Room {
             PA::Vector2i(0, 0), squareDim, SDL_Color{0, 200, 0, 200}, true,
             PA::Lib::SDL2::Camera::Status::FIXED
         );
-        this->tiles = tiles;
     }
+
+    std::vector<PA::Vector2i> Manager::getRoomPos(std::string name) {
+        std::vector<PA::Vector2i> pos = {};
+        if (this->tiles == nullptr) {
+            throw PA::Error::NullPtr("tiles", __FILE__);
+        }
+        for (auto tile : *this->tiles) {
+            if (tile.second->getName() == name) {
+                pos.push_back(tile.first);
+            }
+        }
+        return (pos);
+    }
+
 
 }

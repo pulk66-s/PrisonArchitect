@@ -5,6 +5,7 @@ namespace PA::Object::Tile {
     Factory::Factory() {
         this->lambdaMap["brickWall"] = CREATE_LAMBDA(Wall::Brick);
         this->lambdaMap["delivery"] = CREATE_LAMBDA(Room::Delivery);
+        this->lambdaMap["preview"] = CREATE_LAMBDA(Wall::Preview);
     }
 
     std::shared_ptr<PA::Object::Tile::ITile> Factory::create(std::string wall, PA::Vector2i index, PA::Vector2i pos) {

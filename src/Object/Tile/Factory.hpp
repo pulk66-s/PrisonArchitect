@@ -4,16 +4,16 @@
     #include "Object/ObjectNamespace.hpp"
     #include "Object/Tile/ITile.hpp"
     #include "Object/Tile/Wall/Brick.hpp"
+    #include "Object/Tile/Wall/Preview.hpp"
     #include "Object/Tile/Room/Delivery.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Global/Vector.hpp"
     #include "Global/Error/InvalidArgument.hpp"
-    #include "Lib/SDL2/Renderer.hpp"
     #include <unordered_map>
     #include <memory>
     #include <functional>
 
-#define CREATE_LAMBDA(className) [](PA::Vector2i index,PA::Vector2i pos) -> \
+#define CREATE_LAMBDA(className) [](PA::Vector2i index, PA::Vector2i pos) -> \
     std::shared_ptr<PA::Object::Tile::ITile> { \
         return (std::make_shared<className>(index, pos)); \
     }

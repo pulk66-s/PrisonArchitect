@@ -23,4 +23,8 @@ namespace PA::Object::Item {
         );
     }
 
+    void AItem::setPos(PA::Vector2i pos) {
+        this->spriteSheet->setPos(pos);
+    }
+
 }

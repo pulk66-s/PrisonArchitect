@@ -6,12 +6,9 @@ namespace PA::Object::Tile::Wall
     {
         this->colliding = true;
         this->name = "brickWall";
-        PA::Vector2i gridDim = this->grid->getSquareDim();
-        this->spriteSheet = std::make_shared<PA::Lib::SDL2::Graphic::SpriteSheet>(
-            "res/sprites/game/walls.png", PA::Vector2i(32, 32),
-            pos, gridDim
-        );
-        this->spriteSheet->setIndex(index);
+        this->createSpriteSheet(pos, index);
+        this->price = 50;
+        this->item = "brick";
         this->wallPositions = {
             {Wall::AWall::WallPosition::CROSS, PA::Vector2i{14, 10}},
             {Wall::AWall::WallPosition::CORNER_UPPER_LEFT, PA::Vector2i{10, 8}},
@@ -29,10 +26,5 @@ namespace PA::Object::Tile::Wall
             {Wall::AWall::WallPosition::TRI_LEFT, PA::Vector2i{13, 10}},
             {Wall::AWall::WallPosition::TRI_RIGHT, PA::Vector2i{12, 10}},
         };
-        this->price = 50;
-    }
-
-    void Brick::update() {
-
     }
 }

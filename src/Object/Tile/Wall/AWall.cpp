@@ -8,6 +8,9 @@ namespace PA::Object::Tile::Wall {
     AWall::AWall(AWall *other) {
         this->spriteSheet = other->spriteSheet;
         this->wallPositions = other->wallPositions;
+        this->price = other->price;
+        this->name = other->name;
+        this->item = other->item;
     }
 
     void AWall::setWallPosition(WallPosition position) {
@@ -41,6 +44,19 @@ namespace PA::Object::Tile::Wall {
     }
 
     void AWall::update() {
+    }
+
+    void AWall::createSpriteSheet(PA::Vector2i pos, PA::Vector2i index) {
+        PA::Vector2i gridDim = this->grid->getSquareDim();
+        this->spriteSheet = std::make_shared<PA::Lib::SDL2::Graphic::SpriteSheet>(
+            "res/sprites/game/walls.png", PA::Vector2i(32, 32),
+            pos, gridDim
+        );
+        this->spriteSheet->setIndex(index);
+    }
+
+    std::string AWall::getItem() {
+        return (this->item);
     }
 
 }

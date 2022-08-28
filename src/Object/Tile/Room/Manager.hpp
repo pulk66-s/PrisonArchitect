@@ -6,6 +6,7 @@
     #include "Object/Tile/Factory.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Global/Vector.hpp"
+    #include "Global/Error/NullPtr.hpp"
     #include "Lib/SDL2/Camera.hpp"
     #include "Lib/SDL2/Event.hpp"
     #include "Lib/SDL2/Shape/Rectangle.hpp"
@@ -32,9 +33,13 @@ class PA::Object::Tile::Room::Manager {
     void addRoomToGrid(PA::Vector2i pos, PA::Vector2i dim);
 
     public:
+    Manager(std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles);
     void update();
     void draw();
-    void createRoom(std::shared_ptr<ITile> tile, std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles);
+    void createRoom(std::shared_ptr<ITile> tile);
+    std::vector<PA::Vector2i> getRoomPos(std::string name);
+    static std::shared_ptr<Manager> create(std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles = nullptr);
+    static std::shared_ptr<Manager> getInstance();
 
 };
 

@@ -9,6 +9,7 @@ namespace PA {
         class BadInstance;
         class NotEnoughMoney;
         class NotifSuccess;
+        class NullPtr;
     }
 }
 

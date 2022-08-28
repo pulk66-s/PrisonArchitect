@@ -26,6 +26,12 @@ struct PA::Vector2i {
         return (PA::Vector2i(this->x * other.x, this->y * other.y));
     }
 
+    PA::Vector2i operator*=(const PA::Vector2i& other) {
+        this->x *= other.x;
+        this->y *= other.y;
+        return (*this);
+    }
+
     PA::Vector2i operator+(const PA::Vector2i &other) const {
         return (PA::Vector2i{this->x + other.x, this->y + other.y});
     }

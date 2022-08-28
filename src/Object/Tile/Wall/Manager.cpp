@@ -2,8 +2,20 @@
 
 namespace PA::Object::Tile::Wall {
 
-    void Manager::createWall(std::shared_ptr<AWall> tile, std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles) {
+    Manager::Manager(std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles) {
         this->tiles = tiles;
+    }
+
+    std::shared_ptr<Manager> Manager::create(std::map<PA::Vector2i, std::shared_ptr<ITile>> *tiles) {
+        static std::shared_ptr<Manager> instance = std::make_shared<Manager>(tiles);
+        return (instance);
+    }
+
+    std::shared_ptr<Manager> Manager::getInstance() {
+        return (Manager::create());
+    }
+
+    void Manager::createWall(std::shared_ptr<AWall> tile) {
         this->tilesPreviewSet.insert(tile);
         this->firstTile = tile;
         this->tileName = this->firstTile->getName();
@@ -15,19 +27,19 @@ namespace PA::Object::Tile::Wall {
 
     void Manager::endTilesCreation() {
         this->firstPos = nullptr;
-        std::shared_ptr<ITile> factoryTile = this->tileFactory.create(tileName, {8, 8});
+        std::shared_ptr<ITile> factoryTile = this->tileFactory.create(this->tileName, {8, 8});
         std::shared_ptr<AWall> tile = nullptr;
         if (dynamic_cast<AWall *>(factoryTile.get()) != nullptr) {
             tile = std::make_shared<AWall>(dynamic_cast<AWall *>(factoryTile.get()));
-        }
-        if (tile == nullptr) {
-            throw PA::Error::InvalidArgument("Invalid tile name", __FILE__);
         }
         this->firstTile = tile;
         int size = this->tilesPreviewSet.size();
         int price = size * this->firstTile->getPrice();
         try {
             this->playerInfo->addMoney(-price);
+            for (int i = 0; i < size; i++) {
+                this->itemManager->createItem(this->firstTile->getItem());
+            }
         } catch (PA::Error::NotEnoughMoney &e) {
             this->tilesPreviewSet.clear();
             this->tilesCreation = false;
@@ -36,8 +48,10 @@ namespace PA::Object::Tile::Wall {
             throw e;
         }
         for (auto tile : this->tilesPreviewSet) {
-            tile->setColliding(true);
-            this->tiles->insert({tile->getPos(), tile});
+            std::shared_ptr<Preview> preview = std::make_shared<Preview>(PA::Vector2i(13, 0), tile->getPos());
+            preview->setBuildWall(tile->getName());
+            preview->setColliding(true);
+            this->tiles->insert({preview->getPos(), preview});
         }
         PA::Vector2i squareDim = this->grid->getSquareDim();
         for (auto tile : this->tilesPreviewSet) {
@@ -87,6 +101,13 @@ namespace PA::Object::Tile::Wall {
     }
 
     void Manager::update() {
+        if (this->waitForRelease) {
+            if (this->event->isRelease()) {
+                this->waitForRelease = false;
+            } else {
+                return;
+            }
+        }
         if (this->tilesCreation) {
             this->tilesCreationUpdate();
         }

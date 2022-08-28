@@ -17,6 +17,7 @@ namespace PA::Object {
             class Manager;
             class AWall;
             class Brick;
+            class Preview;
         }
         namespace Room {
             class ARoom;

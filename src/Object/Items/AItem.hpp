@@ -20,6 +20,7 @@ class PA::Object::Item::AItem {
     void draw();
     void update();
     void setSpriteSheet(std::string path, PA::Vector2i nbSprite);
+    void setPos(PA::Vector2i pos);
 
 };
 

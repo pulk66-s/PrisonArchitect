@@ -4,18 +4,26 @@
     #include "Object/ObjectNamespace.hpp"
     #include "Object/Items/AItem.hpp"
     #include "Object/Items/Factory.hpp"
+    #include "Object/Tile/Room/Manager.hpp"
+    #include "Object/Map/Grid.hpp"
+    #include "Global/Vector.hpp"
+    #include "Global/Error/NullPtr.hpp"
     #include <vector>
 
 class PA::Object::Item::ItemManager {
 
     private:
+    std::shared_ptr<Tile::Room::Manager> roomManager = Tile::Room::Manager::getInstance();
+    std::shared_ptr<Map::Grid> grid = Map::Grid::getInstance();
     Factory itemFactory;
-    std::vector<std::shared_ptr<AItem>> items = {};
+    std::map<PA::Vector2i, std::shared_ptr<AItem>> items = {};
 
     public:
+    ItemManager();
     void draw();
     void createItem(std::string name);
-    void createItem(std::string name, std::size_t times);
+    static std::shared_ptr<ItemManager> getInstance();
+    bool isFree(PA::Vector2i pos);
 
 };
 

@@ -2,20 +2,41 @@
 
 namespace PA::Object::Item {
 
+    ItemManager::ItemManager() {
+    }
+
+    std::shared_ptr<ItemManager> ItemManager::getInstance() {
+        static std::shared_ptr<ItemManager> instance = std::make_shared<ItemManager>();
+        return (instance);
+    }
+
     void ItemManager::draw() {
         for (auto item : this->items) {
-            item->draw();
+            item.second->draw();
         }
     }
 
     void ItemManager::createItem(std::string name) {
-        this->items.push_back(this->itemFactory.createItem(name));
+        PA::Vector2i squareDim = this->grid->getSquareDim();
+        std::shared_ptr<AItem> item = this->itemFactory.createItem(name);
+        if (item == nullptr) {
+            throw PA::Error::NullPtr("Item not found" + name, __FILE__);
+        }
+        std::vector<PA::Vector2i> pos = this->roomManager->getRoomPos("delivery");
+        for (PA::Vector2i tilePos : pos) {
+            if (this->isFree(tilePos)) {
+                item->setPos(tilePos * squareDim);
+                this->items[tilePos] = item;
+                break;
+            }
+        }
     }
 
-    void ItemManager::createItem(std::string name, std::size_t times) {
-        for (std::size_t i = 0; i < times; i++) {
-            this->items.push_back(this->itemFactory.createItem(name));
+    bool ItemManager::isFree(PA::Vector2i pos) {
+        if (this->items.find(pos) != this->items.end()) {
+            return (false);
         }
+        return (true);
     }
 
 }
