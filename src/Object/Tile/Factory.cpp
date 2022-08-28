@@ -3,7 +3,7 @@
 namespace PA::Object::Tile {
 
     Factory::Factory() {
-        this->lambdaMap["brickWall"] = CREATE_LAMBDA(BrickWall);
+        this->lambdaMap["brickWall"] = CREATE_LAMBDA(Wall::Brick);
         this->lambdaMap["delivery"] = CREATE_LAMBDA(Room::Delivery);
     }
 

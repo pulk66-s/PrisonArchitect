@@ -56,7 +56,9 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Tile/Room/Delivery.cpp \
 			$(OBJECT_PATH)/Tile/TileManager.cpp \
 			$(OBJECT_PATH)/Tile/ATile.cpp \
-			$(OBJECT_PATH)/Tile/BrickWall.cpp \
+			$(OBJECT_PATH)/Tile/Wall/Brick.cpp \
+			$(OBJECT_PATH)/Tile/Wall/Manager.cpp \
+			$(OBJECT_PATH)/Tile/Wall/AWall.cpp \
 			$(OBJECT_PATH)/Tile/Factory.cpp \
 			$(OBJECT_PATH)/Items/Factory.cpp \
 			$(OBJECT_PATH)/Items/AItem.cpp \

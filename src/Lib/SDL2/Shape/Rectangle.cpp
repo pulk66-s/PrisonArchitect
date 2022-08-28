@@ -89,7 +89,7 @@ namespace PA::Lib::SDL2::Shape {
         return (this->dim);
     }
 
-    PA::Vector2i Rectangle::getPos()
+    PA::Vector2i Rectangle::getPos() const
     {
         PA::Vector2i finalPos = this->pos;
         if (this->status == PA::Lib::SDL2::Camera::Status::MOVABLE) {

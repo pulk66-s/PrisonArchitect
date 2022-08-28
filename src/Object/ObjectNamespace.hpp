@@ -13,7 +13,11 @@ namespace PA::Object {
         class ITile;
         class ATile;
         class Factory;
-        class BrickWall;
+        namespace Wall {
+            class Manager;
+            class AWall;
+            class Brick;
+        }
         namespace Room {
             class ARoom;
             class Manager;

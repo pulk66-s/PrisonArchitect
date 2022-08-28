@@ -19,6 +19,8 @@ class PA::Object::Tile::Room::ARoom : public PA::Object::Tile::ATile {
     ARoom(__attribute__((unused))PA::Vector2i index, PA::Vector2i pos, std::string name);
     void update();
     void draw();
+    void setPos(PA::Vector2i pos);
+    PA::Vector2i getPos() const;
 
 };
 

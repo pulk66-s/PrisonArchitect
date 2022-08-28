@@ -23,4 +23,14 @@ namespace PA::Object::Tile::Room {
         }
     }
 
+    void ARoom::setPos(PA::Vector2i pos) {
+        for (auto& rectangle : backGround) {
+            rectangle.setPos(pos);
+        }
+    }
+
+    PA::Vector2i ARoom::getPos() const {
+        return (this->backGround[0].getPos());
+    }
+
 }
