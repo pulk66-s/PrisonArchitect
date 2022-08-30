@@ -13,4 +13,12 @@ namespace PA::Object::PNJ::Task {
         return (this->status == DONE);
     }
 
+    void ATask::setGoTo(PA::Vector2<int> goTo) {
+        this->goTo = std::make_shared<PA::Vector2<int>>(goTo);
+    }
+
+    std::shared_ptr<PA::Vector2<int>> ATask::getGoTo() const {
+        return (this->goTo);
+    }
+
 }

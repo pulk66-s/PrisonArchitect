@@ -26,7 +26,7 @@ class PA::Object::Map::Map {
 
     private:
     std::shared_ptr<PA::Object::Tile::TileManager> tileManager = PA::Object::Tile::TileManager::getInstance();
-    std::shared_ptr<PA::Object::Item::ItemManager> itemManager = PA::Object::Item::ItemManager::getInstance();
+    PA::Object::Item::ItemManager itemManager;
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
     PA::Object::PNJ::PnjManager pnjManager;

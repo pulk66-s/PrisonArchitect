@@ -35,7 +35,7 @@ namespace PA::Object::Map {
     {
         this->background.draw();
         this->tileManager->draw();
-        this->itemManager->draw();
+        this->itemManager.draw();
         this->pnjManager.draw();
         this->gameUI.draw();
     }

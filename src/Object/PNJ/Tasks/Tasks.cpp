@@ -18,4 +18,11 @@ namespace PA::Object::PNJ::Task {
         }
     }
 
+    std::shared_ptr<ATask> Tasks::getCurrTask() {
+        if (this->size() > 0)
+            return (this->tasks[0]);
+        else
+            return (nullptr);
+    }
+
 }

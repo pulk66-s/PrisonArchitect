@@ -2,16 +2,8 @@
 
 namespace PA::Object::Item {
 
-    ItemManager::ItemManager() {
-    }
-
-    std::shared_ptr<ItemManager> ItemManager::getInstance() {
-        static std::shared_ptr<ItemManager> instance = std::make_shared<ItemManager>();
-        return (instance);
-    }
-
     void ItemManager::draw() {
-        for (auto item : this->items) {
+        for (auto item : *(this->items->getItems())) {
             item.second->draw();
         }
     }
@@ -26,17 +18,14 @@ namespace PA::Object::Item {
         for (PA::Vector2<int> tilePos : pos) {
             if (this->isFree(tilePos)) {
                 item->setPos(tilePos * squareDim);
-                this->items[tilePos] = item;
+                this->items->add(tilePos, item);
                 break;
             }
         }
     }
 
     bool ItemManager::isFree(PA::Vector2<int> pos) {
-        if (this->items.find(pos) != this->items.end()) {
-            return (false);
-        }
-        return (true);
+        return (!this->items->exist(pos));
     }
 
 }

@@ -16,6 +16,7 @@ class PA::Object::PNJ::Task::Tasks {
     void addTask(std::shared_ptr<ATask> task);
     int size() const;
     void update();
+    std::shared_ptr<ATask> getCurrTask();
 
 };
 

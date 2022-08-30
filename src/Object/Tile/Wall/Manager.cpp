@@ -38,7 +38,7 @@ namespace PA::Object::Tile::Wall {
         try {
             this->playerInfo->addMoney(-price);
             for (int i = 0; i < size; i++) {
-                this->itemManager->createItem(this->firstTile->getItem());
+                this->itemManager.createItem(this->firstTile->getItem());
                 this->taskManager.createTask(this->firstTile->getTask());
             }
         } catch (PA::Error::NotEnoughMoney &e) {

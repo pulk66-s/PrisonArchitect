@@ -67,6 +67,7 @@ namespace PA::Object {
         class ItemManager;
         class Factory;
         class AItem;
+        class Items;
         class Brick;
     }
 }

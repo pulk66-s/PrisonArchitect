@@ -24,8 +24,8 @@ class PA::Object::Tile::Wall::Manager {
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Event> event = PA::Lib::SDL2::Event::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
-    std::shared_ptr<Item::ItemManager> itemManager = Item::ItemManager::getInstance();
 
+    Item::ItemManager itemManager;
     PNJ::Task::Manager taskManager;
     std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles = {};
     std::shared_ptr<PA::Vector2<int>> firstPos = nullptr;

@@ -14,6 +14,7 @@ class PA::Object::Item::AItem {
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
 
     std::string name = "";
+    bool free = true;
 
     public:
     AItem(std::string name);
@@ -21,6 +22,9 @@ class PA::Object::Item::AItem {
     void update();
     void setSpriteSheet(std::string path, PA::Vector2<int> nbSprite);
     void setPos(PA::Vector2<int> pos);
+    void setFree(bool free);
+    bool isFree() const;
+    PA::Vector2<int> getPos();
 
 };
 

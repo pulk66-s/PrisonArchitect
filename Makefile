@@ -65,6 +65,7 @@ SRC			= src/main.cpp \
 			$(OBJECT_PATH)/Tile/Factory.cpp \
 			$(OBJECT_PATH)/Items/Factory.cpp \
 			$(OBJECT_PATH)/Items/AItem.cpp \
+			$(OBJECT_PATH)/Items/Items.cpp \
 			$(OBJECT_PATH)/Items/ItemManager.cpp \
 			$(OBJECT_PATH)/Items/Brick.cpp \
 

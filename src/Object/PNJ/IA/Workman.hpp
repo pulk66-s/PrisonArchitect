@@ -5,7 +5,10 @@
     #include "Object/PNJ/IA/Ia.hpp"
 
 class PA::Object::PNJ::IA::Workman : public PA::Object::PNJ::IA::Ia {
+
     public:
+    Workman();
+
 };
 
 #endif

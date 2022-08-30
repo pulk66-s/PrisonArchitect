@@ -8,8 +8,27 @@ namespace PA::Object::PNJ::Task {
 
     }
 
+    void WallTask::findItem() {
+        std::shared_ptr<Item::AItem> item = this->items->findIf([](std::shared_ptr<Item::AItem> item) {
+            return (item->isFree());
+        });
+        if (item != nullptr) {
+            this->item = item;
+            item->setFree(false);
+            this->setGoTo(item->getPos());
+        }
+    }
+
+    void WallTask::updateTask() {
+
+    }
+
     void WallTask::update() {
-        std::cout << "update WallTask" << std::endl;
+        if (this->item == nullptr) {
+            this->findItem();
+        } else {
+            this->updateTask();
+        }
     }
 
 }

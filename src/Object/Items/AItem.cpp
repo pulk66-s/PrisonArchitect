@@ -27,4 +27,16 @@ namespace PA::Object::Item {
         this->spriteSheet->setPos(pos);
     }
 
+    void AItem::setFree(bool free) {
+        this->free = free;
+    }
+
+    bool AItem::isFree() const {
+        return (this->free);
+    }
+
+    PA::Vector2<int> AItem::getPos() {
+        return (this->spriteSheet->getPos());
+    }
+
 }
