@@ -13,12 +13,15 @@ namespace PA::Object::PNJ::Task {
         return (this->status == DONE);
     }
 
-    void ATask::setGoTo(PA::Vector2<int> goTo) {
-        this->goTo = std::make_shared<PA::Vector2<int>>(goTo);
+    void ATask::addGoTo(PA::Vector2<int> goTo) {
+        this->goTo.push(std::make_shared<PA::Vector2<int>>(goTo));
     }
 
     std::shared_ptr<PA::Vector2<int>> ATask::getGoTo() const {
-        return (this->goTo);
+        if (this->goTo.size() == 0) {
+            return (nullptr);
+        }
+        return (this->goTo.front());
     }
 
     void ATask::setArrived(bool arrived) {
@@ -39,6 +42,12 @@ namespace PA::Object::PNJ::Task {
 
     void ATask::setAction(Action action) {
         this->action = action;
+    }
+
+    void ATask::popGoTo() {
+        if (this->goTo.size() > 0) {
+            this->goTo.pop();
+        }
     }
 
 }

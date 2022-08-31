@@ -5,6 +5,7 @@
     #include "Object/Tile/ATile.hpp"
     #include "Object/Tile/Wall/Brick.hpp"
     #include "Object/Tile/Wall/Preview.hpp"
+    #include "Object/Tile/Wall/AWall.hpp"
     #include "Object/Tile/Room/Delivery.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Global/Vector.hpp"

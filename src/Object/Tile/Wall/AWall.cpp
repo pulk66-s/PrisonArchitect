@@ -44,9 +44,6 @@ namespace PA::Object::Tile::Wall {
         }
     }
 
-    void AWall::update() {
-    }
-
     void AWall::createSpriteSheet(PA::Vector2<int> pos, PA::Vector2<int> index) {
         PA::Vector2<int> gridDim = this->grid->getSquareDim();
         this->spriteSheet = std::make_shared<PA::Lib::SDL2::Graphic::SpriteSheet>(
@@ -62,6 +59,9 @@ namespace PA::Object::Tile::Wall {
 
     std::string AWall::getTask() {
         return (this->task);
+    }
+
+    void AWall::update() {
     }
 
 }

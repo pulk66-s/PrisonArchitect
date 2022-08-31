@@ -16,6 +16,7 @@ class PA::Object::Tile::ATile : public PA::Object::Tile::ITile {
     bool colliding = false;
     std::string name = "";
     int price = 0;
+    bool focused = false;
 
     public:
     bool isColliding();
@@ -24,6 +25,8 @@ class PA::Object::Tile::ATile : public PA::Object::Tile::ITile {
     virtual void update() = 0;
     std::string getName() const;
     int getPrice() const;
+    void setFocused(bool focused);
+    bool isFocused() const;
 };
 
 #endif

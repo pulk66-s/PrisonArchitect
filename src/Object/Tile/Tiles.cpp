@@ -30,4 +30,14 @@ namespace PA::Object::Tile {
         return (nullptr);
     }
 
+    std::shared_ptr<ATile> Tiles::get(std::function<bool(std::shared_ptr<ATile>)> cond)
+    {
+        for (auto it = this->tiles->begin(); it != this->tiles->end(); it++) {
+            if (cond(it->second)) {
+                return (it->second);
+            }
+        }
+        return (nullptr);
+    }
+
 }

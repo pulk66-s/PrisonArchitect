@@ -18,4 +18,12 @@ namespace PA::Object::Tile {
         return (this->price);
     }
 
+    void ATile::setFocused(bool focused) {
+        this->focused = focused;
+    }
+
+    bool ATile::isFocused() const {
+        return (this->focused);
+    }
+
 }

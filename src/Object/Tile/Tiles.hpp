@@ -3,9 +3,11 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/Tile/ATile.hpp"
+    #include "Object/Tile/Wall/Preview.hpp"
     #include "Global/Vector.hpp"
     #include <map>
     #include <memory>
+    #include <functional>
 
 class PA::Object::Tile::Tiles {
 
@@ -18,6 +20,7 @@ class PA::Object::Tile::Tiles {
     static std::shared_ptr<Tiles> getInstance();
     std::shared_ptr<std::map<PA::Vector2<int>, std::shared_ptr<ATile>>> get();
     std::shared_ptr<ATile> get(PA::Vector2<int> index);
+    std::shared_ptr<ATile> get(std::function<bool(std::shared_ptr<ATile>)> cond);
 
 };
 

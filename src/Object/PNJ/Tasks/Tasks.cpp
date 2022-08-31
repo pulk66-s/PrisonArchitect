@@ -18,8 +18,9 @@ namespace PA::Object::PNJ::Task {
     void Tasks::update() {
         if (this->size() > 0) {
             this->tasks[0]->update();
-            if (this->tasks[0]->isDone())
+            if (this->tasks[0]->isDone()) {
                 this->tasks.erase(this->tasks.begin());
+            }
         }
     }
 
