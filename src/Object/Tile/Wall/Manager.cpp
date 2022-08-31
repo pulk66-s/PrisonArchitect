@@ -2,17 +2,9 @@
 
 namespace PA::Object::Tile::Wall {
 
-    Manager::Manager(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles) {
-        this->tiles = tiles;
-    }
-
-    std::shared_ptr<Manager> Manager::create(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles) {
-        static std::shared_ptr<Manager> instance = std::make_shared<Manager>(tiles);
-        return (instance);
-    }
-
     std::shared_ptr<Manager> Manager::getInstance() {
-        return (Manager::create());
+        static std::shared_ptr<Manager> instance = std::make_shared<Manager>();
+        return (instance);
     }
 
     void Manager::createWall(std::shared_ptr<AWall> tile) {
@@ -52,23 +44,23 @@ namespace PA::Object::Tile::Wall {
             std::shared_ptr<Preview> preview = std::make_shared<Preview>(PA::Vector2<int>(13, 0), tile->getPos());
             preview->setBuildWall(tile->getName());
             preview->setColliding(true);
-            this->tiles->insert({preview->getPos(), preview});
+            this->tiles->addTile(preview->getPos(), preview);
         }
         PA::Vector2<int> squareDim = this->grid->getSquareDim();
         for (auto tile : this->tilesPreviewSet) {
             PA::Vector2<int> pos = tile->getPos();
-            this->triggerColliderRedirection((*this->tiles)[pos]);
-            if (this->getCollider(tile->getPos() + PA::Vector2<int>(0, -squareDim.y)) != nullptr) {
-                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2<int>(0, -squareDim.y)]);
+            this->triggerColliderRedirection(this->tiles->get(pos));
+            if (this->tiles->get(tile->getPos() + PA::Vector2<int>(0, -squareDim.y)) != nullptr) {
+                this->triggerColliderRedirection(this->tiles->get(pos + PA::Vector2<int>(0, -squareDim.y)));
             }
-            if (this->getCollider(tile->getPos() + PA::Vector2<int>(squareDim.x, 0)) != nullptr) {
-                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2<int>(squareDim.x, 0)]);
+            if (this->tiles->get(tile->getPos() + PA::Vector2<int>(squareDim.x, 0)) != nullptr) {
+                this->triggerColliderRedirection(this->tiles->get(pos + PA::Vector2<int>(squareDim.x, 0)));
             }
-            if (this->getCollider(tile->getPos() + PA::Vector2<int>(0, squareDim.y)) != nullptr) {
-                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2<int>(0, squareDim.y)]);
+            if (this->tiles->get(tile->getPos() + PA::Vector2<int>(0, squareDim.y)) != nullptr) {
+                this->triggerColliderRedirection(this->tiles->get(pos + PA::Vector2<int>(0, squareDim.y)));
             }
-            if (this->getCollider(tile->getPos() + PA::Vector2<int>(-squareDim.x, 0)) != nullptr) {
-                this->triggerColliderRedirection((*this->tiles)[pos + PA::Vector2<int>(-squareDim.x, 0)]);
+            if (this->tiles->get(tile->getPos() + PA::Vector2<int>(-squareDim.x, 0)) != nullptr) {
+                this->triggerColliderRedirection(this->tiles->get(pos + PA::Vector2<int>(-squareDim.x, 0)));
             }
         }
         this->tilesPreviewSet.clear();
@@ -177,10 +169,10 @@ namespace PA::Object::Tile::Wall {
         PA::Vector2<int> pos = tileFactory->getPos();
         PA::Vector2<int> gridPos = this->grid->getSquareDim();
         std::unordered_map<std::string, std::shared_ptr<ITile>> tiles = {
-            {"up", this->getCollider(pos + PA::Vector2<int>{0, -gridPos.y})},
-            {"down", this->getCollider(pos + PA::Vector2<int>{0, gridPos.y})},
-            {"left", this->getCollider(pos + PA::Vector2<int>{-gridPos.x, 0})},
-            {"right", this->getCollider(pos + PA::Vector2<int>{gridPos.x, 0})}
+            {"up", this->tiles->get(pos + PA::Vector2<int>{0, -gridPos.y})},
+            {"down", this->tiles->get(pos + PA::Vector2<int>{0, gridPos.y})},
+            {"left", this->tiles->get(pos + PA::Vector2<int>{-gridPos.x, 0})},
+            {"right", this->tiles->get(pos + PA::Vector2<int>{gridPos.x, 0})}
         };
         std::unordered_map<std::string, bool> dir = {
             {"up", tiles["up"] != nullptr},
@@ -223,13 +215,6 @@ namespace PA::Object::Tile::Wall {
         } else if (dir["right"]) {
             tile->setWallPosition(AWall::WallPosition::LEFT);
         }
-    }
-
-    std::shared_ptr<ITile> Manager::getCollider(PA::Vector2<int> index) {
-        if (this->tiles->find(index) != this->tiles->end()) {
-            return ((*this->tiles)[index]);
-        }
-        return (nullptr);
     }
 
 }

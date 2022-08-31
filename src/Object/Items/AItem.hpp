@@ -10,7 +10,7 @@
 class PA::Object::Item::AItem {
 
     protected:
-    std::unique_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet = nullptr;
+    std::shared_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet = nullptr;
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
 
     std::string name = "";
@@ -18,6 +18,7 @@ class PA::Object::Item::AItem {
 
     public:
     AItem(std::string name);
+    AItem(const AItem& item);
     void draw();
     void update();
     void setSpriteSheet(std::string path, PA::Vector2<int> nbSprite);

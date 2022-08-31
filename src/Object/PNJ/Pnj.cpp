@@ -51,4 +51,31 @@ namespace PA::Object::PNJ {
         this->tasks.addTask(task);
     }
 
+    std::shared_ptr<Item::AItem> Pnj::getItemCarry()
+    {
+        return (this->itemCarry);
+    }
+
+    void Pnj::setItemCarry(std::shared_ptr<Item::AItem> item)
+    {
+        this->itemCarry = item;
+    }
+
+    void Pnj::setItemCarry(Item::AItem item)
+    {
+        this->itemCarry = std::make_shared<Item::AItem>(item);
+    }
+
+    bool Pnj::arrivedToGoTo() {
+        try {
+            PA::Vector2<int> goToPos = this->ia->getGoToPos();
+            if (this->pos == goToPos) {
+                return (true);
+            }
+        } catch (PA::Error::NullPtr &e) {
+            return (false);
+        }
+        return (false);
+    }
+
 }

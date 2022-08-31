@@ -2,7 +2,7 @@
     #define __OBJECT_WALL_TileFactory_HPP__
 
     #include "Object/ObjectNamespace.hpp"
-    #include "Object/Tile/ITile.hpp"
+    #include "Object/Tile/ATile.hpp"
     #include "Object/Tile/Wall/Brick.hpp"
     #include "Object/Tile/Wall/Preview.hpp"
     #include "Object/Tile/Room/Delivery.hpp"
@@ -14,18 +14,18 @@
     #include <functional>
 
 #define CREATE_LAMBDA(className) [](PA::Vector2<int> index, PA::Vector2<int> pos) -> \
-    std::shared_ptr<PA::Object::Tile::ITile> { \
+    std::shared_ptr<PA::Object::Tile::ATile> { \
         return (std::make_shared<className>(index, pos)); \
     }
 
 class PA::Object::Tile::Factory {
 
     private:
-    std::unordered_map<std::string, std::function<std::shared_ptr<PA::Object::Tile::ITile>(PA::Vector2<int> index, PA::Vector2<int> pos)>> lambdaMap;
+    std::unordered_map<std::string, std::function<std::shared_ptr<PA::Object::Tile::ATile>(PA::Vector2<int> index, PA::Vector2<int> pos)>> lambdaMap;
 
     public:
     Factory();
-    std::shared_ptr<PA::Object::Tile::ITile> create(std::string component, PA::Vector2<int> index = {0, 0}, PA::Vector2<int> pos = {0, 0});
+    std::shared_ptr<PA::Object::Tile::ATile> create(std::string component, PA::Vector2<int> index = {0, 0}, PA::Vector2<int> pos = {0, 0});
 
 };
 

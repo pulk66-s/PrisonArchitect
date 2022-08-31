@@ -8,21 +8,21 @@ namespace PA::Object::PNJ {
     }
 
     Pnjs::Pnjs() {
-        this->pnjs = std::make_shared<std::vector<std::shared_ptr<IPnj>>>();
+        this->pnjs = std::make_shared<std::vector<std::shared_ptr<Pnj>>>();
     }
 
-    void Pnjs::add(std::shared_ptr<IPnj> pnj) {
+    void Pnjs::add(std::shared_ptr<Pnj> pnj) {
         pnjs->push_back(pnj);
     }
 
-    std::shared_ptr<std::vector<std::shared_ptr<IPnj>>> Pnjs::getPnjs() {
+    std::shared_ptr<std::vector<std::shared_ptr<Pnj>>> Pnjs::getPnjs() {
         return (this->pnjs);
     }
 
-    std::shared_ptr<IPnj> Pnjs::getLaziest() {
+    std::shared_ptr<Pnj> Pnjs::getLaziest() {
         if (pnjs->size() == 0)
             return (nullptr);
-        std::shared_ptr<IPnj> laziest = pnjs->at(0);
+        std::shared_ptr<Pnj> laziest = pnjs->at(0);
         for (auto pnj : *pnjs) {
             if (pnj->getNbTask() < laziest->getNbTask())
                 laziest = pnj;

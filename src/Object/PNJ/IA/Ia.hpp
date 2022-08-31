@@ -3,7 +3,8 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/Map/Grid.hpp"
-    #include "Object/Tile/TileManager.hpp"
+    #include "Global/Error/NullPtr.hpp"
+    #include "Lib/SDL2/Graphic/SpriteSheet.hpp"
     #include <ctime>
     #include <cstdlib>
     #include <unordered_map>
@@ -20,7 +21,6 @@ class PA::Object::PNJ::IA::Ia {
     };
 
     private:
-    std::shared_ptr<Tile::TileManager> tileManager = Tile::TileManager::getInstance();
     unsigned int lastUpdateTime = SDL_GetTicks();
     PA::Object::PNJ::IA::Ia::Move currMove = PA::Object::PNJ::IA::Ia::Move::NONE;
     std::unordered_map<PA::Object::PNJ::IA::Ia::Move, PA::Vector2<int>> moveDirection;
@@ -42,6 +42,7 @@ class PA::Object::PNJ::IA::Ia {
     void setGoToPos(PA::Vector2<int> pos);
     void update(PA::Vector2<int> *pos, std::shared_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet, int currVariant);
     Move getMove();
+    PA::Vector2<int> getGoToPos();
 };
 
 #endif

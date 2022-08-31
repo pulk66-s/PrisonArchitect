@@ -36,12 +36,9 @@ namespace PA::Object::PNJ::IA {
             if (this->currMove == IA::Ia::Move::DOWN) {
                 nextPos.y += squareDim.y;
             }
-            std::shared_ptr<PA::Object::Tile::ITile> tile = this->tileManager->getTile(nextPos);
-            if (tile == nullptr) {
-                *pos += moveBuff;
-                spriteSheet->setPos(*pos);
-                spriteSheet->setIndex({this->moveSpriteSheetIndex[this->currMove], currVariant});
-            }
+            *pos += moveBuff;
+            spriteSheet->setPos(*pos);
+            spriteSheet->setIndex({this->moveSpriteSheetIndex[this->currMove], currVariant});
             this->moveOffset--;
         }
     }
@@ -80,6 +77,14 @@ namespace PA::Object::PNJ::IA {
     void Ia::setGoToPos(PA::Vector2<int> pos)
     {
         this->goToPos = std::make_unique<PA::Vector2<int>>(pos);
+    }
+
+    PA::Vector2<int> Ia::getGoToPos()
+    {
+        if (this->goToPos == nullptr) {
+            throw PA::Error::NullPtr("goToPos is nullptr", __FILE__);
+        }
+        return (*this->goToPos);
     }
 
 }

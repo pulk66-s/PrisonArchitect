@@ -6,6 +6,7 @@
     #include "Object/PNJ/Workman.hpp"
     #include "Global/Vector.hpp"
     #include <unordered_map>
+    #include <functional>
     #include <string>
 
     #define CREATE_PNJ_LAMBDA(className) [](PA::Vector2<int> pos) -> \

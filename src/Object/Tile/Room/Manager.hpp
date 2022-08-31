@@ -3,6 +3,7 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/Tile/ITile.hpp"
+    #include "Object/Tile/Tiles.hpp"
     #include "Object/Tile/Factory.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Global/Vector.hpp"
@@ -19,7 +20,7 @@ class PA::Object::Tile::Room::Manager {
     std::shared_ptr<PA::Lib::SDL2::Event> event = PA::Lib::SDL2::Event::getInstance();
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
-    std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles;
+    std::shared_ptr<Tiles> tiles = Tiles::getInstance();
     Tile::Factory tileFactory;
 
     bool roomCreation = false;
@@ -33,12 +34,10 @@ class PA::Object::Tile::Room::Manager {
     void addRoomToGrid(PA::Vector2<int> pos, PA::Vector2<int> dim);
 
     public:
-    Manager(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles);
     void update();
     void draw();
     void createRoom(std::shared_ptr<ITile> tile);
     std::vector<PA::Vector2<int>> getRoomPos(std::string name);
-    static std::shared_ptr<Manager> create(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles = nullptr);
     static std::shared_ptr<Manager> getInstance();
 
 };

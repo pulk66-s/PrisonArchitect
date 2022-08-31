@@ -2,17 +2,9 @@
 
 namespace PA::Object::Tile::Room {
 
-    std::shared_ptr<Manager> Manager::create(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles) {
-        static std::shared_ptr<Manager> instance = std::make_shared<Manager>(tiles);
-        return (instance);
-    }
-
     std::shared_ptr<Manager> Manager::getInstance() {
-        return (Manager::create());
-    }
-
-    Manager::Manager(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles) {
-        this->tiles = tiles;
+        static std::shared_ptr<Manager> instance = std::make_shared<Manager>();
+        return (instance);
     }
 
     void Manager::roomCreationUpdate() {
@@ -69,7 +61,7 @@ namespace PA::Object::Tile::Room {
         for (int i = pos.x; i < pos.x + dim.x; i++) {
             for (int j = pos.y; j < pos.y + dim.y; j++) {
                 PA::Vector2<int> tilePos = PA::Vector2<int>(i, j) * this->grid->getSquareDim();
-                (*this->tiles)[tilePos] = this->tileFactory.create(this->tile->getName(), {0, 0}, tilePos);
+                this->tiles->addTile(tilePos, this->tileFactory.create(this->tile->getName(), {0, 0}, tilePos));
             }
         }
         this->firstPos = nullptr;
@@ -116,10 +108,7 @@ namespace PA::Object::Tile::Room {
 
     std::vector<PA::Vector2<int>> Manager::getRoomPos(std::string name) {
         std::vector<PA::Vector2<int>> pos = {};
-        if (this->tiles == nullptr) {
-            throw PA::Error::NullPtr("tiles", __FILE__);
-        }
-        for (auto tile : *this->tiles) {
+        for (auto tile : *this->tiles->get()) {
             if (tile.second->getName() == name) {
                 pos.push_back(tile.first);
             }

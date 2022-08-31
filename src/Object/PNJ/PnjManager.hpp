@@ -7,7 +7,6 @@
     #include <unordered_map>
     #include <algorithm>
     #include "Object/ObjectNamespace.hpp"
-    #include "Object/PNJ/Pnj.hpp"
     #include "Object/PNJ/Pnjs.hpp"
     #include "Object/PNJ/Workman.hpp"
     #include "Lib/SDL2/Renderer.hpp"

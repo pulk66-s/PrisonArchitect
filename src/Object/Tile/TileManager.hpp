@@ -6,6 +6,7 @@
     #include "Object/PlayerInfo.hpp"
     #include "Object/Tile/ITile.hpp"
     #include "Object/Tile/Factory.hpp"
+    #include "Object/Tile/Tiles.hpp"
     #include "Object/Tile/Room/Manager.hpp"
     #include "Object/Tile/Room/ARoom.hpp"
     #include "Object/Tile/Wall/Manager.hpp"
@@ -19,21 +20,19 @@
 class PA::Object::Tile::TileManager {
 
     private:
-    std::shared_ptr<Room::Manager> roomManager = nullptr;
-    std::shared_ptr<Wall::Manager> wallManager = nullptr;
+    std::shared_ptr<Room::Manager> roomManager = Room::Manager::getInstance();
+    std::shared_ptr<Wall::Manager> wallManager = Wall::Manager::getInstance();
     std::shared_ptr<Map::Grid> grid = Map::Grid::getInstance();
 
     Factory tileFactory;
-    std::map<PA::Vector2<int>, std::shared_ptr<ITile>> tiles = {};
+    std::shared_ptr<Tiles> tiles = Tiles::getInstance();
 
     public:
     TileManager();
-    std::shared_ptr<ITile> getTile(PA::Vector2<int> index);
     void draw();
     void update();
     static std::shared_ptr<TileManager> getInstance();
     void createTiles(std::string tileName);
-    std::shared_ptr<ITile> getCollider(PA::Vector2<int> index);
     void createRoom(std::string name, PA::Vector2<int> pos, PA::Vector2<int> dim);
 
 };

@@ -6,6 +6,13 @@ namespace PA::Object::Item {
         this->name = name;
     }
 
+    AItem::AItem(const AItem& item) {
+        this->name = item.name;
+        this->spriteSheet = item.spriteSheet;
+        this->grid = item.grid;
+        this->free = item.free;
+    }
+
     void AItem::draw() {
         if (this->spriteSheet != nullptr) {
             this->spriteSheet->draw();

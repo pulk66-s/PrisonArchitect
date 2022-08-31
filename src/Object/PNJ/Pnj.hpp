@@ -3,12 +3,12 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/Map/Grid.hpp"
-    #include "Object/Tile/ITile.hpp"
-    #include "Object/Tile/TileManager.hpp"
+    #include "Object/Items/AItem.hpp"
     #include "Object/PNJ/Tasks/Tasks.hpp"
     #include "Object/PNJ/IPnj.hpp"
     #include "Lib/SDL2/Graphic/SpriteSheet.hpp"
     #include "Global/Vector.hpp"
+    #include "Global/Error/NullPtr.hpp"
     #include "IA/Workman.hpp"
     #include <string>
     #include <memory>
@@ -19,6 +19,7 @@ class PA::Object::PNJ::Pnj : public PA::Object::PNJ::IPnj {
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     PA::Object::PNJ::Task::Tasks tasks;
 
+    std::shared_ptr<Item::AItem> itemCarry = nullptr;
     std::shared_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet;
     int nb_variant, currVariant = 0;
     PA::Vector2<int> spriteIndex;
@@ -34,6 +35,10 @@ class PA::Object::PNJ::Pnj : public PA::Object::PNJ::IPnj {
     void update();
     int getNbTask() const;
     void addTask(std::shared_ptr<Task::ATask> task);
+    std::shared_ptr<Item::AItem> getItemCarry();
+    void setItemCarry(std::shared_ptr<Item::AItem> item);
+    void setItemCarry(Item::AItem item);
+    bool arrivedToGoTo();
 
 };
 

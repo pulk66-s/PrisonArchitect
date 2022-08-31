@@ -24,10 +24,10 @@ class PA::Object::Tile::Wall::Manager {
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Event> event = PA::Lib::SDL2::Event::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
+    std::shared_ptr<Tiles> tiles = Tiles::getInstance();
 
     Item::ItemManager itemManager;
     PNJ::Task::Manager taskManager;
-    std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles = {};
     std::shared_ptr<PA::Vector2<int>> firstPos = nullptr;
     std::shared_ptr<AWall> firstTile = nullptr;
     std::unordered_set<std::shared_ptr<ITile>> tilesPreviewSet = {};
@@ -40,14 +40,11 @@ class PA::Object::Tile::Wall::Manager {
     void tilesCreationUpdate();
     void placeTilesPreview();
     void triggerColliderRedirection(std::shared_ptr<ITile> tile);
-    std::shared_ptr<ITile> getCollider(PA::Vector2<int> index);
 
     public:
-    Manager(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles);
     void createWall(std::shared_ptr<AWall> tile);
     void update();
     void draw();
-    static std::shared_ptr<Manager> create(std::map<PA::Vector2<int>, std::shared_ptr<ITile>> *tiles = nullptr);
     static std::shared_ptr<Manager> getInstance();
 
 };

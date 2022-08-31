@@ -3,8 +3,6 @@
 namespace PA::Object::Tile {
 
     TileManager::TileManager() {
-        this->roomManager = Room::Manager::create(&this->tiles);
-        this->wallManager = Wall::Manager::create(&this->tiles);
         this->createRoom("delivery", PA::Vector2<int>(10, 30), PA::Vector2<int>(30, 10));
     }
 
@@ -16,18 +14,11 @@ namespace PA::Object::Tile {
     void TileManager::draw() {
         this->roomManager->draw();
         this->wallManager->draw();
-        for (auto wall : this->tiles) {
+        for (auto wall : *this->tiles->get()) {
             if (wall.second != nullptr) {
                 wall.second->draw();
             }
         }
-    }
-
-    std::shared_ptr<PA::Object::Tile::ITile> TileManager::getTile(PA::Vector2<int> index) {
-        if (this->tiles.find(index) != this->tiles.end()) {
-            return (this->tiles[index]);
-        }
-        return (nullptr);
     }
 
     std::shared_ptr<TileManager> TileManager::getInstance() {
@@ -53,8 +44,8 @@ namespace PA::Object::Tile {
         for (int i = pos.x; i < pos.x + dim.x; i++) {
             for (int j = pos.y; j < pos.y + dim.y; j++) {
                 PA::Vector2<int> index = {i, j};
-                std::shared_ptr<ITile> room = this->tileFactory.create(name, {0, 0}, index * squareDim);
-                this->tiles[index] = room;
+                std::shared_ptr<ATile> room = this->tileFactory.create(name, {0, 0}, index * squareDim);
+                this->tiles->addTile(index, room);
             }
         }
     }

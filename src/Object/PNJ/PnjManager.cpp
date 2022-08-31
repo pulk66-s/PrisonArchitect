@@ -55,8 +55,9 @@ namespace PA::Object::PNJ {
 
     void PnjManager::update()
     {
-        for (auto &pnj : *this->pnjs->getPnjs())
+        for (auto &pnj : *this->pnjs->getPnjs()) {
             pnj->update();
+        }
         if (this->waitForRelease) {
             if (this->event->isRelease()) {
                 this->waitForRelease = false;

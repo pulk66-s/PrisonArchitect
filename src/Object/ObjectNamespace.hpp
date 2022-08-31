@@ -10,6 +10,7 @@ namespace PA::Object {
     class PlayerInfo;
     namespace Tile {
         class TileManager;
+        class Tiles;
         class ITile;
         class ATile;
         class Factory;
