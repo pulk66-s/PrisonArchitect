@@ -64,6 +64,8 @@ namespace PA::Object::PNJ {
                     this->items->remove(pos);
                 }
                 break;
+            case Task::ATask::THROW_ITEM:
+                pnj->setItemCarry(nullptr);
             default:
                 break;
         }

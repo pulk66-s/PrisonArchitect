@@ -24,13 +24,23 @@ namespace PA::Object::Tile::Wall {
             {Wall::AWall::WallPosition::TRI_LEFT, PA::Vector2<int>{18, 2}},
             {Wall::AWall::WallPosition::TRI_RIGHT, PA::Vector2<int>{17, 2}},
         };
-        this->neededItems = {
-            {"brickWall", "brick"}
-        };
+    }
+
+    Preview::Preview(Preview *preview) {
+        this->name = "preview";
+        this->colliding = false;
+        this->spriteSheet = preview->spriteSheet;
+        this->setPos(preview->getPos());
+        this->price = 0;
+        this->wallPositions = preview->wallPositions;
     }
 
     void Preview::setBuildWall(std::string wall) {
-        this->buildWall = this->neededItems[wall];
+        this->buildWall = wall;
+    }
+
+    std::string Preview::getBuildWall() const {
+        return (this->buildWall);
     }
 
 }

@@ -35,6 +35,7 @@ class PA::Object::Tile::Wall::AWall : public PA::Object::Tile::ATile {
     std::unordered_map<WallPosition, PA::Vector2<int>> wallPositions = {};
     std::string item = "";
     std::string task = "";
+    bool wantRedirection = false;
 
     public:
     AWall();
@@ -50,6 +51,8 @@ class PA::Object::Tile::Wall::AWall : public PA::Object::Tile::ATile {
     void createSpriteSheet(PA::Vector2<int> pos, PA::Vector2<int> index);
     std::string getItem();
     std::string getTask();
+    bool getWantRedirection() const;
+    void setWantRedirection(bool wantRedirection);
 
 };
 

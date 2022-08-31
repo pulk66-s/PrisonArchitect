@@ -9,11 +9,12 @@ class PA::Object::Tile::Wall::Preview : public PA::Object::Tile::Wall::AWall
 {
     private:
     std::string buildWall = "";
-    std::unordered_map<std::string, std::string> neededItems = {};
 
     public:
     Preview(PA::Vector2<int> index, PA::Vector2<int> pos);
+    Preview(Preview *preview);
     void setBuildWall(std::string wall);
+    std::string getBuildWall() const;
     using AWall::draw;
 
 };

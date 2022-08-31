@@ -94,6 +94,14 @@ namespace PA::Object::Tile::Wall {
     }
 
     void Manager::update() {
+        for (auto tile : *this->tiles->get()) {
+            if (dynamic_cast<AWall *>(tile.second.get()) != nullptr) {
+                std::shared_ptr<AWall> wall = std::dynamic_pointer_cast<AWall>(tile.second);
+                if (wall->getWantRedirection()) {
+                    this->triggerColliderRedirection(wall);
+                }
+            }
+        }
         if (this->waitForRelease) {
             if (this->event->isRelease()) {
                 this->waitForRelease = false;

@@ -25,7 +25,7 @@ class PA::Object::PNJ::IA::Ia {
     PA::Object::PNJ::IA::Ia::Move currMove = PA::Object::PNJ::IA::Ia::Move::NONE;
     std::unordered_map<PA::Object::PNJ::IA::Ia::Move, PA::Vector2<int>> moveDirection;
     std::unordered_map<PA::Object::PNJ::IA::Ia::Move, int> moveSpriteSheetIndex;
-    std::unique_ptr<PA::Vector2<int>> goToPos = nullptr;
+    std::shared_ptr<PA::Vector2<int>> goToPos = nullptr;
 
     void idle(PA::Vector2<int> *pos, std::shared_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet, int currVariant);
     void moveToGoTo(PA::Vector2<int> *pos, std::shared_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet, int currVariant);
@@ -40,6 +40,7 @@ class PA::Object::PNJ::IA::Ia {
     public:
     Ia();
     void setGoToPos(PA::Vector2<int> pos);
+    void setGoToPos(std::shared_ptr<PA::Vector2<int>> pos);
     void update(PA::Vector2<int> *pos, std::shared_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet, int currVariant);
     Move getMove();
     PA::Vector2<int> getGoToPos();

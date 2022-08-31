@@ -6,6 +6,7 @@ namespace PA::Object::PNJ {
     : Pnj("res/sprites/pnj/workman.png", pos, 4)
     {
         this->ia = std::make_unique<PA::Object::PNJ::IA::Workman>();
+        this->tasks = std::make_unique<PA::Object::PNJ::Task::Tasks>(this->ia);
     }
 
     Workman::~Workman()

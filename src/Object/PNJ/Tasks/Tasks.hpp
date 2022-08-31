@@ -3,6 +3,7 @@
 
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PNJ/Tasks/ATask.hpp"
+    #include "Object/PNJ/IA/Ia.hpp"
     #include <vector>
     #include <memory>
     #include <iostream>

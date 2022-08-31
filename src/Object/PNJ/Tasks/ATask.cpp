@@ -50,4 +50,8 @@ namespace PA::Object::PNJ::Task {
         }
     }
 
+    int ATask::getGoToSize() const {
+        return (this->goTo.size());
+    }
+
 }

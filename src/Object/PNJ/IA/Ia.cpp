@@ -76,7 +76,12 @@ namespace PA::Object::PNJ::IA {
 
     void Ia::setGoToPos(PA::Vector2<int> pos)
     {
-        this->goToPos = std::make_unique<PA::Vector2<int>>(pos);
+        this->goToPos = std::make_shared<PA::Vector2<int>>(pos);
+    }
+
+    void Ia::setGoToPos(std::shared_ptr<PA::Vector2<int>> pos)
+    {
+        this->goToPos = pos;
     }
 
     PA::Vector2<int> Ia::getGoToPos()

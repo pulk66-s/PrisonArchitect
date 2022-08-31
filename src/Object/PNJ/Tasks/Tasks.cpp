@@ -20,6 +20,11 @@ namespace PA::Object::PNJ::Task {
             this->tasks[0]->update();
             if (this->tasks[0]->isDone()) {
                 this->tasks.erase(this->tasks.begin());
+                if (this->size() > 0) {
+                    this->tasks[0]->init();
+                } else {
+                    this->ia->setGoToPos(nullptr);
+                }
             }
         }
     }

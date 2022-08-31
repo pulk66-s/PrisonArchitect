@@ -19,6 +19,7 @@ class PA::Object::PNJ::Task::ATask : public PA::Object::PNJ::Task::ITask {
     };
     enum Action {
         GET_ITEM,
+        THROW_ITEM,
         NONE
     };
 
@@ -45,6 +46,7 @@ class PA::Object::PNJ::Task::ATask : public PA::Object::PNJ::Task::ITask {
     void setAction(Action action);
     void setItemCarry(bool item);
     void popGoTo();
+    int getGoToSize() const;
 
 };
 

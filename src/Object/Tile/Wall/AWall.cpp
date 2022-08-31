@@ -64,4 +64,12 @@ namespace PA::Object::Tile::Wall {
     void AWall::update() {
     }
 
+    bool AWall::getWantRedirection() const {
+        return (this->wantRedirection);
+    }
+
+    void AWall::setWantRedirection(bool wantRedirection) {
+        this->wantRedirection = wantRedirection;
+    }
+
 }
