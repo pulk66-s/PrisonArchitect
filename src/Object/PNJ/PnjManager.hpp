@@ -9,6 +9,8 @@
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PNJ/Pnjs.hpp"
     #include "Object/PNJ/Workman.hpp"
+    #include "Object/Items/Items.hpp"
+    #include "Object/Map/Grid.hpp"
     #include "Lib/SDL2/Renderer.hpp"
     #include "Lib/SDL2/Graphic/Image.hpp"
     #include "Lib/SDL2/Event.hpp"
@@ -22,6 +24,8 @@ class PA::Object::PNJ::PnjManager {
     std::shared_ptr<PA::Lib::SDL2::Event> event = nullptr;
     bool waitForRelease = false;
     std::shared_ptr<PNJ::Pnjs> pnjs = PNJ::Pnjs::getInstance();
+    std::shared_ptr<Item::Items> items = Item::Items::getInstance();
+    std::shared_ptr<Map::Grid> grid = Map::Grid::getInstance();
 
     // PNJ creation
     std::string pnjName = "";
@@ -32,6 +36,7 @@ class PA::Object::PNJ::PnjManager {
     std::shared_ptr<PA::Lib::SDL2::Graphic::Image> currImage;
     void pnjCreationUpdate();
     void addPnjToMap(std::string name);
+    void parseTaskAction(Task::ATask::Action action, std::shared_ptr<PNJ::Pnj> pnj);
 
     public:
     PnjManager();

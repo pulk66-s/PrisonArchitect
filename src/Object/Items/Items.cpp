@@ -28,4 +28,17 @@ namespace PA::Object::Item {
         return (nullptr);
     }
 
+    std::shared_ptr<AItem> Items::get(PA::Vector2<int> pos) {
+        if (this->exist(pos)) {
+            return (this->items.at(pos));
+        }
+        return (nullptr);
+    }
+
+    void Items::remove(PA::Vector2<int> pos) {
+        if (this->exist(pos)) {
+            this->items.erase(pos);
+        }
+    }
+
 }

@@ -39,6 +39,8 @@ class PA::Object::PNJ::Pnj : public PA::Object::PNJ::IPnj {
     void setItemCarry(std::shared_ptr<Item::AItem> item);
     void setItemCarry(Item::AItem item);
     bool arrivedToGoTo();
+    std::shared_ptr<Task::ATask> getCurrTask();
+    PA::Vector2<int> getPos() const;
 
 };
 

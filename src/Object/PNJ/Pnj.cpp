@@ -32,6 +32,9 @@ namespace PA::Object::PNJ {
             if (goTo != nullptr) {
                 this->ia->setGoToPos(*goTo);
             }
+            if (this->arrivedToGoTo()) {
+                this->tasks->getCurrTask()->setArrived(true);
+            }
         }
         this->ia->update(&this->pos, this->spriteSheet, this->currVariant);
     }
@@ -59,6 +62,9 @@ namespace PA::Object::PNJ {
 
     void Pnj::setItemCarry(std::shared_ptr<Item::AItem> item)
     {
+        if (this->tasks->getCurrTask() != nullptr) {
+            this->tasks->getCurrTask()->setItemCarry(item != nullptr);
+        }
         this->itemCarry = item;
     }
 
@@ -77,6 +83,16 @@ namespace PA::Object::PNJ {
             return (false);
         }
         return (false);
+    }
+
+    std::shared_ptr<Task::ATask> Pnj::getCurrTask()
+    {
+        return (this->tasks->getCurrTask());
+    }
+
+    PA::Vector2<int> Pnj::getPos() const
+    {
+        return (this->pos);
     }
 
 }

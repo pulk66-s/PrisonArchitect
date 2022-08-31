@@ -10,6 +10,7 @@
     #include "Global/Vector.hpp"
     #include "Object/ObjectNamespace.hpp"
     #include "Object/PNJ/PnjManager.hpp"
+    #include "Object/PNJ/Tasks/Manager.hpp"
     #include "Object/Map/Grid.hpp"
     #include "Object/Map/Background.hpp"
     #include "Object/Tile/TileManager.hpp"
@@ -30,6 +31,7 @@ class PA::Object::Map::Map {
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
     std::shared_ptr<PA::Lib::SDL2::Camera> camera = PA::Lib::SDL2::Camera::getInstance();
     PA::Object::PNJ::PnjManager pnjManager;
+    PNJ::Task::Manager taskManager;
 
     PA::Object::Menu::GameUI gameUI;
     PA::Object::Map::Background background;

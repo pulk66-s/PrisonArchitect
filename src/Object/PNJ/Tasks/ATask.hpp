@@ -15,12 +15,19 @@ class PA::Object::PNJ::Task::ATask : public PA::Object::PNJ::Task::ITask {
         IN_PROGRESS,
         DONE
     };
+    enum Action {
+        GET_ITEM,
+        NONE
+    };
 
-    private:
+    protected:
     std::string name = "";
     std::string description = "";
     Status status = NOT_STARTED;
     std::shared_ptr<PA::Vector2<int>> goTo = nullptr;
+    bool arrived = false;
+    bool itemCarry = false;
+    Action action = NONE;
 
     public:
     ATask(std::string name, std::string description);
@@ -29,6 +36,11 @@ class PA::Object::PNJ::Task::ATask : public PA::Object::PNJ::Task::ITask {
     virtual void update() = 0;
     void setGoTo(PA::Vector2<int> goTo);
     std::shared_ptr<PA::Vector2<int>> getGoTo() const;
+    void setArrived(bool arrived);
+    bool getArrived() const;
+    Action getAction() const;
+    void setAction(Action action);
+    void setItemCarry(bool item);
 
 };
 

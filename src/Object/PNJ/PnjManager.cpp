@@ -53,10 +53,30 @@ namespace PA::Object::PNJ {
         }
     }
 
+    void PnjManager::parseTaskAction(Task::ATask::Action action, std::shared_ptr<PNJ::Pnj> pnj) {
+        PA::Vector2<int> pos = pnj->getPos() / this->grid->getSquareDim();
+        std::shared_ptr<Item::AItem> item = nullptr;
+        switch (action) {
+            case Task::ATask::GET_ITEM:
+                item = this->items->get(pos);
+                if (item != nullptr) {
+                    pnj->setItemCarry(item);
+                    this->items->remove(pos);
+                }
+                break;
+            default:
+                break;
+        }
+        pnj->getCurrTask()->setAction(Task::ATask::NONE);
+    }
+
     void PnjManager::update()
     {
         for (auto &pnj : *this->pnjs->getPnjs()) {
             pnj->update();
+            if (pnj->getCurrTask() != nullptr) {
+                this->parseTaskAction(pnj->getCurrTask()->getAction(), pnj);
+            }
         }
         if (this->waitForRelease) {
             if (this->event->isRelease()) {

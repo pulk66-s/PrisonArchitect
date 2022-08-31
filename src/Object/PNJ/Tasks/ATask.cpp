@@ -21,4 +21,24 @@ namespace PA::Object::PNJ::Task {
         return (this->goTo);
     }
 
+    void ATask::setArrived(bool arrived) {
+        this->arrived = arrived;
+    }
+
+    bool ATask::getArrived() const {
+        return (this->arrived);
+    }
+
+    ATask::Action ATask::getAction() const {
+        return (this->action);
+    }
+
+    void ATask::setItemCarry(bool item) {
+        this->itemCarry = item;
+    }
+
+    void ATask::setAction(Action action) {
+        this->action = action;
+    }
+
 }

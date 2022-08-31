@@ -17,8 +17,10 @@ class PA::Object::Item::Items {
     static std::shared_ptr<Items> getInstance();
     std::map<PA::Vector2<int>, std::shared_ptr<AItem>> *getItems();
     void add(PA::Vector2<int> pos, std::shared_ptr<AItem> item);
+    std::shared_ptr<AItem> get(PA::Vector2<int> pos);
     bool exist(PA::Vector2<int> pos);
     std::shared_ptr<AItem> findIf(std::function<bool(std::shared_ptr<AItem>)> func);
+    void remove(PA::Vector2<int> pos);
 
 };
 

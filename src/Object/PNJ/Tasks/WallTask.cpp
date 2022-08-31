@@ -13,7 +13,6 @@ namespace PA::Object::PNJ::Task {
             return (item->isFree());
         });
         if (item != nullptr) {
-            this->item = item;
             item->setFree(false);
             this->setGoTo(item->getPos());
         }
@@ -24,9 +23,16 @@ namespace PA::Object::PNJ::Task {
     }
 
     void WallTask::update() {
-        if (this->item == nullptr) {
+        this->status = IN_PROGRESS;
+        if (!this->itemCarry) {
             this->findItem();
+            if (this->arrived) {
+                this->goTo = nullptr;
+                this->arrived = false;
+                this->action = ATask::GET_ITEM;
+            }
         } else {
+            this->goTo = std::make_shared<PA::Vector2<int>>(0, 0);
             this->updateTask();
         }
     }
