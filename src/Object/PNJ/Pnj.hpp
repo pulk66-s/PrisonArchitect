@@ -17,7 +17,7 @@
 class PA::Object::PNJ::Pnj : public PA::Object::PNJ::IPnj {
     protected:
     std::shared_ptr<PA::Object::Map::Grid> grid = PA::Object::Map::Grid::getInstance();
-    PA::Object::PNJ::Task::Tasks tasks;
+    std::unique_ptr<PA::Object::PNJ::Task::Tasks> tasks;
 
     std::shared_ptr<Item::AItem> itemCarry = nullptr;
     std::shared_ptr<PA::Lib::SDL2::Graphic::SpriteSheet> spriteSheet;
@@ -25,7 +25,7 @@ class PA::Object::PNJ::Pnj : public PA::Object::PNJ::IPnj {
     PA::Vector2<int> spriteIndex;
     PA::Vector2<int> pos;
 
-    std::unique_ptr<PA::Object::PNJ::IA::Ia> ia = nullptr;
+    std::shared_ptr<PA::Object::PNJ::IA::Ia> ia = nullptr;
     void iaUpdate();
 
     public:

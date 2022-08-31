@@ -11,8 +11,10 @@ class PA::Object::PNJ::Task::Tasks {
 
     private:
     std::vector<std::shared_ptr<ATask>> tasks;
+    std::shared_ptr<IA::Ia> ia = nullptr;
 
     public:
+    Tasks(std::shared_ptr<IA::Ia> ia);
     void addTask(std::shared_ptr<ATask> task);
     int size() const;
     void update();

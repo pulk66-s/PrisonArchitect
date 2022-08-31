@@ -28,6 +28,9 @@ namespace PA::Object::Tile::Wall {
         int size = this->tilesPreviewSet.size();
         int price = size * this->firstTile->getPrice();
         try {
+            std::cout << "size " << size << std::endl;
+            std::cout << "price " << price << std::endl;
+            std::cout << "first tile " << this->firstTile->getPrice() << std::endl;
             this->playerInfo->addMoney(-price);
             for (int i = 0; i < size; i++) {
                 this->itemManager.createItem(this->firstTile->getItem());
@@ -131,12 +134,25 @@ namespace PA::Object::Tile::Wall {
             starting.y = ending.y;
             ending.y = tmp;
         }
-        int sizeX = ((ending.x - starting.x) / gridDim.x + 1) * 2;
-        int sizeY = ((ending.y - starting.y) / gridDim.y - 1) * 2;
-        std::size_t size = sizeX + sizeY;
-        if (size == 0) {
-            size = 1;
+        std::cout << "starting " << starting << " ending " << ending << std::endl;
+        int sizeX = (ending.x - starting.x) / gridDim.x + 1;
+        int sizeY = (ending.y - starting.y) / gridDim.y + 1;
+        std::size_t size = 0;
+        std::cout << sizeX << " " << sizeY << std::endl;
+        if (sizeX == 1) {
+            size = sizeY;
+        } else if (sizeY == 1) {
+            size = sizeX;
+        } else if (sizeX == 2) {
+            size = 2 * sizeY;
+        } else if (sizeY == 2) {
+            size = 2 * sizeX;
+        } else {
+            size = 2 * sizeX + (2 * (sizeY - 2));
         }
+        std::cout << "global size " << size << std::endl;
+        std::cout << "sizeX " << sizeX << " sizeY " << sizeY << std::endl;
+        std::cout << "tilesPreviewSet size before " << this->tilesPreviewSet.size() << std::endl;
         if (this->tilesPreviewSet.size() < size) {
             for (std::size_t i = this->tilesPreviewSet.size(); i < size; i++) {
                 this->tilesPreviewSet.insert(this->tileFactory.create(this->tileName));
@@ -146,20 +162,43 @@ namespace PA::Object::Tile::Wall {
                 this->tilesPreviewSet.erase(this->tilesPreviewSet.begin());
             }
         }
+        std::cout << "tilesPreviewSet size after " << this->tilesPreviewSet.size() << std::endl;
+        std::cout << "starting " << starting << " ending " << ending << std::endl;
         int index = 0;
         for (auto tile : this->tilesPreviewSet) {
-            if (index < sizeX / 2) {
-                PA::Vector2<int> pos = {starting.x + index * gridDim.x, starting.y};
-                tile->setPos(pos);
-            } else if (index >= sizeX / 2 && index < sizeX) {
-                PA::Vector2<int> pos = {starting.x + (index - sizeX / 2) * gridDim.x, ending.y};
-                tile->setPos(pos);
-            } else if (index >= sizeX && index < sizeX + sizeY / 2) {
-                PA::Vector2<int> pos = {starting.x, starting.y + (index - sizeX + 1) * gridDim.y};
+            PA::Vector2<int> pos = starting;
+            std::cout << "index " << index << std::endl;
+            if (index == 0) {
                 tile->setPos(pos);
             } else {
-                PA::Vector2<int> pos = {ending.x, starting.y + (index - sizeX + 1 - sizeY / 2) * gridDim.y};
-                tile->setPos(pos);
+                if (sizeX == 0) {
+                    pos.y += gridDim.y * index;
+                    tile->setPos(pos);
+                } else if (sizeY == 0) {
+                    pos.x += gridDim.x * index;
+                    tile->setPos(pos);
+                } else {
+                    std::cout << "sizeX " << sizeX << " sizeY " << sizeY << std::endl;
+                    if (index < sizeX) {
+                        pos.x += gridDim.x * (index);
+                        std::cout << "first Line " << pos << std::endl;
+                        tile->setPos(pos);
+                    } else if (index - sizeX < sizeX) {
+                        pos.x += gridDim.x * (index - sizeX);
+                        pos.y = ending.y;
+                        tile->setPos(pos);
+                        std::cout << "second Line " << pos << std::endl;
+                    } else if (index - sizeX - sizeX < sizeY - 2) {
+                        pos.y += gridDim.y * (index - sizeX - sizeX + 1);
+                        tile->setPos(pos);
+                        std::cout << "third Line " << pos << std::endl;
+                    } else {
+                        pos.x = ending.x;
+                        pos.y += gridDim.x * (index - sizeX - sizeX - sizeY + 3);
+                        tile->setPos(pos);
+                        std::cout << "fourth Line " << pos << std::endl;
+                    }
+                }
             }
             index++;
         }

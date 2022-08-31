@@ -2,6 +2,11 @@
 
 namespace PA::Object::PNJ::Task {
 
+    Tasks::Tasks(std::shared_ptr<IA::Ia> ia)
+    {
+        this->ia = ia;
+    }
+
     void Tasks::addTask(std::shared_ptr<ATask> task) {
         this->tasks.push_back(task);
     }

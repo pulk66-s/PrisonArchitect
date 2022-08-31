@@ -13,6 +13,7 @@ namespace PA::Object::PNJ {
             this->currVariant = std::rand() % variant;
             this->spriteSheet->setIndex({0, this->currVariant});
         }
+        this->tasks = std::make_unique<PA::Object::PNJ::Task::Tasks>(this->ia);
     }
 
     Pnj::~Pnj()
@@ -25,7 +26,7 @@ namespace PA::Object::PNJ {
     }
 
     void Pnj::iaUpdate() {
-        std::shared_ptr<Task::ATask> task = this->tasks.getCurrTask();
+        std::shared_ptr<Task::ATask> task = this->tasks->getCurrTask();
         if (task != nullptr) {
             std::shared_ptr<PA::Vector2<int>> goTo = task->getGoTo();
             if (goTo != nullptr) {
@@ -37,18 +38,18 @@ namespace PA::Object::PNJ {
 
     void Pnj::update()
     {
-        this->tasks.update();
+        this->tasks->update();
         this->iaUpdate();
     }
 
     int Pnj::getNbTask() const
     {
-        return (this->tasks.size());
+        return (this->tasks->size());
     }
 
     void Pnj::addTask(std::shared_ptr<Task::ATask> task)
     {
-        this->tasks.addTask(task);
+        this->tasks->addTask(task);
     }
 
     std::shared_ptr<Item::AItem> Pnj::getItemCarry()
